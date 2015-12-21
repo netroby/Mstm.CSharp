@@ -1,10 +1,62 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PatternDemo", "PatternDemo", "{45C277D8-A6F7-4B92-9C3E-EAD36980A64E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_01简单工厂模式", "PatternDemo\_01简单工厂模式\_01简单工厂模式.csproj", "{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_02策略模式", "PatternDemo\_02策略模式\_02策略模式.csproj", "{62E879D6-6F4D-4187-BE40-8F06B6B12B90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_03装饰模式", "PatternDemo\_03装饰模式\_03装饰模式.csproj", "{109BBD4A-8108-44F9-B84E-4D072596B195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_04代理模式", "PatternDemo\_04代理模式\_04代理模式.csproj", "{5857594E-0BD7-4A74-B660-B796813C021D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_05工厂方法模式", "PatternDemo\_05工厂方法模式\_05工厂方法模式.csproj", "{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_06原型模式", "PatternDemo\_06原型模式\_06原型模式.csproj", "{92660DA5-647C-4BE6-A7DA-9A38EA334B39}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E879D6-6F4D-4187-BE40-8F06B6B12B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E879D6-6F4D-4187-BE40-8F06B6B12B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E879D6-6F4D-4187-BE40-8F06B6B12B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E879D6-6F4D-4187-BE40-8F06B6B12B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{109BBD4A-8108-44F9-B84E-4D072596B195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109BBD4A-8108-44F9-B84E-4D072596B195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109BBD4A-8108-44F9-B84E-4D072596B195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109BBD4A-8108-44F9-B84E-4D072596B195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5857594E-0BD7-4A74-B660-B796813C021D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5857594E-0BD7-4A74-B660-B796813C021D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5857594E-0BD7-4A74-B660-B796813C021D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5857594E-0BD7-4A74-B660-B796813C021D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92660DA5-647C-4BE6-A7DA-9A38EA334B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92660DA5-647C-4BE6-A7DA-9A38EA334B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92660DA5-647C-4BE6-A7DA-9A38EA334B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92660DA5-647C-4BE6-A7DA-9A38EA334B39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1CE439E-E86C-4A38-A93A-B71216EAF8EB} = {45C277D8-A6F7-4B92-9C3E-EAD36980A64E}
+		{62E879D6-6F4D-4187-BE40-8F06B6B12B90} = {45C277D8-A6F7-4B92-9C3E-EAD36980A64E}
+		{109BBD4A-8108-44F9-B84E-4D072596B195} = {45C277D8-A6F7-4B92-9C3E-EAD36980A64E}
+		{5857594E-0BD7-4A74-B660-B796813C021D} = {45C277D8-A6F7-4B92-9C3E-EAD36980A64E}
+		{D13F2CD6-40D9-4FED-85E6-978E0783DBA3} = {45C277D8-A6F7-4B92-9C3E-EAD36980A64E}
+		{92660DA5-647C-4BE6-A7DA-9A38EA334B39} = {45C277D8-A6F7-4B92-9C3E-EAD36980A64E}
 	EndGlobalSection
 EndGlobal
