@@ -8,7 +8,7 @@ namespace Mstm.OAuth.Core
 {
 
     /// <summary>
-    /// Http请求客户端接口
+    /// Http客户端接口
     /// </summary>
     public interface IHttpClient
     {
