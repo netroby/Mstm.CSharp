@@ -8,10 +8,11 @@ namespace _16迭代器模式
 {
 
     /// <summary>
-    /// 迭代器模式：
-    /// 提供一种方法顺序访问一个聚合对象中的各个元素，而又不暴露该对象的内部表示
-    /// 典型的例子就使C#中的foreach语句
-    /// foreach就是通过IEnumerator接口和IEnumerable接口来实现的
+    /// 迭代器模式（Iterator）：
+    ///     提供一种方法顺序访问一个聚合对象中的各个元素，而又不暴露该对象的内部表示
+    ///     
+    ///     典型的例子就使C#中的foreach语句
+    ///     foreach就是通过IEnumerator接口和IEnumerable接口来实现的
     /// </summary>
     class Program
     {

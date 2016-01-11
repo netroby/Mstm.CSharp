@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace _17单例模式
 {
     /// <summary>
-    /// 单例模式可以保证一个类只有一个实例，并提供一个全局访问点
+    /// 单例模式（Singleton）：
+    ///     保证一个类只有一个实例，并提供访问它的全局访问点。
     /// </summary>
     class Program
     {

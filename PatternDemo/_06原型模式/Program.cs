@@ -8,9 +8,12 @@ namespace _06原型模式
 {
 
     /// <summary>
-    /// 原型模式就是从原有的对象实例中获取到一个实例的副本
-    /// 这里通过一个自定义的IDeepCloneable接口来实现深克隆
-    /// ICloneable实现浅克隆
+    /// 原型模式（Prototype）：
+    ///     用原型实例指定创建对象的种类，并通过拷贝这个原型来创建新的对象。
+    ///     
+    ///     原型模式就是从原有的对象实例中获取到一个实例的副本
+    ///     这里通过一个自定义的IDeepCloneable接口来实现深克隆
+    ///     ICloneable实现浅克隆
     /// </summary>
     class Program
     {
