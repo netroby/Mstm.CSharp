@@ -6,6 +6,19 @@ using System.Threading;
 
 namespace Mstm.RedPacket.Core
 {
+    //public class RedPacketConfig
+    //{
+    //    public decimal Amount { get; set; }
+
+    //    public decimal PacketCount { get; set; }
+
+    //    public decimal Ceiling { get; set; }
+
+    //    public decimal Floor { get; set; }
+
+    //}
+
+    //public delegate string GetRedPacketConfigDelegate();
 
     /// <summary>
     /// 发红包服务类
