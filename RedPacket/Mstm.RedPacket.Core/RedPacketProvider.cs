@@ -50,6 +50,34 @@ namespace Mstm.RedPacket.Core
             return money;
         }
 
+        /// <summary>
+        /// 尝试初始化红包池
+        /// 可用于提前初始化红包池  减少第一位用户的等待时间
+        /// </summary>
+        /// <param name="func">获取当前红包活动配置的委托</param>
+        /// <returns>当前红包的金额，如果为0则活动结束</returns>
+        public static void TryInitPackagePool(Func<RedPacketConfig> func)
+        {
+            if (packagePool == null)
+            {
+                //当红包池为空时根据配置重新生成红包池
+                //获取红包相关配置
+                var redPacketConfig = func.Invoke();
+                //为获取到配置则直接退出
+                if (redPacketConfig == null) { return; }
+
+                //红包已发完也直接退出
+                if (redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
+                {
+                    return;
+                }
+
+                InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
+            }
+
+            return;
+        }
+
         static object lockObj = new object();
 
         /// <summary>

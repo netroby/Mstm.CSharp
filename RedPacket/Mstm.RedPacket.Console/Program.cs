@@ -65,6 +65,8 @@ namespace Mstm.RedPacket.Console
 
             Func<RedPacketConfig> func = new Func<RedPacketConfig>(GetRedPacketConfig);
             var config = func.Invoke();
+            //尝试提前初始化红包池
+            RedPacketProvider.TryInitPackagePool(func);
 
             for (int i = 0; i < config.PacketCount + 10; i++)
             {
