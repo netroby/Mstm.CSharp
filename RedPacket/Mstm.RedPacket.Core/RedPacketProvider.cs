@@ -6,19 +6,6 @@ using System.Threading;
 
 namespace Mstm.RedPacket.Core
 {
-    //public class RedPacketConfig
-    //{
-    //    public decimal Amount { get; set; }
-
-    //    public decimal PacketCount { get; set; }
-
-    //    public decimal Ceiling { get; set; }
-
-    //    public decimal Floor { get; set; }
-
-    //}
-
-    //public delegate string GetRedPacketConfigDelegate();
 
     /// <summary>
     /// 发红包服务类
@@ -32,34 +19,29 @@ namespace Mstm.RedPacket.Core
         private static ConcurrentQueue<decimal> packagePool;
 
 
-
         /// <summary>
         /// 获取红包
         /// </summary>
-        /// <param name="amount">资金总金额</param>
-        /// <param name="currentAmount">已发红包总额</param>
-        /// <param name="packageCount">红包总数</param>
-        /// <param name="currentPackageCount">当前已发红包数</param>
-        /// <param name="ceiling">浮动上限（0-100）</param>
-        /// <param name="floor">浮动下限（0-100）</param>
+        /// <param name="func">获取当前红包活动配置的委托</param>
         /// <returns>当前红包的金额，如果为0则活动结束</returns>
-        public static decimal GetOneRedPacket(decimal amount, decimal currentAmount, int packageCount, int currentPackageCount, decimal ceiling, decimal floor)
+        public static decimal GetOneRedPacket(Func<RedPacketConfig> func)
         {
-            //decimal maxPkg = amount / packageCount * (100 + ceiling) / 100;
-            //decimal minPkg = amount / packageCount * (100 - floor) / 100;
-            //if (maxPkg - minPkg < 1)
-            //{
-            //    throw new Exception("单个红包上下可浮动金额小于1元，请重新设置！");
-            //}
             decimal money = 0;
-            if (currentPackageCount >= packageCount)
-            {
-                return 0;
-            }
-
             if (packagePool == null)
             {
-                InitPackagePool(amount - currentAmount, packageCount - currentPackageCount, ceiling, floor);
+                //当红包池为空时根据配置重新生成红包池
+                //获取红包相关配置
+                var redPacketConfig = func.Invoke();
+                //为获取到配置则直接退出
+                if (redPacketConfig == null) { return 0; }
+
+                //红包已发完也直接退出
+                if (redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
+                {
+                    return 0;
+                }
+
+                InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
             }
 
             //获取单个红包
