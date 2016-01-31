@@ -79,26 +79,44 @@ namespace Mstm.RedPacket.Console
                     if (i == 100)
                     {
                         RedPacketProvider.Reset();
+                        //模拟数据库  更新当前已发的红包总金额与总数
+                        currentAmount = config.CurrentAmount;
+                        currentPackageCount = config.CurrentPackageCount;
                     }
 
                     if (i == 60)
                     {
                         RedPacketProvider.Reset();
+                        //模拟数据库  更新当前已发的红包总金额与总数
+                        currentAmount = config.CurrentAmount;
+                        currentPackageCount = config.CurrentPackageCount;
                     }
 
                     if (i == 210)
                     {
                         RedPacketProvider.Reset();
+                        //模拟数据库  更新当前已发的红包总金额与总数
+                        currentAmount = config.CurrentAmount;
+                        currentPackageCount = config.CurrentPackageCount;
                     }
                 });
 
                 thread.Start();
             }
 
-            System.Console.WriteLine("Sum:{0}", config.CurrentAmount);
+            System.Console.WriteLine("正在统计总金额...");
+            //暂停三秒 保证已经统计了所有金额
+            Thread.Sleep(3000);
+            System.Console.WriteLine("Sum:{0},Count:{1}", config.CurrentAmount, config.CurrentPackageCount);
             System.Console.ReadKey();
         }
 
+
+
+        //当前已发红包总金额
+        static decimal currentAmount = 0;
+        //当前已发红包总数
+        static int currentPackageCount = 0;
 
         /// <summary>
         /// 获取红包配置
@@ -115,10 +133,6 @@ namespace Mstm.RedPacket.Console
             decimal ceiling = 20;
             //下限
             decimal floor = 30;
-            //当前已发红包总金额
-            decimal currentAmount = 0;
-            //当前已发红包总数
-            int currentPackageCount = 0;
             //均分红包
             decimal avgPkg = Math.Round(amount / packageCount, 2);
             //最大红包
