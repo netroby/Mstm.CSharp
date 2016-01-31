@@ -68,6 +68,7 @@ namespace Mstm.RedPacket.Core
             return money;
         }
 
+        static object lockObj = new object();
 
         /// <summary>
         /// 初始化红包池
@@ -79,68 +80,75 @@ namespace Mstm.RedPacket.Core
         private static void InitPackagePool(decimal amount, int packageCount, decimal ceiling, decimal floor)
         {
 
-            packagePool = new ConcurrentQueue<decimal>();
-
-            //乘以100，去掉小数点
-            amount = Math.Round(amount, 2) * 100;
-
-            //计算当前可随机分配的值  保留红包的最低金额
-            var randAmount = amount * floor / 100;
-
-            //分发时去除余数  减轻小数的影响
-            decimal amountMod = amount % packageCount;
-            randAmount -= amountMod;
-
-
-            //分发的红包可能出现0.01级别的误差
-            //这里对红包的界限进行进位处理
-
-            //均分红包
-            decimal avgPkg = Math.Ceiling((amount - amountMod) / packageCount);
-            //最小红包
-            decimal minPkg = Math.Ceiling(avgPkg * (100 - floor) / 100);
-            //最大红包
-            decimal maxPkg = Math.Ceiling(avgPkg * (100 + ceiling) / 100);
-
-            //两个红包间可能的最大差值
-            decimal diffValue = maxPkg - minPkg;
-
-            //随机分配一次红包  总数为packageCount
-            AssignRedPacket(diffValue, packageCount);
-
-
-            //第一次分配完之后  红包总数可能超过或者小于总金额的限定
-            //这里对剩余或者溢出的情况进行处理
-            while (true)
+            lock (lockObj)
             {
-                //计算剩余或者溢出的部分
-                var otherSection = randAmount - packagePool.Sum();
+                if (packagePool != null) { return; }
+                Console.WriteLine("Init---" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                packagePool = new ConcurrentQueue<decimal>();
+                lock (packagePool)
+                {
 
-                //处理剩余或者溢出的部分
-                if (otherSection > 0)
-                {
-                    //剩余
-                    ProcessRemainSection(diffValue, otherSection);
-                }
-                else if (otherSection < 0)
-                {
-                    //溢出了
-                    ProcessOverflowSection(diffValue, Math.Abs(otherSection));
-                }
-                else
-                {
-                    //等于0则处理完毕
-                    break;
+                    //乘以100，去掉小数点
+                    amount = Math.Round(amount, 2) * 100;
+
+                    //计算当前可随机分配的值  保留红包的最低金额
+                    var randAmount = amount * floor / 100;
+
+                    //分发时去除余数  减轻小数的影响
+                    decimal amountMod = amount % packageCount;
+                    randAmount -= amountMod;
+
+
+                    //分发的红包可能出现0.01级别的误差
+                    //这里对红包的界限进行进位处理
+
+                    //均分红包
+                    decimal avgPkg = Math.Ceiling((amount - amountMod) / packageCount);
+                    //最小红包
+                    decimal minPkg = Math.Ceiling(avgPkg * (100 - floor) / 100);
+                    //最大红包
+                    decimal maxPkg = Math.Ceiling(avgPkg * (100 + ceiling) / 100);
+
+                    //两个红包间可能的最大差值
+                    decimal diffValue = maxPkg - minPkg;
+
+                    //随机分配一次红包  总数为packageCount
+                    AssignRedPacket(diffValue, packageCount);
+
+
+                    //第一次分配完之后  红包总数可能超过或者小于总金额的限定
+                    //这里对剩余或者溢出的情况进行处理
+                    while (true)
+                    {
+                        //计算剩余或者溢出的部分
+                        var otherSection = randAmount - packagePool.Sum();
+
+                        //处理剩余或者溢出的部分
+                        if (otherSection > 0)
+                        {
+                            //剩余
+                            ProcessRemainSection(diffValue, otherSection);
+                        }
+                        else if (otherSection < 0)
+                        {
+                            //溢出了
+                            ProcessOverflowSection(diffValue, Math.Abs(otherSection));
+                        }
+                        else
+                        {
+                            //等于0则处理完毕
+                            break;
+                        }
+                    }
+
+                    //所以这里要将所有红包恢复到正常的值  将附加的状态都恢复正常
+                    ReNormal(minPkg);
+
+
+                    //处理因除不尽导致的误差
+                    ProcessPrecisionError(amount / 100, maxPkg / 100, minPkg / 100);
                 }
             }
-
-            //所以这里要将所有红包恢复到正常的值  将附加的状态都恢复正常
-            ReNormal(minPkg);
-
-
-            //处理因除不尽导致的误差
-            ProcessPrecisionError(amount / 100, maxPkg / 100, minPkg / 100);
-
         }
 
 
@@ -377,16 +385,19 @@ namespace Mstm.RedPacket.Core
             {
                 return 0;
             }
-            decimal money;
-            bool isSuccess = packagePool.TryDequeue(out money);
-            if (isSuccess)
+            lock (packagePool)
             {
-                //红包保留两位小数
-                return Math.Round(money, 2);
-            }
-            else
-            {
-                return 0;
+                decimal money;
+                bool isSuccess = packagePool.TryDequeue(out money);
+                if (isSuccess)
+                {
+                    //红包保留两位小数
+                    return Math.Round(money, 2);
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 
