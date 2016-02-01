@@ -29,19 +29,25 @@ namespace Mstm.RedPacket.Core
             decimal money = 0;
             if (packagePool == null)
             {
-                //当红包池为空时根据配置重新生成红包池
-                //获取红包相关配置
-                var redPacketConfig = func.Invoke();
-                //为获取到配置则直接退出
-                if (redPacketConfig == null) { return 0; }
-
-                //红包已发完也直接退出
-                if (redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
+                lock (lockObj)
                 {
-                    return 0;
-                }
+                    if (packagePool == null)
+                    {
+                        //当红包池为空时根据配置重新生成红包池
+                        //获取红包相关配置
+                        var redPacketConfig = func.Invoke();
+                        //为获取到配置则直接退出
+                        if (redPacketConfig == null) { return 0; }
 
-                InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
+                        //红包已发完也直接退出
+                        if (redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
+                        {
+                            return 0;
+                        }
+
+                        InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
+                    }
+                }
             }
 
             //获取单个红包
