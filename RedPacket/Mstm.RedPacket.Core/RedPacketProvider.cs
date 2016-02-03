@@ -31,10 +31,10 @@ namespace Mstm.RedPacket.Core
         /// <returns>当前红包的金额，如果为0则活动结束</returns>
         public static decimal GetOneRedPacket(Func<RedPacketConfig> func)
         {
-
-            decimal money = 0;
             lock (lockObj)
             {
+                decimal money = 0;
+
                 //首先检查配置
                 //获取红包相关配置
                 var currentConfig = func.Invoke();
@@ -77,13 +77,12 @@ namespace Mstm.RedPacket.Core
                     InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
                 }
 
+                //获取单个红包
+                money = GetOnePkg();
+                return money;
             }
-
-            //获取单个红包
-            money = GetOnePkg();
-
-            return money;
         }
+
 
         /// <summary>
         /// 尝试初始化红包池

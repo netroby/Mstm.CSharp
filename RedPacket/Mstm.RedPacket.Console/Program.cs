@@ -78,7 +78,7 @@ namespace Mstm.RedPacket.Console
                     System.Console.WriteLine(money + "");
 
                     //模拟红包池意外清空的情况
-                    if (i == 100)
+                    if (i == 100 || i == 60 || i == 210)
                     {
                         RedPacketProvider.Reset();
                         //模拟数据库  更新当前已发的红包总金额与总数
@@ -86,20 +86,11 @@ namespace Mstm.RedPacket.Console
                         currentPackageCount = config.CurrentPackageCount;
                     }
 
-                    if (i == 60)
-                    {
-                        RedPacketProvider.Reset();
-                        //模拟数据库  更新当前已发的红包总金额与总数
-                        currentAmount = config.CurrentAmount;
-                        currentPackageCount = config.CurrentPackageCount;
-                    }
 
-                    if (i == 210)
+                    //模拟活动变更的情况
+                    if (i == 190 || i == 105)
                     {
-                        RedPacketProvider.Reset();
-                        //模拟数据库  更新当前已发的红包总金额与总数
-                        currentAmount = config.CurrentAmount;
-                        currentPackageCount = config.CurrentPackageCount;
+                        redPacketIdentity = Guid.NewGuid().ToString();
                     }
                 });
 
@@ -119,6 +110,8 @@ namespace Mstm.RedPacket.Console
         static decimal currentAmount = 0;
         //当前已发红包总数
         static int currentPackageCount = 0;
+        //活动标识
+        static string redPacketIdentity = "1001";
 
         /// <summary>
         /// 获取红包配置
@@ -152,7 +145,7 @@ namespace Mstm.RedPacket.Console
                 Floor = floor,
                 StartTime = DateTime.Now.AddMinutes(-10),
                 EndTime = DateTime.Now.AddMinutes(10),
-                RedPacketIdentity = "1001"
+                RedPacketIdentity = redPacketIdentity
             };
             return config;
 
