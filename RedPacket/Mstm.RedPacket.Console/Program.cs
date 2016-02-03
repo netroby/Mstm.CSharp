@@ -91,6 +91,8 @@ namespace Mstm.RedPacket.Console
                     if (i == 190 || i == 105)
                     {
                         redPacketIdentity = Guid.NewGuid().ToString();
+                        currentAmount = config.CurrentAmount;
+                        currentPackageCount = config.CurrentPackageCount;
                     }
                 });
 
