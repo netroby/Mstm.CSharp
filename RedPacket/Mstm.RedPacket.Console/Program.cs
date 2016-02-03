@@ -149,7 +149,10 @@ namespace Mstm.RedPacket.Console
                 CurrentAmount = currentAmount,
                 CurrentPackageCount = currentPackageCount,
                 Ceiling = ceiling,
-                Floor = floor
+                Floor = floor,
+                StartTime = DateTime.Now.AddMinutes(-10),
+                EndTime = DateTime.Now.AddMinutes(10),
+                RedPacketIdentity = "1001"
             };
             return config;
 

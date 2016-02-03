@@ -18,6 +18,11 @@ namespace Mstm.RedPacket.Core
         /// </summary>
         private static ConcurrentQueue<decimal> packagePool;
 
+        /// <summary>
+        /// 记录当前活动的配置
+        /// </summary>
+        private static RedPacketConfig redPacketConfig;
+
 
         /// <summary>
         /// 获取红包
@@ -26,28 +31,52 @@ namespace Mstm.RedPacket.Core
         /// <returns>当前红包的金额，如果为0则活动结束</returns>
         public static decimal GetOneRedPacket(Func<RedPacketConfig> func)
         {
+
             decimal money = 0;
-            if (packagePool == null)
+            lock (lockObj)
             {
-                lock (lockObj)
+                //首先检查配置
+                //获取红包相关配置
+                var currentConfig = func.Invoke();
+                DateTime now = DateTime.Now;
+                if (currentConfig == null)
                 {
-                    if (packagePool == null)
-                    {
-                        //当红包池为空时根据配置重新生成红包池
-                        //获取红包相关配置
-                        var redPacketConfig = func.Invoke();
-                        //为获取到配置则直接退出
-                        if (redPacketConfig == null) { return 0; }
-
-                        //红包已发完也直接退出
-                        if (redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
-                        {
-                            return 0;
-                        }
-
-                        InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
-                    }
+                    return 0;
                 }
+
+                if (redPacketConfig == null)
+                {
+                    redPacketConfig = currentConfig;
+                }
+
+                //活动标识不一致 说明配置信息需要更新了
+                if (currentConfig.RedPacketIdentity != redPacketConfig.RedPacketIdentity)
+                {
+                    redPacketConfig = currentConfig;
+                    packagePool = null;
+                }
+
+
+                //活动已结束或者活动未开始
+                if (redPacketConfig.StartTime > now || redPacketConfig.EndTime < now)
+                {
+                    packagePool = null;
+                    return 0;
+                }
+
+                //红包已发完也直接退出
+                if (redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
+                {
+                    return 0;
+                }
+
+
+                if (packagePool == null)
+                {
+                    //当红包池为空时根据配置重新生成红包池
+                    InitPackagePool(redPacketConfig.Amount - redPacketConfig.CurrentAmount, redPacketConfig.PacketCount - redPacketConfig.CurrentPackageCount, redPacketConfig.Ceiling, redPacketConfig.Floor);
+                }
+
             }
 
             //获取单个红包
@@ -425,6 +454,7 @@ namespace Mstm.RedPacket.Core
         public static void Reset()
         {
             packagePool = null;
+            redPacketConfig = null;
         }
     }
 }
