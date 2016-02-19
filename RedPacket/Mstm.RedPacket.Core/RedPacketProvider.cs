@@ -44,9 +44,11 @@ namespace Mstm.RedPacket.Core
                     return 0;
                 }
 
-                if (redPacketConfig == null)
+                //当前配置为空或者本地配置中红包已经发放完毕则更新配置并重置红包池
+                if (redPacketConfig == null || redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
                 {
                     redPacketConfig = currentConfig;
+                    packagePool = null;
                 }
 
                 //活动标识不一致 说明配置信息需要更新了
@@ -79,6 +81,14 @@ namespace Mstm.RedPacket.Core
 
                 //获取单个红包
                 money = GetOnePkg();
+
+                //更新本地红包统计
+                if (money > 0 && redPacketConfig != null)
+                {
+                    redPacketConfig.CurrentPackageCount++;
+                    redPacketConfig.CurrentAmount += money;
+                }
+
                 return money;
             }
         }
