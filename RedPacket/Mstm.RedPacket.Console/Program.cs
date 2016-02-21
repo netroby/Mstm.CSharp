@@ -56,6 +56,10 @@ namespace Mstm.RedPacket.Console
             System.Console.ReadKey();
         }
 
+        /// <summary>
+        /// 控制配置的读写保持数据一致
+        /// </summary>
+        static object configRWLock = new object();
 
         /// <summary>
         /// 多线程下运行
@@ -64,7 +68,13 @@ namespace Mstm.RedPacket.Console
         {
 
             Func<RedPacketConfig> func = new Func<RedPacketConfig>(GetRedPacketConfig);
-            var config = func.Invoke();
+
+            RedPacketConfig config = null;
+            lock (configRWLock)
+            {
+                config = func.Invoke();
+            }
+
             //尝试提前初始化红包池
             RedPacketProvider.TryInitPackagePool(func);
 
@@ -72,25 +82,27 @@ namespace Mstm.RedPacket.Console
             {
                 Thread thread = new Thread(() =>
                 {
-                    var money = RedPacketProvider.GetOneRedPacket(func);
-                    config.CurrentAmount += money;
-                    config.CurrentPackageCount++;
-                    System.Console.WriteLine(money + "");
-
-                    //模拟红包池意外清空的情况
-                    if (i == 100 || i == 60 || i == 210)
+                    lock (configRWLock)
                     {
-                        RedPacketProvider.Reset();
+                        var money = RedPacketProvider.GetOneRedPacket(func);
+                        config.CurrentAmount += money;
+                        config.CurrentPackageCount++;
+                        System.Console.WriteLine(money + "");
+
+                        //模拟红包池意外清空的情况
+                        if (i == 100 || i == 60 || i == 210)
+                        {
+                            RedPacketProvider.Reset();
+                        }
+
+
+                        //模拟活动变更的情况
+                        if (i == 190 || i == 105)
+                        {
+                            redPacketIdentity = Guid.NewGuid().ToString();
+                        }
+
                         //模拟数据库  更新当前已发的红包总金额与总数
-                        currentAmount = config.CurrentAmount;
-                        currentPackageCount = config.CurrentPackageCount;
-                    }
-
-
-                    //模拟活动变更的情况
-                    if (i == 190 || i == 105)
-                    {
-                        redPacketIdentity = Guid.NewGuid().ToString();
                         currentAmount = config.CurrentAmount;
                         currentPackageCount = config.CurrentPackageCount;
                     }
