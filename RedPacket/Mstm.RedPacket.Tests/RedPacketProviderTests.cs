@@ -24,10 +24,19 @@ namespace Mstm.RedPacket.Tests
             GetOneRedPacketTest();
         }
 
+        /// <summary>
+        /// 控制配置的读写保持数据一致
+        /// </summary>
+        static object configRWLock = new object();
+
         private void GetOneRedPacketTest()
         {
             Func<RedPacketConfig> func = new Func<RedPacketConfig>(GetRedPacketConfig);
-            var config = func.Invoke();
+            RedPacketConfig config = null;
+            lock (configRWLock)
+            {
+                config = func.Invoke();
+            }
             int errorCount = 0;
             List<decimal> errorList = new List<decimal>();
 
@@ -41,37 +50,40 @@ namespace Mstm.RedPacket.Tests
 
             while (true)
             {
-                var money = RedPacketProvider.GetOneRedPacket(func);
-                if (money <= 0) { break; }
-                if (money > maxPkg || money < minPkg)
+                lock (configRWLock)
                 {
-                    errorList.Add(money);
-                    errorCount++;
+                    var money = RedPacketProvider.GetOneRedPacket(func);
+                    if (money <= 0) { break; }
+                    if (money > maxPkg || money < minPkg)
+                    {
+                        errorList.Add(money);
+                        errorCount++;
+                    }
+                    //模拟数据库  更新当前已发的红包总金额与总数
+                    currentAmount += money;
+                    currentPackageCount++;
                 }
-                config.CurrentAmount += money;
-                config.CurrentPackageCount++;
-                System.Console.WriteLine(money + "");
             }
 
-            Assert.AreEqual(config.Amount, config.CurrentAmount);
+            Assert.AreEqual(config.Amount, currentAmount);
             Assert.IsTrue(errorCount == 0);
         }
 
 
 
+        //当前已发红包总金额
+        static decimal currentAmount = 0;
+        //当前已发红包总数
+        static int currentPackageCount = 0;
+        //活动标识
+        static string redPacketIdentity = "1001";
 
         /// <summary>
         /// 获取红包配置
         /// </summary>
         /// <returns></returns>
-        RedPacketConfig GetRedPacketConfig()
+        static RedPacketConfig GetRedPacketConfig()
         {
-            //当前已发红包总金额
-            decimal currentAmount = 0;
-            //当前已发红包总数
-            int currentPackageCount = 0;
-
-
             //总金额
             decimal amount = 300 * 300 + 100;
             //100 * 81 + 17  有3.32  小于最小值3.33
@@ -98,7 +110,7 @@ namespace Mstm.RedPacket.Tests
                 Floor = floor,
                 StartTime = DateTime.Now.AddMinutes(-10),
                 EndTime = DateTime.Now.AddMinutes(10),
-                RedPacketIdentity = "1001"
+                RedPacketIdentity = redPacketIdentity
             };
             return config;
 

@@ -85,8 +85,6 @@ namespace Mstm.RedPacket.Console
                     lock (configRWLock)
                     {
                         var money = RedPacketProvider.GetOneRedPacket(func);
-                        config.CurrentAmount += money;
-                        config.CurrentPackageCount++;
                         System.Console.WriteLine(money + "");
 
                         //模拟红包池意外清空的情况
@@ -103,8 +101,8 @@ namespace Mstm.RedPacket.Console
                         }
 
                         //模拟数据库  更新当前已发的红包总金额与总数
-                        currentAmount = config.CurrentAmount;
-                        currentPackageCount = config.CurrentPackageCount;
+                        currentAmount += money;
+                        currentPackageCount++;
                     }
                 });
 
@@ -114,7 +112,7 @@ namespace Mstm.RedPacket.Console
             System.Console.WriteLine("正在统计总金额...");
             //暂停三秒 保证已经统计了所有金额
             Thread.Sleep(3000);
-            System.Console.WriteLine("Sum:{0},Count:{1}", config.CurrentAmount, config.CurrentPackageCount);
+            System.Console.WriteLine("Sum:{0},Count:{1}", currentAmount, currentPackageCount);
             System.Console.ReadKey();
         }
 
