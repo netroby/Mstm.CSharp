@@ -44,11 +44,11 @@ namespace Mstm.RedPacket.Core
                     return 0;
                 }
 
-                //检查配置 是否需要更新
+                //检查配置 是否需要更新 保证配置是最新的
                 CheckRedPackageConfig(currentConfig);
 
                 //活动已结束或者活动未开始
-                if (redPacketConfig.StartTime > now || redPacketConfig.EndTime < now)
+                if (currentConfig.StartTime > now || currentConfig.EndTime < now)
                 {
                     packagePool = null;
                     return 0;
@@ -132,6 +132,15 @@ namespace Mstm.RedPacket.Core
                 packagePool = null;
                 return;
             }
+
+            //处理如果在活动进行中修改了活动配置中的总金额、红包总数、红包浮动上限、红包浮动下限
+            //这里更新配置并清空红包池  等待重新生成红包池
+            if (redPacketConfig.Amount != newestConfig.Amount || redPacketConfig.PacketCount != newestConfig.PacketCount || redPacketConfig.Ceiling != newestConfig.Ceiling || redPacketConfig.Floor != newestConfig.Floor)
+            {
+                redPacketConfig = newestConfig;
+                packagePool = null;
+                return;
+            }
         }
 
 
@@ -150,6 +159,10 @@ namespace Mstm.RedPacket.Core
             lock (lockObj)
             {
                 if (packagePool != null) { return; }
+                if (amount <= 0 || packageCount <= 0 || ceiling < 0 || ceiling > 100 || floor < 0 || floor > 100)
+                {
+                    return;
+                }
                 Console.WriteLine("Init---" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 packagePool = new ConcurrentQueue<decimal>();
                 lock (packagePool)
