@@ -44,20 +44,8 @@ namespace Mstm.RedPacket.Core
                     return 0;
                 }
 
-                //当前配置为空或者本地配置中红包已经发放完毕则更新配置并重置红包池
-                if (redPacketConfig == null || redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
-                {
-                    redPacketConfig = currentConfig;
-                    packagePool = null;
-                }
-
-                //活动标识不一致 说明配置信息需要更新了
-                if (currentConfig.RedPacketIdentity != redPacketConfig.RedPacketIdentity)
-                {
-                    redPacketConfig = currentConfig;
-                    packagePool = null;
-                }
-
+                //检查配置 是否需要更新
+                CheckRedPackageConfig(currentConfig);
 
                 //活动已结束或者活动未开始
                 if (redPacketConfig.StartTime > now || redPacketConfig.EndTime < now)
@@ -94,6 +82,7 @@ namespace Mstm.RedPacket.Core
         }
 
 
+
         /// <summary>
         /// 尝试初始化红包池
         /// 可用于提前初始化红包池  减少第一位用户的等待时间
@@ -121,6 +110,30 @@ namespace Mstm.RedPacket.Core
 
             return;
         }
+
+        /// <summary>
+        /// 检查配置，判断是否需要更新当前配置并清空红包池
+        /// </summary>
+        /// <param name="newestConfig">当前最新的实时配置信息</param>
+        private static void CheckRedPackageConfig(RedPacketConfig newestConfig)
+        {
+            //当前配置为空或者本地配置中红包已经发放完毕则更新配置并重置红包池
+            if (redPacketConfig == null || redPacketConfig.CurrentPackageCount >= redPacketConfig.PacketCount || redPacketConfig.CurrentAmount >= redPacketConfig.Amount)
+            {
+                redPacketConfig = newestConfig;
+                packagePool = null;
+                return;
+            }
+
+            //活动标识不一致 说明配置信息需要更新了
+            if (newestConfig.RedPacketIdentity != redPacketConfig.RedPacketIdentity)
+            {
+                redPacketConfig = newestConfig;
+                packagePool = null;
+                return;
+            }
+        }
+
 
         static object lockObj = new object();
 
