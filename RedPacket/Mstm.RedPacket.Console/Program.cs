@@ -140,12 +140,15 @@ namespace Mstm.RedPacket.Console
             decimal ceiling = 20;
             //下限
             decimal floor = 30;
-            //均分红包
-            decimal avgPkg = Math.Round(amount / packageCount, 2);
-            //最大红包
-            decimal maxPkg = Math.Round(avgPkg * (100 + ceiling) / 100, 2);
-            //最小红包
-            decimal minPkg = Math.Round(avgPkg * (100 - floor) / 100, 2);
+
+            //模拟活动进行时配置更改
+            if (currentPackageCount >= 200)
+            {
+                amount += 200;
+                packageCount += 6;
+                ceiling = 5;
+                //floor = 0;
+            }
 
             RedPacketConfig config = new RedPacketConfig()
             {
