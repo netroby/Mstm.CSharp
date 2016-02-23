@@ -396,7 +396,6 @@ namespace Mstm.RedPacket.Core
         }
 
 
-
         /// <summary>
         /// 处理精度问题等导致的误差
         /// </summary>
@@ -415,9 +414,9 @@ namespace Mstm.RedPacket.Core
             ConcurrentQueue<decimal> precisionErrorQueue = new ConcurrentQueue<decimal>();
 
             //误差分块
-            //每次处理误差不大于(max - min)/3
+            //每次处理误差不大于(max - min)/subsection
             //将误差进行拆分使命中率提高  该值越大命中率越高  但执行次数越多  最好通过算法动态设置
-            int subsection = 3;
+            int subsection = GetPrecisionErrorSubsection(precisionErrorSum, max, min);
 
             //每个误差的大小
             decimal onePrecisionError = Math.Round((max - min) / subsection, 2);
@@ -483,6 +482,32 @@ namespace Mstm.RedPacket.Core
             }
 
 
+        }
+
+        /// <summary>
+        /// 获取精度误差的分块大小
+        /// 该算法待优化 此处为估计的值
+        /// </summary>
+        /// <param name="precisionErrorSum">误差的总数</param>
+        /// <param name="max">红包最大值</param>
+        /// <param name="min">红包最小值</param>
+        /// <returns>分块大小</returns>
+        private static int GetPrecisionErrorSubsection(decimal precisionErrorSum, decimal max, decimal min)
+        {
+            //这里暂时取值1-80之间
+            int subsection = 10;
+            decimal value = Math.Abs(max - min);
+            int subsectionMax = (int)Math.Floor((value) / 0.01M);
+            if (value < 10 || subsectionMax < subsection)
+            {
+                subsection = subsectionMax;
+                if (subsection >= 80)
+                {
+                    subsection = 80;
+                }
+
+            }
+            return subsection > 0 ? subsection : 1;
         }
 
         /// <summary>
