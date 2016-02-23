@@ -44,11 +44,14 @@ namespace Mstm.RedPacket.Console
                     errorList.Add(money);
                     errorCount++;
                 }
-                config.CurrentAmount += money;
-                config.CurrentPackageCount++;
+
+                //模拟数据库  更新当前已发的红包总金额与总数
+                currentAmount += money;
+                currentPackageCount++;
+
                 System.Console.WriteLine(money + "");
             }
-            System.Console.WriteLine("Sum:{0},Max:{1},Min:{2},Avg:{3},Error:{4},Count:{5}", Math.Round(config.CurrentAmount, 2), maxPkg, minPkg, avgPkg, errorCount, config.CurrentPackageCount);
+            System.Console.WriteLine("Sum:{0},Max:{1},Min:{2},Avg:{3},Error:{4},Count:{5}", Math.Round(currentAmount, 2), maxPkg, minPkg, avgPkg, errorCount, currentPackageCount);
             foreach (var item in errorList)
             {
                 //System.Console.WriteLine("错误:{0}",item);
