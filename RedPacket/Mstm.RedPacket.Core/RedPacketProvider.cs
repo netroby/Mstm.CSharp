@@ -12,6 +12,7 @@ namespace Mstm.RedPacket.Core
     /// 红包根据上限Ceiling与下限Floor进行分配 尽量保证红包总金额在指定的红包数内分发完毕
     /// 以下情况下，红包分发可能存在误差
     ///     1、上限或者下限为0时，如果红包均分时无法除尽，则会有部分金额剩余
+    ///     2、如果总金额不足以按照最低红包大小进行分发时，整个红包池都为0
     /// </summary>
     public class RedPacketProvider
     {
@@ -223,6 +224,13 @@ namespace Mstm.RedPacket.Core
                         //计算剩余或者溢出的部分
                         var otherSection = randAmount - packagePool.Sum();
 
+                        //如果剩余或者溢出的部分被均分后小于1（实际就是小于0.01，即最小精度），则舍弃剩余或者溢出的部分
+                        //否则就会陷入死循环
+                        if (otherSection / packageCount < 1)
+                        {
+                            break;
+                        }
+
                         //处理剩余或者溢出的部分
                         if (otherSection > 0)
                         {
@@ -413,6 +421,8 @@ namespace Mstm.RedPacket.Core
 
             //每个误差的大小
             decimal onePrecisionError = Math.Round((max - min) / subsection, 2);
+            if (onePrecisionError == 0) { onePrecisionError = Math.Round((max - min), 2); }
+            if (onePrecisionError == 0) { return; }
 
             //误差有可能是负数
             if (precisionErrorSum < 0) { onePrecisionError = onePrecisionError * -1; }
@@ -455,7 +465,7 @@ namespace Mstm.RedPacket.Core
                 if (isSuccess)
                 {
                     //如果当前最终计算的红包没有超出规则的限定则重置这个红包，否则将红包的原始值重新附加到队列的最后
-                    if (endPkg > min && endPkg < max)
+                    if (endPkg >= min && endPkg <= max)
                     {
                         //当前误差处理成功
                         packagePool.Enqueue(endPkg);
