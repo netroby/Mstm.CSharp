@@ -9,6 +9,9 @@ namespace Mstm.RedPacket.Core
 
     /// <summary>
     /// 发红包服务类
+    /// 红包根据上限Ceiling与下限Floor进行分配 尽量保证红包总金额在指定的红包数内分发完毕
+    /// 以下情况下，红包分发可能存在误差
+    ///     1、上限或者下限为0时，如果红包均分时无法除尽，则会有部分金额剩余
     /// </summary>
     public class RedPacketProvider
     {
@@ -167,6 +170,23 @@ namespace Mstm.RedPacket.Core
                 packagePool = new ConcurrentQueue<decimal>();
                 lock (packagePool)
                 {
+                    #region 处理红包均分时的情况
+
+                    //如果上下限中有一个为零  那么红包只能进行均分
+                    if (ceiling * floor == 0) { floor = 0; ceiling = 0; }
+                    //如果是均分红包及floor与ceiling都为0 则直接分配 如果有剩余则直接舍弃
+                    if (floor == 0 && ceiling == 0)
+                    {
+                        //计算均分的红包大小，保证不会进行五入操作
+                        var pkg = Math.Floor(Math.Floor(amount * 100) / packageCount) / 100;
+                        for (int i = 0; i < packageCount; i++)
+                        {
+                            packagePool.Enqueue(pkg);
+                        }
+                        return;
+                    }
+                    #endregion
+
 
                     //乘以100，去掉小数点
                     amount = Math.Round(amount, 2) * 100;
@@ -363,7 +383,7 @@ namespace Mstm.RedPacket.Core
             var guid_hashcode = Guid.NewGuid().GetHashCode();
             Random rand = new Random(guid_hashcode);
 
-            var randValue = rand.Next(min, max);
+            int randValue = rand.Next(min, max);
             return randValue;
         }
 
