@@ -73,6 +73,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.RedPacket.Tests", "Red
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.RedPacket.Web", "RedPacket\Mstm.RedPacket.Web\Mstm.RedPacket.Web.csproj", "{35E93D82-3C99-432D-A5A6-D2FF5F15DB80}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLAnalysis", "SQLAnalysis", "{5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.Core", "SQLAnalysis\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj", "{11C8314B-0014-4960-AAEF-717995AE1FB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -207,6 +211,10 @@ Global
 		{35E93D82-3C99-432D-A5A6-D2FF5F15DB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E93D82-3C99-432D-A5A6-D2FF5F15DB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E93D82-3C99-432D-A5A6-D2FF5F15DB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11C8314B-0014-4960-AAEF-717995AE1FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11C8314B-0014-4960-AAEF-717995AE1FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11C8314B-0014-4960-AAEF-717995AE1FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11C8314B-0014-4960-AAEF-717995AE1FB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,5 +252,6 @@ Global
 		{DDA27B0A-CDB3-4895-BA71-619F2CE5F6EA} = {0607AEBA-E6CE-4F69-8B1C-FBED8EC9F4E5}
 		{774BFD4E-938D-4296-838E-49B03033422F} = {0607AEBA-E6CE-4F69-8B1C-FBED8EC9F4E5}
 		{35E93D82-3C99-432D-A5A6-D2FF5F15DB80} = {0607AEBA-E6CE-4F69-8B1C-FBED8EC9F4E5}
+		{11C8314B-0014-4960-AAEF-717995AE1FB0} = {5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}
 	EndGlobalSection
 EndGlobal
