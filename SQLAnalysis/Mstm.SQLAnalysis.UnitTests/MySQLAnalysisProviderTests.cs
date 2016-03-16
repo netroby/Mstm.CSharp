@@ -32,50 +32,130 @@ namespace Mstm.SQLAnalysis.UnitTests
 
 
         [TestMethod]
-        public void BuildWhereTest()
+        public void BuildNormalWhereTest()
         {
-            var list = new List<FilterModel>() { 
-            new FilterModel(){
+            var list = new List<NormalFilterInfo>() { 
+            new NormalFilterInfo(){
                 FieldName="UserName",
                 FieldType= FieldTypeEnum.Text,
                 ConnectRelation= ConnectRelationEnum.Or,
-                WhereRelation= WhereRelationEnum.LikePrefix,
+                NormalWhereRelation= NormalWhereRelationEnum.LikePrefix,
                 WhereValue="张"
             },
-            new FilterModel(){
+            new NormalFilterInfo(){
                 FieldName="UserId",
                 FieldType= FieldTypeEnum.Number,
                 ConnectRelation= ConnectRelationEnum.And,
-                WhereRelation= WhereRelationEnum.Equal,
+                NormalWhereRelation= NormalWhereRelationEnum.Equal,
                 WhereValue="1501290940000503"
             },
 
-            new FilterModel(){
+            new NormalFilterInfo(){
                 FieldName="PwdQuestion",
                 FieldType= FieldTypeEnum.Text,
                 ConnectRelation= ConnectRelationEnum.And,
-                WhereRelation= WhereRelationEnum.IsNotNull,
+                NormalWhereRelation= NormalWhereRelationEnum.IsNotNull,
             },
 
-            new FilterModel(){
+            new NormalFilterInfo(){
                 FieldName="MobilePhone",
                 FieldType= FieldTypeEnum.Text,
                 ConnectRelation= ConnectRelationEnum.And,
-                WhereRelation= WhereRelationEnum.IsNull,
+                NormalWhereRelation= NormalWhereRelationEnum.IsNull,
             },
 
-            new FilterModel(){
+            new NormalFilterInfo(){
                 FieldName="CreatedTime",
                 FieldType= FieldTypeEnum.DateTime,
                 ConnectRelation= ConnectRelationEnum.And,
-                WhereRelation= WhereRelationEnum.MoreThan,
+                NormalWhereRelation= NormalWhereRelationEnum.MoreThan,
                 WhereValue="2014-5-8 12:12:11"
             },
 
             };
 
-            string sql = _provider.BuildWhere(list);
+            string sql = _provider.BuildNormalWhere(list);
 
+        }
+
+
+
+        [TestMethod]
+        public void BuildCycleWhereTest()
+        {
+            var list = new List<CycleFilterInfo>() { 
+                new CycleFilterInfo(){
+                    FieldName="CreatedTime",
+                    ConnectRelation= ConnectRelationEnum.And,
+                    CycleRelation= CycleWhereRelationEnum.Month,
+                    MaxValue=10,
+                    MinValue=2
+                },
+                new CycleFilterInfo(){
+                    FieldName="CreatedTime",
+                    ConnectRelation= ConnectRelationEnum.And,
+                    CycleRelation= CycleWhereRelationEnum.Day,
+                    MaxValue=29,
+                    MinValue=14
+                },
+                new CycleFilterInfo(){
+                    FieldName="CreatedTime",
+                    ConnectRelation= ConnectRelationEnum.And,
+                    CycleRelation= CycleWhereRelationEnum.Week,
+                    MaxValue=7,
+                    MinValue=2
+                },
+                new CycleFilterInfo(){
+                    FieldName="CreatedTime",
+                    ConnectRelation= ConnectRelationEnum.And,
+                    CycleRelation= CycleWhereRelationEnum.Hour,
+                    MaxValue=20,
+                    MinValue=9
+                },
+            };
+            string sql = _provider.BuildCycleWhere(list);
+        }
+
+
+
+        [TestMethod]
+        public void BuildWhereTest()
+        {
+            FilterInfo filterInfo = new FilterInfo();
+            List<NormalFilterInfo> normalList = new List<NormalFilterInfo>() { 
+                new NormalFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    FieldName="UserName",
+                    FieldType= FieldTypeEnum.Text,
+                    NormalWhereRelation= NormalWhereRelationEnum.IsNotNull,
+                },
+                new NormalFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    FieldName="Email",
+                    FieldType= FieldTypeEnum.Text,
+                    NormalWhereRelation= NormalWhereRelationEnum.Like,
+                    WhereValue="123"
+                }
+            };
+            List<CycleFilterInfo> cycleList = new List<CycleFilterInfo>() { 
+                new CycleFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    CycleRelation= CycleWhereRelationEnum.Day,
+                    MinValue=10,
+                    MaxValue=20,
+                    FieldName="CreatedTime"
+                },
+                new CycleFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    CycleRelation= CycleWhereRelationEnum.Month,
+                    MinValue=6,
+                    MaxValue=12,
+                    FieldName="CreatedTime"
+                },
+            };
+            filterInfo.CycleFilterInfoList = cycleList;
+            filterInfo.NormalFilterInfoList = normalList;
+            string sql = _provider.BuildWhere(filterInfo);
         }
     }
 }

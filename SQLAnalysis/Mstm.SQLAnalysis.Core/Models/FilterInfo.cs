@@ -8,37 +8,19 @@ namespace Mstm.SQLAnalysis.Core
 {
 
     /// <summary>
-    /// 筛选信息
+    /// 筛选条件信息
     /// </summary>
-    public class FilterModel
+    public class FilterInfo
     {
         /// <summary>
-        /// 字段名称
+        /// 周期筛选条件集合
         /// </summary>
-        public string FieldName { get; set; }
+        public List<CycleFilterInfo> CycleFilterInfoList { get; set; }
 
 
         /// <summary>
-        /// 字段类型
+        /// 正常筛选条件集合
         /// </summary>
-        public FieldTypeEnum FieldType { get; set; }
-
-
-        /// <summary>
-        /// 查询关系
-        /// </summary>
-        public WhereRelationEnum WhereRelation { get; set; }
-
-
-        /// <summary>
-        /// 查询关系值
-        /// </summary>
-        public string WhereValue { get; set; }
-
-
-        /// <summary>
-        /// 连接关系
-        /// </summary>
-        public ConnectRelationEnum ConnectRelation { get; set; }
+        public List<NormalFilterInfo> NormalFilterInfoList { get; set; }
     }
 }

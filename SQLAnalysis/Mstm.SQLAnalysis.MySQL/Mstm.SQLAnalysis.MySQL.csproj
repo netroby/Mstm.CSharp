@@ -39,9 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CycleWhereRelationDict.cs" />
     <Compile Include="MySQLAnalysisProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WhereRelationDict.cs" />
+    <Compile Include="NormalWhereRelationDict.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj">

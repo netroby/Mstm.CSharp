@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.SQLAnalysis.Core.Models
+namespace Mstm.SQLAnalysis.Core
 {
 
     /// <summary>

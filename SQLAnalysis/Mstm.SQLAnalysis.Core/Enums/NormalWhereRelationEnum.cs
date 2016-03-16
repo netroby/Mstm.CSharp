@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.Core
 {
-    public enum WhereRelationEnum
+
+    /// <summary>
+    /// 标准的筛选条件枚举
+    /// </summary>
+    public enum NormalWhereRelationEnum
     {
         /// <summary>
         /// 等于

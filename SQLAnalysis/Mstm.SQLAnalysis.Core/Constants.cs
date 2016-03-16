@@ -17,10 +17,21 @@ namespace Mstm.SQLAnalysis.Core
         /// </summary>
         public const string WhiteSpace = " ";
 
+        /// <summary>
+        /// Where
+        /// </summary>
         public const string Where = "where";
 
+
+        /// <summary>
+        /// Select
+        /// </summary>
         public const string Select = "select";
 
+
+        /// <summary>
+        /// From
+        /// </summary>
         public const string From = "from";
     }
 }

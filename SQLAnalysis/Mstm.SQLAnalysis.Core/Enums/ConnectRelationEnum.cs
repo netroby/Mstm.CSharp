@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.Core
 {
+
+    /// <summary>
+    /// 连接关系枚举
+    /// </summary>
     public enum ConnectRelationEnum
     {
-        [Operator("and")]
+        [Description("And")]
+        [Operator("AND")]
         And = 1,
 
-        [Operator("or")]
+
+        [Description("OR")]
+        [Operator("OR")]
         Or = 2
     }
 }
