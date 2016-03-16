@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.Core
 {
+
     /// <summary>
-    /// 字段类型枚举
+    /// 排序方式
     /// </summary>
-    public enum FieldTypeEnum
+    public enum OrderModeEnum
     {
-        Text = 1,
-        DateTime = 2,
-        Number = 3
+        Desc = 1,
+        Asc = 2
     }
 }

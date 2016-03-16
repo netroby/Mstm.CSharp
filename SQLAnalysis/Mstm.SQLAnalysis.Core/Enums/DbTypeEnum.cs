@@ -13,6 +13,7 @@ namespace Mstm.SQLAnalysis.Core
     {
         MySQL = 1,
         Sybase = 2,
-        SQLServer
+        SQLServer = 3,
+        Oracle = 4
     }
 }

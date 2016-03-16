@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.Core
 {
-    public class RuleModel
+
+    /// <summary>
+    /// 筛选信息
+    /// </summary>
+    public class FilterModel
     {
         /// <summary>
         /// 字段名称
@@ -17,7 +21,7 @@ namespace Mstm.SQLAnalysis.Core
         /// <summary>
         /// 字段类型
         /// </summary>
-        public int FieldType { get; set; }
+        public FieldTypeEnum FieldType { get; set; }
 
 
         /// <summary>

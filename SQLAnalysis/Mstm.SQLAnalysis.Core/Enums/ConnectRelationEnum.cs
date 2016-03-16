@@ -8,7 +8,10 @@ namespace Mstm.SQLAnalysis.Core
 {
     public enum ConnectRelationEnum
     {
+        [Operator("and")]
         And = 1,
+
+        [Operator("or")]
         Or = 2
     }
 }
