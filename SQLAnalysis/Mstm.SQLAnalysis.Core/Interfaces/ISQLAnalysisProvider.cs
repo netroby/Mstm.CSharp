@@ -61,5 +61,14 @@ namespace Mstm.SQLAnalysis.Core
         /// <returns>排序sql语句</returns>
         string BuildOrder(List<OrderInfo> orderList);
 
+
+        /// <summary>
+        /// 编译select语句
+        /// </summary>
+        /// <param name="source">数据源</param>
+        /// <param name="fieldList">需要查询的字段集合，如果为空或者长度等于0则查询所有字段</param>
+        /// <returns>select语句</returns>
+        string BuildSelect(string source, List<string> fieldList = null);
+
     }
 }

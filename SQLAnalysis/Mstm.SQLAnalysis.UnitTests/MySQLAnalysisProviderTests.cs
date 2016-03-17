@@ -356,5 +356,57 @@ namespace Mstm.SQLAnalysis.UnitTests
 
             string sql = _provider.BuildWhere(filterInfo);
         }
+
+
+
+        /// <summary>
+        /// 测试构建select
+        /// 正常情况
+        /// </summary>
+        [TestMethod]
+        public void BuildSelectTest_Normal()
+        {
+
+            List<string> fieldList = new List<string>() {
+                "UserName",
+                "UserId",
+                "Email"
+            };
+
+            string source = "UserInfo";
+
+            string sql = _provider.BuildSelect(source, fieldList);
+        }
+
+
+        /// <summary>
+        /// 测试构建select
+        /// 没有数据源的情况
+        /// </summary>
+        [TestMethod]
+        public void BuildSelectTest_NoSource()
+        {
+
+            List<string> fieldList = new List<string>() {
+                "1+2",
+                "1=1",
+                "NOW()"
+            };
+
+            string source = null;
+
+            string sql = _provider.BuildSelect(source, fieldList);
+        }
+
+        /// <summary>
+        /// 测试构建select
+        /// 没有字段的情况
+        /// </summary>
+        [TestMethod]
+        public void BuildSelectTest_NoFieldList()
+        {
+            string source = "UserInfo";
+            string sql = _provider.BuildSelect(source);
+        }
     }
 }

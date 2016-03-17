@@ -270,5 +270,47 @@ namespace Mstm.SQLAnalysis.MySQL
             }
             return orderBuilder.ToString();
         }
+
+
+        public string BuildSelect(string source, List<string> fieldList = null)
+        {
+            StringBuilder selectBuilder = new StringBuilder();
+
+            //没有传递字段时
+            if ((fieldList == null || fieldList.Count == 0) && string.IsNullOrWhiteSpace(source) == false)
+            {
+                // SELECT * FROM UserInfo
+                selectBuilder.AppendFormat("{0}{1}{0}{2}{0}{3}{0}{4}", Constants.WhiteSpace, Constants.Select, "*", Constants.From, source);
+            }
+            else if (fieldList != null && fieldList.Count != 0 && string.IsNullOrWhiteSpace(source) == false)
+            {
+                //传递了所有参数
+                // SELECT `UserId`,`UserName` FROM `UserInfo`
+                selectBuilder.AppendFormat("{0}{1}", Constants.WhiteSpace, Constants.Select);
+                fieldList.ForEach(field =>
+                {
+                    selectBuilder.AppendFormat("{0}`{1}`,", Constants.WhiteSpace, field);
+                });
+                selectBuilder.Remove(selectBuilder.Length - 1, 1);
+                selectBuilder.AppendFormat("{0}{1}`{2}`", Constants.WhiteSpace, Constants.From, source);
+            }
+            else if (string.IsNullOrWhiteSpace(source) == true && fieldList != null && fieldList.Count != 0)
+            {
+                //没有传递数据源
+                //运行执行函数
+                //select 1+1,2+2,NOW()
+                selectBuilder.AppendFormat("{0}{1}", Constants.WhiteSpace, Constants.Select);
+                fieldList.ForEach(field =>
+                {
+                    selectBuilder.AppendFormat("{0}{1},", Constants.WhiteSpace, field);
+                });
+                selectBuilder.Remove(selectBuilder.Length - 1, 1);
+            }
+            else
+            {
+                throw new ArgumentException("传递的查询参数不正确！");
+            }
+            return selectBuilder.ToString();
+        }
     }
 }
