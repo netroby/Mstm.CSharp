@@ -13,7 +13,7 @@ namespace Mstm.SQLAnalysis.Core
     /// </summary>
     public enum ConnectRelationEnum
     {
-        [Description("And")]
+        [Description("AND")]
         [Operator("AND")]
         And = 1,
 

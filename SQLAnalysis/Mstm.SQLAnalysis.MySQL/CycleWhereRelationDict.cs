@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class CycleWhereRelationDict : WhereRelationDictAbstract<CycleWhereRelationEnum>
+    internal class CycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
     {
         private static CycleWhereRelationDict _instance;
 
@@ -25,9 +25,9 @@ namespace Mstm.SQLAnalysis.MySQL
         protected override Dictionary<CycleWhereRelationEnum, string> InitDict()
         {
             var dict = new Dictionary<CycleWhereRelationEnum, string>() { 
-                {   CycleWhereRelationEnum.Month,           "Month"           },
+                {   CycleWhereRelationEnum.Month,           "MONTH"           },
                 {   CycleWhereRelationEnum.Week,            "DAYOFWEEK"       },
-                {   CycleWhereRelationEnum.Day,             "Day"             },
+                {   CycleWhereRelationEnum.Day,             "DAY"             },
                 {   CycleWhereRelationEnum.Hour,            "HOUR"            },
             };
             return dict;

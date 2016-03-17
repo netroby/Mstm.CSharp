@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class NormalWhereRelationDict : WhereRelationDictAbstract<NormalWhereRelationEnum>
+    internal class NormalWhereRelationDict : RelationDictAbstract<NormalWhereRelationEnum>
     {
         private static NormalWhereRelationDict _instance;
 
@@ -25,21 +25,21 @@ namespace Mstm.SQLAnalysis.MySQL
         protected override Dictionary<NormalWhereRelationEnum, string> InitDict()
         {
             var dict = new Dictionary<NormalWhereRelationEnum, string>() { 
-                {   NormalWhereRelationEnum.Equal,                 "="                  },
-                {   NormalWhereRelationEnum.In,                    "IN"                 },
-                {   NormalWhereRelationEnum.IsNotNull,             "IS NOT NULL"        },
-                {   NormalWhereRelationEnum.IsNull,                "IS NULL"            },
-                {   NormalWhereRelationEnum.LessThan,              "<"                  },
-                {   NormalWhereRelationEnum.LessThanOrEqual,       "<="                 },
-                {   NormalWhereRelationEnum.Like,                  "LIKE '%VALUE%'"     },
-                {   NormalWhereRelationEnum.LikePrefix,            "LIKE '%VALUE'"      },
-                {   NormalWhereRelationEnum.LikeSuffix,            "LIKE 'VALUE%'"      },
-                {   NormalWhereRelationEnum.MoreThan,              ">"                  },
-                {   NormalWhereRelationEnum.MoreThanOrEqual,       ">="                 },
-                {   NormalWhereRelationEnum.NotEqual,              "<>"                 },
-                {   NormalWhereRelationEnum.NotLike,               "NOT LIKE '%VALUE%'" },
-                {   NormalWhereRelationEnum.NotLikePrefix,         "NOT LIKE '%VALUE'"  },
-                {   NormalWhereRelationEnum.NotLikeSuffix,         "NOT LIKE 'VALUE%'"  },
+                {   NormalWhereRelationEnum.Equal,                 "="                                                        },
+                {   NormalWhereRelationEnum.LessThan,              "<"                                                        },
+                {   NormalWhereRelationEnum.LessThanOrEqual,       "<="                                                       },
+                {   NormalWhereRelationEnum.MoreThan,              ">"                                                        },
+                {   NormalWhereRelationEnum.MoreThanOrEqual,       ">="                                                       },
+                {   NormalWhereRelationEnum.NotEqual,              "<>"                                                       },
+                {   NormalWhereRelationEnum.In,                    "IN"                                                       },
+                {   NormalWhereRelationEnum.IsNotNull,             "IS NOT NULL"                                              },
+                {   NormalWhereRelationEnum.IsNull,                "IS NULL"                                                  },
+                {   NormalWhereRelationEnum.Like,                  string.Format("LIKE '%{0}%'",Constants.ReplaceValue)       },
+                {   NormalWhereRelationEnum.LikePrefix,            string.Format("LIKE '%{0}'",Constants.ReplaceValue)        },
+                {   NormalWhereRelationEnum.LikeSuffix,            string.Format("LIKE '{0}%'",Constants.ReplaceValue)        },
+                {   NormalWhereRelationEnum.NotLike,               string.Format("NOT LIKE '%{0}%'",Constants.ReplaceValue)   },
+                {   NormalWhereRelationEnum.NotLikePrefix,         string.Format("NOT LIKE '%{0}'",Constants.ReplaceValue)    },
+                {   NormalWhereRelationEnum.NotLikeSuffix,         string.Format("NOT LIKE '{0}%'",Constants.ReplaceValue)    },
             };
 
             return dict;

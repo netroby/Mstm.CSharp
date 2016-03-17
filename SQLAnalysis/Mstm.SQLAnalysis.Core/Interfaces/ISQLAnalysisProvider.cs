@@ -46,5 +46,13 @@ namespace Mstm.SQLAnalysis.Core
         string BuildPointInTimeWhere(List<PointInTimeFilterInfo> filters);
 
 
+        /// <summary>
+        /// 构建统计语句
+        /// </summary>
+        /// <param name="filter">统计的条件</param>
+        /// <returns>带select的统计语句，如 select count(*) from userinfo </returns>
+        string BuildStatistics(StatisticsFilterInfo filter);
+
+
     }
 }

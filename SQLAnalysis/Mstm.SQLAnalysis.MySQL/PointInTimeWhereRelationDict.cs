@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class PointInTimeWhereRelationDict : WhereRelationDictAbstract<PointInTimeWhereRelationEnum>
+    internal class PointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
     {
         private static PointInTimeWhereRelationDict _instance;
 
@@ -25,14 +25,14 @@ namespace Mstm.SQLAnalysis.MySQL
         protected override Dictionary<PointInTimeWhereRelationEnum, string> InitDict()
         {
             var dict = new Dictionary<PointInTimeWhereRelationEnum, string>() { 
-                {   PointInTimeWhereRelationEnum.BeforeYear,           "<= DATE_ADD(NOW(),INTERVAL -VALUE YEAR)"      },
-                {   PointInTimeWhereRelationEnum.BeforeMonth,          "<= DATE_ADD(NOW(),INTERVAL -VALUE MONTH)"     },
-                {   PointInTimeWhereRelationEnum.BeforeDay,            "<= DATE_ADD(NOW(),INTERVAL -VALUE DAY)"       },
-                {   PointInTimeWhereRelationEnum.BeforeHour,           "<= DATE_ADD(NOW(),INTERVAL -VALUE HOUR)"      },
-                {   PointInTimeWhereRelationEnum.InYear,               ">= DATE_ADD(NOW(),INTERVAL -VALUE YEAR)"      },
-                {   PointInTimeWhereRelationEnum.InMonth,              ">= DATE_ADD(NOW(),INTERVAL -VALUE MONTH)"     },
-                {   PointInTimeWhereRelationEnum.InDay,                ">= DATE_ADD(NOW(),INTERVAL -VALUE DAY)"       },
-                {   PointInTimeWhereRelationEnum.InHour,               ">= DATE_ADD(NOW(),INTERVAL -VALUE HOUR)"      },
+                {   PointInTimeWhereRelationEnum.BeforeYear,           string.Format("<= DATE_ADD(NOW(),INTERVAL -{0} YEAR)",Constants.ReplaceValue)      },
+                {   PointInTimeWhereRelationEnum.BeforeMonth,          string.Format("<= DATE_ADD(NOW(),INTERVAL -{0} MONTH)",Constants.ReplaceValue)     },
+                {   PointInTimeWhereRelationEnum.BeforeDay,            string.Format("<= DATE_ADD(NOW(),INTERVAL -{0} DAY)",Constants.ReplaceValue)       },
+                {   PointInTimeWhereRelationEnum.BeforeHour,           string.Format("<= DATE_ADD(NOW(),INTERVAL -{0} HOUR)",Constants.ReplaceValue)      },
+                {   PointInTimeWhereRelationEnum.InYear,               string.Format(">= DATE_ADD(NOW(),INTERVAL -{0} YEAR)",Constants.ReplaceValue)      },
+                {   PointInTimeWhereRelationEnum.InMonth,              string.Format(">= DATE_ADD(NOW(),INTERVAL -{0} MONTH)",Constants.ReplaceValue)     },
+                {   PointInTimeWhereRelationEnum.InDay,                string.Format(">= DATE_ADD(NOW(),INTERVAL -{0} DAY)",Constants.ReplaceValue)       },
+                {   PointInTimeWhereRelationEnum.InHour,               string.Format(">= DATE_ADD(NOW(),INTERVAL -{0} HOUR)",Constants.ReplaceValue)      },
             };
             return dict;
         }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal abstract class WhereRelationDictAbstract<TKey>
+    internal abstract class RelationDictAbstract<TKey>
     {
         private static Dictionary<TKey, string> _dict;
 
-        public WhereRelationDictAbstract()
+        public RelationDictAbstract()
         {
             _dict = InitDict();
         }

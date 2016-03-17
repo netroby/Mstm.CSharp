@@ -20,18 +20,35 @@ namespace Mstm.SQLAnalysis.Core
         /// <summary>
         /// Where
         /// </summary>
-        public const string Where = "where";
+        public const string Where = "WHERE";
 
 
         /// <summary>
         /// Select
         /// </summary>
-        public const string Select = "select";
+        public const string Select = "SELECT";
 
 
         /// <summary>
         /// From
         /// </summary>
-        public const string From = "from";
+        public const string From = "FROM";
+
+
+        /// <summary>
+        /// Value占位符
+        /// </summary>
+        public const string ReplaceValue = "_VALUE_";
+
+        /// <summary>
+        /// FieldName占位符
+        /// </summary>
+        public const string ReplaceFieldName = "_FIELDNAME_";
+
+
+        /// <summary>
+        /// TableName占位符
+        /// </summary>
+        public const string ReplaceTableName = "_TABLENAME_";
     }
 }

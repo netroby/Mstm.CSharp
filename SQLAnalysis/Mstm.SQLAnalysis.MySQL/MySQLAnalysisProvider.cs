@@ -33,6 +33,14 @@ namespace Mstm.SQLAnalysis.MySQL
             }
         }
 
+        private StatisticsRelationDict StatisticsRelationDictData
+        {
+            get
+            {
+                return StatisticsRelationDict.GetInstance();
+            }
+        }
+
 
         public string BuildNormalWhere(List<NormalFilterInfo> filters)
         {
@@ -86,7 +94,7 @@ namespace Mstm.SQLAnalysis.MySQL
             //for example
             // username like '%明%'
             if (where == null || filter == null) { return; }
-            string relation = WhereRelationDictData[filter.NormalWhereRelation].Replace("VALUE", filter.WhereValue);
+            string relation = WhereRelationDictData[filter.NormalWhereRelation].Replace(Constants.ReplaceValue, filter.WhereValue);
             where.AppendFormat("{0}{1}{0}({2}{0}{3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation);
         }
 
@@ -151,7 +159,7 @@ namespace Mstm.SQLAnalysis.MySQL
         {
             if (where == null || filter == null) { return; }
             string funcName = CycleRelationDictData[filter.CycleRelation];
-            where.AppendFormat("{0}{1}({0}{5}({2})>={3}{0}AND{0}{5}({2})<={4})", Constants.WhiteSpace, filter.ConnectRelation, filter.FieldName, filter.MinValue, filter.MaxValue, funcName);
+            where.AppendFormat("{0}{1}({0}{5}({2})>={3}{0}AND{0}{5}({2})<={4})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, filter.MinValue, filter.MaxValue, funcName);
         }
 
 
@@ -210,8 +218,31 @@ namespace Mstm.SQLAnalysis.MySQL
         {
             //CreateTime >=DATE_ADD(now(),INTERVAL -4 Hour);
             if (where == null || filter == null) { return; }
-            string expression = PointInTimeRelationDictData[filter.PointInTimeWhereRelation].Replace("VALUE", filter.WhereValue.ToString());
-            where.AppendFormat("{0}{1}({2}{0}{3})", Constants.WhiteSpace, filter.ConnectRelation, filter.FieldName, expression);
+            string expression = PointInTimeRelationDictData[filter.PointInTimeWhereRelation].Replace(Constants.ReplaceValue, filter.WhereValue.ToString());
+            where.AppendFormat("{0}{1}({2}{0}{3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, expression);
+        }
+
+
+        public string BuildStatistics(StatisticsFilterInfo filter)
+        {
+            StringBuilder where = new StringBuilder();
+            if (filter == null)
+            {
+                throw new ArgumentException("统计信息不能为空！", "filter");
+            }
+            //包含不合法的参数则直接抛出异常
+            if (filter.StatisticsRelation != StatisticsRelationEnum.Count && string.IsNullOrWhiteSpace(filter.FieldName))
+            {
+                throw new ArgumentException("字段名称不能为空！", "FieldName");
+            }
+
+            if (string.IsNullOrWhiteSpace(filter.TableName))
+            {
+                throw new ArgumentException("表名不能为空！", "TableName");
+            }
+            string expression = StatisticsRelationDictData[filter.StatisticsRelation];
+            where.Append(expression.Replace(Constants.ReplaceTableName, filter.TableName).Replace(Constants.ReplaceFieldName, filter.FieldName));
+            return where.ToString();
         }
     }
 }
