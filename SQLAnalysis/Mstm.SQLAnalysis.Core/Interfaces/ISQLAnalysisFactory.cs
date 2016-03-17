@@ -12,6 +12,11 @@ namespace Mstm.SQLAnalysis.Core
     /// </summary>
     public interface ISQLAnalysisFactory
     {
+
+        /// <summary>
+        /// 获取SQL解析提供程序
+        /// </summary>
+        /// <returns></returns>
         ISQLAnalysisProvider GetSQLAnalysisProvider();
     }
 }

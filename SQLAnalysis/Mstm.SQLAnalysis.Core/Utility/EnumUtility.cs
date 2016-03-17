@@ -41,6 +41,29 @@ namespace Mstm.SQLAnalysis.Core
 
 
         /// <summary>
+        /// 列举枚举中所有的项
+        /// TKey:枚举的描述
+        /// TValue：枚举的值
+        /// </summary>
+        /// <typeparam name="TEnum">枚举类型</typeparam>
+        /// <returns></returns>
+        public static Dictionary<string, int> GetEnumItems<TEnum>()
+        {
+
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            Type enumType = typeof(TEnum);
+            Array values = Enum.GetValues(enumType);
+            var enumList = values.Cast<Enum>().ToList();
+            enumList.ForEach(element =>
+            {
+                dict.Add(GetEnumDescription(element), Convert.ToInt32(element));
+            });
+            return dict;
+        }
+
+
+
+        /// <summary>
         /// 获取枚举上指定的特性
         /// </summary>
         /// <typeparam name="T">特性类型</typeparam>
