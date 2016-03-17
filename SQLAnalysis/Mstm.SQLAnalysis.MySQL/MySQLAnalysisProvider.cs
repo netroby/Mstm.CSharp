@@ -173,6 +173,10 @@ namespace Mstm.SQLAnalysis.MySQL
                 {
                     where.Append(this.BuildCycleWhere(filterInfo.CycleFilterInfoList));
                 }
+                if (filterInfo.PointInTimeFilterInfoList != null)
+                {
+                    where.Append(this.BuildPointInTimeWhere(filterInfo.PointInTimeFilterInfoList));
+                }
             }
             return where.ToString();
         }

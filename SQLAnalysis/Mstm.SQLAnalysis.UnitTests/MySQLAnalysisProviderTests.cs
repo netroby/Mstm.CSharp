@@ -153,8 +153,26 @@ namespace Mstm.SQLAnalysis.UnitTests
                     FieldName="CreatedTime"
                 },
             };
+
+            List<PointInTimeFilterInfo> pointInTimeList = new List<PointInTimeFilterInfo>() { 
+                new PointInTimeFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    FieldName="CreatedTime",
+                    WhereValue=200,
+                    PointInTimeWhereRelation= PointInTimeWhereRelationEnum.BeforeDay
+                },
+                new PointInTimeFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    FieldName="ModifiedTime",
+                    WhereValue=1,
+                    PointInTimeWhereRelation= PointInTimeWhereRelationEnum.BeforeYear
+                }
+            };
+
             filterInfo.CycleFilterInfoList = cycleList;
             filterInfo.NormalFilterInfoList = normalList;
+            filterInfo.PointInTimeFilterInfoList = pointInTimeList;
+
             string sql = _provider.BuildWhere(filterInfo);
         }
 
@@ -172,7 +190,7 @@ namespace Mstm.SQLAnalysis.UnitTests
                 new PointInTimeFilterInfo(){
                     ConnectRelation= ConnectRelationEnum.And,
                     FieldName="ModifiedTime",
-                    WhereValue=2,
+                    WhereValue=1,
                     PointInTimeWhereRelation= PointInTimeWhereRelationEnum.BeforeYear
                 },
             };

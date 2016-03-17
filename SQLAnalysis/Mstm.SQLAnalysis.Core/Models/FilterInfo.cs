@@ -22,5 +22,11 @@ namespace Mstm.SQLAnalysis.Core
         /// 正常筛选条件集合
         /// </summary>
         public List<NormalFilterInfo> NormalFilterInfoList { get; set; }
+
+
+        /// <summary>
+        /// 时间点筛选条件集合
+        /// </summary>
+        public List<PointInTimeFilterInfo> PointInTimeFilterInfoList { get; set; }
     }
 }
