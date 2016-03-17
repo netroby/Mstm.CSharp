@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    public class MySQLAnalysisProvider : ISQLAnalysisProvider
+    internal class MySQLAnalysisProvider : ISQLAnalysisProvider
     {
         private NormalWhereRelationDict WhereRelationDictData
         {

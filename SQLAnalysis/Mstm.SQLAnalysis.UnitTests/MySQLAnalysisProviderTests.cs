@@ -17,7 +17,8 @@ namespace Mstm.SQLAnalysis.UnitTests
         [TestInitialize]
         public void MethodInit()
         {
-            _provider = new MySQLAnalysisProvider();
+            ISQLAnalysisFactory factory = new MySQLAnalysisFactory();
+            _provider = factory.GetSQLAnalysisProvider();
         }
 
 
