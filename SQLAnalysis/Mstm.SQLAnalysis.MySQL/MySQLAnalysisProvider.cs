@@ -285,14 +285,14 @@ namespace Mstm.SQLAnalysis.MySQL
             else if (fieldList != null && fieldList.Count != 0 && string.IsNullOrWhiteSpace(source) == false)
             {
                 //传递了所有参数
-                // SELECT `UserId`,`UserName` FROM `UserInfo`
+                // SELECT UserId,UserName FROM UserInfo
                 selectBuilder.AppendFormat("{0}{1}", Constants.WhiteSpace, Constants.Select);
                 fieldList.ForEach(field =>
                 {
-                    selectBuilder.AppendFormat("{0}`{1}`,", Constants.WhiteSpace, field);
+                    selectBuilder.AppendFormat("{0}{1},", Constants.WhiteSpace, field);
                 });
                 selectBuilder.Remove(selectBuilder.Length - 1, 1);
-                selectBuilder.AppendFormat("{0}{1}`{2}`", Constants.WhiteSpace, Constants.From, source);
+                selectBuilder.AppendFormat("{0}{1}{2}", Constants.WhiteSpace, Constants.From, source);
             }
             else if (string.IsNullOrWhiteSpace(source) == true && fieldList != null && fieldList.Count != 0)
             {
