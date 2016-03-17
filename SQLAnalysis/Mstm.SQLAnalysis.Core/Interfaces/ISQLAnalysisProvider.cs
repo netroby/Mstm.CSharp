@@ -14,6 +14,14 @@ namespace Mstm.SQLAnalysis.Core
     {
 
         /// <summary>
+        /// 构建完整的where语句
+        /// </summary>
+        /// <param name="filterInfo">筛选条件</param>
+        /// <returns>带where的完整的筛选语句</returns>
+        string BuildWhere(FilterInfo filterInfo);
+
+
+        /// <summary>
         /// 构建普通的where语句
         /// </summary>
         /// <param name="filters">所有筛选条件集合</param>
@@ -29,12 +37,14 @@ namespace Mstm.SQLAnalysis.Core
         string BuildCycleWhere(List<CycleFilterInfo> filters);
 
 
+
         /// <summary>
-        /// 构建完整的where语句
+        /// 构建时间点类型的where语句
         /// </summary>
-        /// <param name="filterInfo">筛选条件</param>
-        /// <returns>带where的完整的筛选语句</returns>
-        string BuildWhere(FilterInfo filterInfo);
+        /// <param name="filters">所有筛选条件集合</param>
+        /// <returns>不带where的筛选语句</returns>
+        string BuildPointInTimeWhere(List<PointInTimeFilterInfo> filters);
+
 
     }
 }

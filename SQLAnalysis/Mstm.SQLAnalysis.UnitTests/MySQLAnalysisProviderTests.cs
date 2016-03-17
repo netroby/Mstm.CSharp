@@ -157,5 +157,26 @@ namespace Mstm.SQLAnalysis.UnitTests
             filterInfo.NormalFilterInfoList = normalList;
             string sql = _provider.BuildWhere(filterInfo);
         }
+
+
+        [TestMethod]
+        public void BuildPointInTimeWhereTest()
+        {
+            List<PointInTimeFilterInfo> list = new List<PointInTimeFilterInfo>() { 
+                new PointInTimeFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    FieldName="CreatedTime",
+                    WhereValue=200,
+                    PointInTimeWhereRelation= PointInTimeWhereRelationEnum.BeforeDay
+                },
+                new PointInTimeFilterInfo(){
+                    ConnectRelation= ConnectRelationEnum.And,
+                    FieldName="ModifiedTime",
+                    WhereValue=2,
+                    PointInTimeWhereRelation= PointInTimeWhereRelationEnum.BeforeYear
+                },
+            };
+            string sql = _provider.BuildPointInTimeWhere(list);
+        }
     }
 }

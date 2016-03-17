@@ -25,6 +25,14 @@ namespace Mstm.SQLAnalysis.MySQL
             }
         }
 
+        private PointInTimeWhereRelationDict PointInTimeRelationDictData
+        {
+            get
+            {
+                return PointInTimeWhereRelationDict.GetInstance();
+            }
+        }
+
 
         public string BuildNormalWhere(List<NormalFilterInfo> filters)
         {
@@ -167,6 +175,39 @@ namespace Mstm.SQLAnalysis.MySQL
                 }
             }
             return where.ToString();
+        }
+
+
+        public string BuildPointInTimeWhere(List<PointInTimeFilterInfo> filters)
+        {
+            StringBuilder where = new StringBuilder();
+            if (filters != null && filters.Count > 0)
+            {
+                filters.ForEach(filter =>
+                {
+                    //包含不合法的参数则直接抛出异常
+                    if (string.IsNullOrWhiteSpace(filter.FieldName))
+                    {
+                        throw new ArgumentException("字段名称不能为空！", "FieldName");
+                    }
+                    BuildWhereWithPointInTime(where, filter);
+                });
+            }
+            return where.ToString();
+        }
+
+
+        /// <summary>
+        /// 编译时间点类型的where语句
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="filter"></param>
+        private void BuildWhereWithPointInTime(StringBuilder where, PointInTimeFilterInfo filter)
+        {
+            //CreateTime >=DATE_ADD(now(),INTERVAL -4 Hour);
+            if (where == null || filter == null) { return; }
+            string expression = PointInTimeRelationDictData[filter.PointInTimeWhereRelation].Replace("VALUE", filter.WhereValue.ToString());
+            where.AppendFormat("{0}{1}({2}{0}{3})", Constants.WhiteSpace, filter.ConnectRelation, filter.FieldName, expression);
         }
     }
 }

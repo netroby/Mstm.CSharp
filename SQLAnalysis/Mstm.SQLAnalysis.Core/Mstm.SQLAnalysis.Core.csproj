@@ -45,10 +45,12 @@
     <Compile Include="Enums\DbTypeEnum.cs" />
     <Compile Include="Enums\FieldTypeEnum.cs" />
     <Compile Include="Enums\OrderModeEnum.cs" />
+    <Compile Include="Enums\PointInTimeWhereRelationEnum.cs" />
     <Compile Include="Interfaces\ISQLAnalysisProvider.cs" />
     <Compile Include="Models\CycleFilterInfo.cs" />
     <Compile Include="Models\FilterInfo.cs" />
     <Compile Include="Models\OrderInfo.cs" />
+    <Compile Include="Models\PointInTimeFilterInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\NormalFilterInfo.cs" />
     <Compile Include="Enums\NormalWhereRelationEnum.cs" />
