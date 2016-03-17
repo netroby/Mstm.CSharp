@@ -10,7 +10,7 @@ namespace Mstm.SQLAnalysis.Core
     /// <summary>
     /// 统计筛选信息
     /// </summary>
-    public class StatisticsFilterInfo
+    public class StatisticsInfo
     {
         /// <summary>
         /// 字段名称

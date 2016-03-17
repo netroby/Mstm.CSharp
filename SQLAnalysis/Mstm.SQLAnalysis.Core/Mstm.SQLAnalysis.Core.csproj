@@ -53,7 +53,7 @@
     <Compile Include="Models\FilterInfo.cs" />
     <Compile Include="Models\OrderInfo.cs" />
     <Compile Include="Models\PointInTimeFilterInfo.cs" />
-    <Compile Include="Models\StatisticsFilterInfo.cs" />
+    <Compile Include="Models\StatisticsInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\NormalFilterInfo.cs" />
     <Compile Include="Enums\NormalWhereRelationEnum.cs" />

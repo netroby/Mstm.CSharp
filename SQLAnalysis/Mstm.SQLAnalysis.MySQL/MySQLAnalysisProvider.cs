@@ -185,6 +185,10 @@ namespace Mstm.SQLAnalysis.MySQL
                 {
                     where.Append(this.BuildPointInTimeWhere(filterInfo.PointInTimeFilterInfoList));
                 }
+                if (filterInfo.OrderInfoList != null)
+                {
+                    where.Append(this.BuildOrder(filterInfo.OrderInfoList));
+                }
             }
             return where.ToString();
         }
@@ -223,26 +227,48 @@ namespace Mstm.SQLAnalysis.MySQL
         }
 
 
-        public string BuildStatistics(StatisticsFilterInfo filter)
+        public string BuildStatistics(StatisticsInfo info)
         {
-            StringBuilder where = new StringBuilder();
-            if (filter == null)
+            StringBuilder statisticsBuilder = new StringBuilder();
+            if (info == null)
             {
                 throw new ArgumentException("统计信息不能为空！", "filter");
             }
             //包含不合法的参数则直接抛出异常
-            if (filter.StatisticsRelation != StatisticsRelationEnum.Count && string.IsNullOrWhiteSpace(filter.FieldName))
+            if (info.StatisticsRelation != StatisticsRelationEnum.Count && string.IsNullOrWhiteSpace(info.FieldName))
             {
                 throw new ArgumentException("字段名称不能为空！", "FieldName");
             }
 
-            if (string.IsNullOrWhiteSpace(filter.TableName))
+            if (string.IsNullOrWhiteSpace(info.TableName))
             {
                 throw new ArgumentException("表名不能为空！", "TableName");
             }
-            string expression = StatisticsRelationDictData[filter.StatisticsRelation];
-            where.Append(expression.Replace(Constants.ReplaceTableName, filter.TableName).Replace(Constants.ReplaceFieldName, filter.FieldName));
-            return where.ToString();
+            string expression = StatisticsRelationDictData[info.StatisticsRelation];
+            statisticsBuilder.Append(expression.Replace(Constants.ReplaceTableName, info.TableName).Replace(Constants.ReplaceFieldName, info.FieldName));
+            return statisticsBuilder.ToString();
+        }
+
+
+        public string BuildOrder(List<OrderInfo> orderList)
+        {
+            StringBuilder orderBuilder = new StringBuilder();
+            if (orderList != null && orderList.Count != 0)
+            {
+                //order by `comment_ID` desc,`comment_post_ID` asc,`comment_author` asc,`comment_author` asc
+                orderBuilder.AppendFormat("{0}{1}{0}{2}", Constants.WhiteSpace, Constants.Order, Constants.By);
+                orderList.ForEach(order =>
+                {
+                    if (string.IsNullOrWhiteSpace(order.FieldName))
+                    {
+                        throw new ArgumentException("无效的排序参数！", "FieldName");
+                    }
+                    orderBuilder.AppendFormat("{0}`{1}`{0}{2},", Constants.WhiteSpace, order.FieldName, EnumUtility.GetEnumOperation(order.OrderMode));
+                });
+                //去除最后一个逗号
+                orderBuilder.Remove(orderBuilder.Length - 1, 1);
+            }
+            return orderBuilder.ToString();
         }
     }
 }

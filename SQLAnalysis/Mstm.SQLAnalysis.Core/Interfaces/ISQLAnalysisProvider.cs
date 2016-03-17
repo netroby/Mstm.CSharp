@@ -51,8 +51,15 @@ namespace Mstm.SQLAnalysis.Core
         /// </summary>
         /// <param name="filter">统计的条件</param>
         /// <returns>带select的统计语句，如 select count(*) from userinfo </returns>
-        string BuildStatistics(StatisticsFilterInfo filter);
+        string BuildStatistics(StatisticsInfo info);
 
+
+        /// <summary>
+        /// 编译排序语句
+        /// </summary>
+        /// <param name="info">排序信息集合，按集合的顺序排序</param>
+        /// <returns>排序sql语句</returns>
+        string BuildOrder(List<OrderInfo> orderList);
 
     }
 }

@@ -28,5 +28,12 @@ namespace Mstm.SQLAnalysis.Core
         /// 时间点筛选条件集合
         /// </summary>
         public List<PointInTimeFilterInfo> PointInTimeFilterInfoList { get; set; }
+
+
+        /// <summary>
+        /// 排序信息集合
+        /// 按照集合的顺序进行排序
+        /// </summary>
+        public List<OrderInfo> OrderInfoList { get; set; }
     }
 }

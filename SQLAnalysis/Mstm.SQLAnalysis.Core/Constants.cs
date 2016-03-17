@@ -34,6 +34,16 @@ namespace Mstm.SQLAnalysis.Core
         /// </summary>
         public const string From = "FROM";
 
+        /// <summary>
+        /// Order
+        /// </summary>
+        public const string Order = "ORDER";
+
+        /// <summary>
+        /// By
+        /// </summary>
+        public const string By = "BY";
+
 
         /// <summary>
         /// Value占位符

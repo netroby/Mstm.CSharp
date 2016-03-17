@@ -219,7 +219,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         [TestMethod]
         public void BuildStatisticsTest_Max()
         {
-            StatisticsFilterInfo filter = new StatisticsFilterInfo()
+            StatisticsInfo filter = new StatisticsInfo()
             {
                 FieldName = "UserId",
                 TableName = "UserInfo",
@@ -236,7 +236,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         [TestMethod]
         public void BuildStatisticsTest_Count()
         {
-            StatisticsFilterInfo filter = new StatisticsFilterInfo()
+            StatisticsInfo filter = new StatisticsInfo()
             {
                 TableName = "UserInfo",
                 StatisticsRelation = StatisticsRelationEnum.Count
@@ -252,7 +252,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         public void BuildWhereWithStatisticsTest()
         {
             //筛选出用户Id大于平均值的,并且密保问题不为空的用户
-            StatisticsFilterInfo statisticsFilter = new StatisticsFilterInfo()
+            StatisticsInfo statisticsFilter = new StatisticsInfo()
             {
                 TableName = "UserInfo",
                 FieldName = "UserId",
@@ -278,6 +278,81 @@ namespace Mstm.SQLAnalysis.UnitTests
             };
             FilterInfo filterInfo = new FilterInfo();
             filterInfo.NormalFilterInfoList = normalList;
+
+            string sql = _provider.BuildWhere(filterInfo);
+        }
+
+
+        /// <summary>
+        /// 测试构建排序语句
+        /// </summary>
+        [TestMethod]
+        public void BuildOrderTest()
+        {
+
+            List<OrderInfo> orderList = new List<OrderInfo>() { 
+                new OrderInfo(){
+                    FieldName = "UserId",
+                    OrderMode = OrderModeEnum.Asc
+                },
+                new OrderInfo(){
+                    FieldName = "Email",
+                    OrderMode = OrderModeEnum.Desc
+                },
+            };
+
+            string sql = _provider.BuildOrder(orderList);
+
+        }
+
+
+        /// <summary>
+        /// 测试构建带排序的简单where语句
+        /// </summary>
+        [TestMethod]
+        public void BuildWhereWithOrderTest()
+        {
+            //筛选出用户Id大于平均值的,并且密保问题不为空的用户
+            StatisticsInfo statisticsFilter = new StatisticsInfo()
+            {
+                TableName = "UserInfo",
+                FieldName = "UserId",
+                StatisticsRelation = StatisticsRelationEnum.Avg
+            };
+
+            string avgSql = _provider.BuildStatistics(statisticsFilter);
+
+            var normalList = new List<NormalFilterInfo>() { 
+            new NormalFilterInfo(){
+                FieldName="UserId",
+                FieldType= FieldTypeEnum.Number,
+                ConnectRelation= ConnectRelationEnum.And,
+                NormalWhereRelation= NormalWhereRelationEnum.MoreThan,
+                WhereValue=avgSql
+            },
+            new NormalFilterInfo(){
+                FieldName="PwdQuestion",
+                FieldType= FieldTypeEnum.Text,
+                ConnectRelation= ConnectRelationEnum.And,
+                NormalWhereRelation= NormalWhereRelationEnum.IsNotNull,
+            }
+            };
+
+            List<OrderInfo> orderList = new List<OrderInfo>() { 
+                new OrderInfo(){
+                    FieldName = "UserId",
+                    OrderMode = OrderModeEnum.Asc
+                },
+                new OrderInfo(){
+                    FieldName = "Email",
+                    OrderMode = OrderModeEnum.Desc
+                },
+            };
+
+            FilterInfo filterInfo = new FilterInfo();
+            filterInfo.NormalFilterInfoList = normalList;
+            filterInfo.OrderInfoList = orderList;
+
 
             string sql = _provider.BuildWhere(filterInfo);
         }
