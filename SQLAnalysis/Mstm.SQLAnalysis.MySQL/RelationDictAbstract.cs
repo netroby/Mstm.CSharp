@@ -33,7 +33,7 @@ namespace Mstm.SQLAnalysis.MySQL
             {
                 if (_dict == null || _dict.ContainsKey(index) == false)
                 {
-                    throw new Exception("不支持的筛选条件！" + index.ToString());
+                    throw new Exception("当前不支持该操作！" + index.ToString());
                 }
                 return _dict[index];
             }
