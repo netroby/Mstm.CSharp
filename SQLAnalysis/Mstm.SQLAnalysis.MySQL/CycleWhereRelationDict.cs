@@ -7,34 +7,10 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class CycleWhereRelationDict
+    internal class CycleWhereRelationDict : WhereRelationDictAbstract<CycleWhereRelationEnum>
     {
-        private static Dictionary<CycleWhereRelationEnum, string> _dict;
         private static CycleWhereRelationDict _instance;
 
-        static CycleWhereRelationDict()
-        {
-            _dict = new Dictionary<CycleWhereRelationEnum, string>() { 
-                {   CycleWhereRelationEnum.Month,           "Month"           },
-                {   CycleWhereRelationEnum.Week,            "DAYOFWEEK"       },
-                {   CycleWhereRelationEnum.Day,             "Day"             },
-                {   CycleWhereRelationEnum.Hour,            "HOUR"            },
-            };
-        }
-
-
-
-        public string this[CycleWhereRelationEnum index]
-        {
-            get
-            {
-                if (_dict == null || _dict.ContainsKey(index) == false)
-                {
-                    throw new Exception("不支持的筛选条件！" + index.ToString());
-                }
-                return _dict[index];
-            }
-        }
 
         public static CycleWhereRelationDict GetInstance()
         {
@@ -43,6 +19,18 @@ namespace Mstm.SQLAnalysis.MySQL
                 _instance = new CycleWhereRelationDict();
             }
             return _instance;
+        }
+
+
+        protected override Dictionary<CycleWhereRelationEnum, string> InitDict()
+        {
+            var dict = new Dictionary<CycleWhereRelationEnum, string>() { 
+                {   CycleWhereRelationEnum.Month,           "Month"           },
+                {   CycleWhereRelationEnum.Week,            "DAYOFWEEK"       },
+                {   CycleWhereRelationEnum.Day,             "Day"             },
+                {   CycleWhereRelationEnum.Hour,            "HOUR"            },
+            };
+            return dict;
         }
     }
 }

@@ -7,14 +7,24 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class NormalWhereRelationDict
+    internal class NormalWhereRelationDict : WhereRelationDictAbstract<NormalWhereRelationEnum>
     {
-        private static Dictionary<NormalWhereRelationEnum, string> _dict;
         private static NormalWhereRelationDict _instance;
 
-        static NormalWhereRelationDict()
+
+        public static NormalWhereRelationDict GetInstance()
         {
-            _dict = new Dictionary<NormalWhereRelationEnum, string>() { 
+            if (_instance == null)
+            {
+                _instance = new NormalWhereRelationDict();
+            }
+            return _instance;
+        }
+
+
+        protected override Dictionary<NormalWhereRelationEnum, string> InitDict()
+        {
+            var dict = new Dictionary<NormalWhereRelationEnum, string>() { 
                 {   NormalWhereRelationEnum.Equal,                 "="                  },
                 {   NormalWhereRelationEnum.In,                    "IN"                 },
                 {   NormalWhereRelationEnum.IsNotNull,             "IS NOT NULL"        },
@@ -31,29 +41,8 @@ namespace Mstm.SQLAnalysis.MySQL
                 {   NormalWhereRelationEnum.NotLikePrefix,         "NOT LIKE '%VALUE'"  },
                 {   NormalWhereRelationEnum.NotLikeSuffix,         "NOT LIKE 'VALUE%'"  },
             };
-        }
 
-
-
-        public string this[NormalWhereRelationEnum index]
-        {
-            get
-            {
-                if (_dict == null || _dict.ContainsKey(index) == false)
-                {
-                    throw new Exception("不支持的筛选条件！" + index.ToString());
-                }
-                return _dict[index];
-            }
-        }
-
-        public static NormalWhereRelationDict GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new NormalWhereRelationDict();
-            }
-            return _instance;
+            return dict;
         }
     }
 }
