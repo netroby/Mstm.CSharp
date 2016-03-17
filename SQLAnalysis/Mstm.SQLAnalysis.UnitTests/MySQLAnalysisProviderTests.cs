@@ -196,5 +196,32 @@ namespace Mstm.SQLAnalysis.UnitTests
             };
             string sql = _provider.BuildPointInTimeWhere(list);
         }
+
+
+
+        [TestMethod]
+        public void BuildStatisticsTest_Max()
+        {
+            StatisticsFilterInfo filter = new StatisticsFilterInfo()
+            {
+                FieldName = "UserId",
+                TableName = "UserInfo",
+                StatisticsRelation = StatisticsRelationEnum.Max
+            };
+            string sql = _provider.BuildStatistics(filter);
+        }
+
+
+
+        [TestMethod]
+        public void BuildStatisticsTest_Count()
+        {
+            StatisticsFilterInfo filter = new StatisticsFilterInfo()
+            {
+                TableName = "UserInfo",
+                StatisticsRelation = StatisticsRelationEnum.Count
+            };
+            string sql = _provider.BuildStatistics(filter);
+        }
     }
 }
