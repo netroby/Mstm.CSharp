@@ -54,11 +54,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MySQLAnalysisProviderTests.cs" />
+    <Compile Include="MySQLSyntaxAnalysisProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MySQLDbStructAnalysisProviderTests.cs" />
     <Compile Include="MSSQLServerDbStructAnalysisProviderTests.cs" />
-    <Compile Include="MSSQLServerAnalysisProviderTests.cs" />
+    <Compile Include="MSSQLServerSyntaxAnalysisProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj">
