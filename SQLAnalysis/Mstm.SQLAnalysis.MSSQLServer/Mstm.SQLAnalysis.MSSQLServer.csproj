@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MSSQLServerAnalysisFactory.cs" />
     <Compile Include="MSSQLServerAnalysisProvider.cs" />
+    <Compile Include="MSSQLServerDbStructAnalysisProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
