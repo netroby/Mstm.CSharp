@@ -146,7 +146,7 @@ namespace Mstm.SQLAnalysis.Core
         {
             if (where == null || filter == null) { return; }
             string funcName = CycleRelationDictData[filter.CycleRelation];
-            where.AppendFormat("{0}{1}({0}{5}({2})>={3}{0}AND{0}{5}({2})<={4})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, filter.MinValue, filter.MaxValue, funcName);
+            where.AppendFormat("{0}{1}({0}{4}>={2}{0}AND{0}{4}<={3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.MinValue, filter.MaxValue, funcName.Replace(Constants.ReplaceFieldName, filter.FieldName));
         }
 
 

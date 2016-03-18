@@ -25,10 +25,10 @@ namespace Mstm.SQLAnalysis.MySQL
         protected override Dictionary<CycleWhereRelationEnum, string> InitDict()
         {
             var dict = new Dictionary<CycleWhereRelationEnum, string>() { 
-                {   CycleWhereRelationEnum.Month,           "MONTH"           },
-                {   CycleWhereRelationEnum.Week,            "DAYOFWEEK"       },
-                {   CycleWhereRelationEnum.Day,             "DAY"             },
-                {   CycleWhereRelationEnum.Hour,            "HOUR"            },
+                {   CycleWhereRelationEnum.Month,           string.Format("MONTH({0})",Constants.ReplaceFieldName)           },
+                {   CycleWhereRelationEnum.Week,            string.Format("DAYOFWEEK({0})",Constants.ReplaceFieldName)       },
+                {   CycleWhereRelationEnum.Day,             string.Format("DAY({0})",Constants.ReplaceFieldName)             },
+                {   CycleWhereRelationEnum.Hour,            string.Format("HOUR({0})",Constants.ReplaceFieldName)            },
             };
             return dict;
         }
