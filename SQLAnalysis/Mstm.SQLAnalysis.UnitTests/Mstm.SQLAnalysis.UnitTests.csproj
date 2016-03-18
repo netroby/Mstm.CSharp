@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MySQLDbStructAnalysisProviderTests.cs" />
     <Compile Include="MSSQLServerDbStructAnalysisProviderTests.cs" />
+    <Compile Include="MSSQLServerAnalysisProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj">

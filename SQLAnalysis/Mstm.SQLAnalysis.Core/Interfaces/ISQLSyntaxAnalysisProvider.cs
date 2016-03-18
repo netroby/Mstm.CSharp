@@ -10,7 +10,7 @@ namespace Mstm.SQLAnalysis.Core
     /// <summary>
     /// SQL语句构建接口
     /// </summary>
-    public interface ISQLAnalysisProvider : IDbStructAnalysisProvider
+    public interface ISQLSyntaxAnalysisProvider
     {
 
         /// <summary>

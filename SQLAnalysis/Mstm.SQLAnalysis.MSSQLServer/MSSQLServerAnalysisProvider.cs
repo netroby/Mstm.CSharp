@@ -7,41 +7,45 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MSSQLServer
 {
-    internal class MSSQLServerAnalysisProvider : MSSQLServerDbStructAnalysisProvider, ISQLAnalysisProvider
+
+    internal class MSSQLServerAnalysisProvider : DefaultSQLSyntaxAnalysisProvider
     {
-        public string BuildWhere(FilterInfo filterInfo)
+
+        protected override RelationDictAbstract<NormalWhereRelationEnum> WhereRelationDictData
         {
-            throw new NotImplementedException();
+            get
+            {
+                return NormalWhereRelationDict.GetInstance();
+            }
         }
 
-        public string BuildNormalWhere(List<NormalFilterInfo> filters)
+        protected override RelationDictAbstract<CycleWhereRelationEnum> CycleRelationDictData
         {
-            throw new NotImplementedException();
+            get
+            {
+                return CycleWhereRelationDict.GetInstance();
+            }
         }
 
-        public string BuildCycleWhere(List<CycleFilterInfo> filters)
+        protected override RelationDictAbstract<PointInTimeWhereRelationEnum> PointInTimeRelationDictData
         {
-            throw new NotImplementedException();
+            get
+            {
+                return PointInTimeWhereRelationDict.GetInstance();
+            }
         }
 
-        public string BuildPointInTimeWhere(List<PointInTimeFilterInfo> filters)
+        protected override RelationDictAbstract<StatisticsRelationEnum> StatisticsRelationDictData
         {
-            throw new NotImplementedException();
+            get
+            {
+                return StatisticsRelationDict.GetInstance();
+            }
         }
 
-        public string BuildStatistics(StatisticsInfo info)
+        protected override string FieldWrap
         {
-            throw new NotImplementedException();
-        }
-
-        public string BuildOrder(List<OrderInfo> orderList)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string BuildSelect(string source, List<string> fieldList = null)
-        {
-            throw new NotImplementedException();
+            get { return "'"; }
         }
     }
 }

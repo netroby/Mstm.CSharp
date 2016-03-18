@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.SQLAnalysis.MySQL
+namespace Mstm.SQLAnalysis.Core
 {
-    internal abstract class RelationDictAbstract<TKey>
+    public abstract class RelationDictAbstract<TKey>
     {
         private static Dictionary<TKey, string> _dict;
 
@@ -31,7 +31,7 @@ namespace Mstm.SQLAnalysis.MySQL
         {
             get
             {
-                if (_dict == null || _dict.ContainsKey(index) == false)
+                if (_dict == null || index == null || _dict.ContainsKey(index) == false)
                 {
                     throw new Exception("当前不支持该操作！" + index.ToString());
                 }

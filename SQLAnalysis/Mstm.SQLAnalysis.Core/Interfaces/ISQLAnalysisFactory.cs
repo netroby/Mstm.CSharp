@@ -17,6 +17,14 @@ namespace Mstm.SQLAnalysis.Core
         /// 获取SQL解析提供程序
         /// </summary>
         /// <returns></returns>
-        ISQLAnalysisProvider GetSQLAnalysisProvider();
+        ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider();
+
+
+        /// <summary>
+        /// 获取数据库结构信息分析提供程序
+        /// </summary>
+        /// <returns></returns>
+        IDbStructAnalysisProvider GetDbStructAnalysisProvider();
+
     }
 }

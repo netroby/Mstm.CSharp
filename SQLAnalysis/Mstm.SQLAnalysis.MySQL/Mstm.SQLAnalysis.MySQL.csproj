@@ -47,7 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NormalWhereRelationDict.cs" />
     <Compile Include="StatisticsRelationDict.cs" />
-    <Compile Include="RelationDictAbstract.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj">

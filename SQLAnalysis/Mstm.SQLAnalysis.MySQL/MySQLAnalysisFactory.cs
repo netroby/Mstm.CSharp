@@ -9,9 +9,15 @@ namespace Mstm.SQLAnalysis.MySQL
 {
     public class MySQLAnalysisFactory : ISQLAnalysisFactory
     {
-        public ISQLAnalysisProvider GetSQLAnalysisProvider()
+        public ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider()
         {
             return new MySQLAnalysisProvider();
+        }
+
+
+        public IDbStructAnalysisProvider GetDbStructAnalysisProvider()
+        {
+            return new MySQLDbStructAnalysisProvider();
         }
     }
 }

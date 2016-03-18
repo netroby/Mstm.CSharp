@@ -49,7 +49,7 @@
     <Compile Include="Enums\StatisticsRelationEnum.cs" />
     <Compile Include="Interfaces\IDbStructAnalysisProvider.cs" />
     <Compile Include="Interfaces\ISQLAnalysisFactory.cs" />
-    <Compile Include="Interfaces\ISQLAnalysisProvider.cs" />
+    <Compile Include="Interfaces\ISQLSyntaxAnalysisProvider.cs" />
     <Compile Include="Models\CycleFilterInfo.cs" />
     <Compile Include="Models\FilterInfo.cs" />
     <Compile Include="Models\OrderInfo.cs" />
@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\NormalFilterInfo.cs" />
     <Compile Include="Enums\NormalWhereRelationEnum.cs" />
+    <Compile Include="RelationDictAbstract.cs" />
+    <Compile Include="Default\DefaultSQLSyntaxAnalysisProvider.cs" />
     <Compile Include="Utility\EnumUtility.cs" />
     <Compile Include="Utility\OperatorAttribute.cs" />
   </ItemGroup>

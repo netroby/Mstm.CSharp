@@ -1,14 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mstm.SQLAnalysis.Core;
-using Mstm.SQLAnalysis.MySQL;
+using Mstm.SQLAnalysis.MSSQLServer;
 using System.Collections.Generic;
 
 namespace Mstm.SQLAnalysis.UnitTests
 {
     [TestClass]
-    public class MySQLAnalysisProviderTests
+    public class MSSQLServerAnalysisProviderTests
     {
+
         ISQLSyntaxAnalysisProvider _provider;
 
         /// <summary>
@@ -17,7 +18,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         [TestInitialize]
         public void MethodInit()
         {
-            ISQLAnalysisFactory factory = new MySQLAnalysisFactory();
+            ISQLAnalysisFactory factory = new MSSQLServerAnalysisFactory();
             _provider = factory.GetSQLSyntaxAnalysisProvider();
         }
 
@@ -408,5 +409,7 @@ namespace Mstm.SQLAnalysis.UnitTests
             string source = "UserInfo";
             string sql = _provider.BuildSelect(source);
         }
+
+
     }
 }

@@ -10,9 +10,16 @@ namespace Mstm.SQLAnalysis.MSSQLServer
     public class MSSQLServerAnalysisFactory : ISQLAnalysisFactory
     {
 
-        public ISQLAnalysisProvider GetSQLAnalysisProvider()
+        public ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider()
         {
             return new MSSQLServerAnalysisProvider();
+        }
+
+
+
+        public IDbStructAnalysisProvider GetDbStructAnalysisProvider()
+        {
+            return new MSSQLServerDbStructAnalysisProvider();
         }
     }
 }

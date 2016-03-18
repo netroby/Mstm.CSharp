@@ -20,7 +20,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         public void MethodInit()
         {
             ISQLAnalysisFactory factory = new MySQLAnalysisFactory();
-            _provider = factory.GetSQLAnalysisProvider();
+            _provider = factory.GetDbStructAnalysisProvider();
         }
 
 
