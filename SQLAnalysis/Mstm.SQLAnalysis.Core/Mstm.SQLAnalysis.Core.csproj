@@ -47,6 +47,7 @@
     <Compile Include="Enums\OrderModeEnum.cs" />
     <Compile Include="Enums\PointInTimeWhereRelationEnum.cs" />
     <Compile Include="Enums\StatisticsRelationEnum.cs" />
+    <Compile Include="Interfaces\IDbStructAnalysisProvider.cs" />
     <Compile Include="Interfaces\ISQLAnalysisFactory.cs" />
     <Compile Include="Interfaces\ISQLAnalysisProvider.cs" />
     <Compile Include="Models\CycleFilterInfo.cs" />

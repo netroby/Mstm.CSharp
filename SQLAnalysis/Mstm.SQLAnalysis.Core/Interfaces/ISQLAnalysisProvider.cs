@@ -10,7 +10,7 @@ namespace Mstm.SQLAnalysis.Core
     /// <summary>
     /// SQL语句构建接口
     /// </summary>
-    public interface ISQLAnalysisProvider
+    public interface ISQLAnalysisProvider : IDbStructAnalysisProvider
     {
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Mstm.SQLAnalysis.Core
 
 
         /// <summary>
-        /// 编译排序语句
+        /// 构建排序语句
         /// </summary>
         /// <param name="info">排序信息集合，按集合的顺序排序</param>
         /// <returns>排序sql语句</returns>
@@ -63,7 +63,7 @@ namespace Mstm.SQLAnalysis.Core
 
 
         /// <summary>
-        /// 编译select语句
+        /// 构建select语句
         /// </summary>
         /// <param name="source">数据源</param>
         /// <param name="fieldList">需要查询的字段集合，如果为空或者长度等于0则查询所有字段</param>

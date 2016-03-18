@@ -42,6 +42,7 @@
     <Compile Include="CycleWhereRelationDict.cs" />
     <Compile Include="MySQLAnalysisFactory.cs" />
     <Compile Include="MySQLAnalysisProvider.cs" />
+    <Compile Include="MySQLDbStructAnalysisProvider.cs" />
     <Compile Include="PointInTimeWhereRelationDict.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NormalWhereRelationDict.cs" />
