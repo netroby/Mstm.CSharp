@@ -43,7 +43,7 @@ namespace Mstm.SQLAnalysis.MySQL
             }
         }
 
-        protected override string FieldWrap
+        protected override string SafeQuote
         {
             get { return "`"; }
         }

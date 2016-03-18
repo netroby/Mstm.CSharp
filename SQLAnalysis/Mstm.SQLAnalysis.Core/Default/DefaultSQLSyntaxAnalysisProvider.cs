@@ -22,7 +22,10 @@ namespace Mstm.SQLAnalysis.Core
         protected abstract RelationDictAbstract<StatisticsRelationEnum> StatisticsRelationDictData { get; }
 
 
-        protected abstract string FieldWrap { get; }
+        /// <summary>
+        /// 包装字段或者表名的引号
+        /// </summary>
+        protected abstract string SafeQuote { get; }
 
 
 
@@ -240,7 +243,7 @@ namespace Mstm.SQLAnalysis.Core
             if (orderList != null && orderList.Count != 0)
             {
                 //order by `comment_ID` desc,`comment_post_ID` asc,`comment_author` asc,`comment_author` asc
-                orderBuilder.AppendFormat("{0}{3}{1}{3}{0}{2}", Constants.WhiteSpace, Constants.Order, Constants.By, FieldWrap);
+                orderBuilder.AppendFormat("{0}{3}{1}{3}{0}{2}", Constants.WhiteSpace, Constants.Order, Constants.By, SafeQuote);
                 orderList.ForEach(order =>
                 {
                     if (string.IsNullOrWhiteSpace(order.FieldName))
@@ -297,6 +300,6 @@ namespace Mstm.SQLAnalysis.Core
             return selectBuilder.ToString();
         }
 
-     
+
     }
 }
