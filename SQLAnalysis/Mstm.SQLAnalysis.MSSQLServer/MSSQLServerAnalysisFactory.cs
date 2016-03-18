@@ -12,7 +12,7 @@ namespace Mstm.SQLAnalysis.MSSQLServer
 
         public ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider()
         {
-            return new MSSQLServerAnalysisProvider();
+            return new MSSQLServerSyntaxAnalysisProvider();
         }
 
 

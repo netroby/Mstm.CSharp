@@ -11,7 +11,7 @@ namespace Mstm.SQLAnalysis.MySQL
     {
         public ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider()
         {
-            return new MySQLAnalysisProvider();
+            return new MySQLSyntaxAnalysisProvider();
         }
 
 

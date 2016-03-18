@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="CycleWhereRelationDict.cs" />
     <Compile Include="MSSQLServerAnalysisFactory.cs" />
-    <Compile Include="MSSQLServerAnalysisProvider.cs" />
+    <Compile Include="MSSQLServerSyntaxAnalysisProvider.cs" />
     <Compile Include="MSSQLServerDbStructAnalysisProvider.cs" />
     <Compile Include="NormalWhereRelationDict.cs" />
     <Compile Include="PointInTimeWhereRelationDict.cs" />

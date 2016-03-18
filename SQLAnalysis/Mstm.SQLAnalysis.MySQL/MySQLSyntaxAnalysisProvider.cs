@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.SQLAnalysis.MSSQLServer
+namespace Mstm.SQLAnalysis.MySQL
 {
-
-    internal class MSSQLServerAnalysisProvider : DefaultSQLSyntaxAnalysisProvider
+    internal class MySQLSyntaxAnalysisProvider : DefaultSQLSyntaxAnalysisProvider
     {
+
 
         protected override RelationDictAbstract<NormalWhereRelationEnum> WhereRelationDictData
         {
@@ -45,7 +45,8 @@ namespace Mstm.SQLAnalysis.MSSQLServer
 
         protected override string SafeQuote
         {
-            get { return "'"; }
+            get { return "`"; }
         }
+
     }
 }
