@@ -390,8 +390,9 @@ namespace Mstm.SQLAnalysis.UnitTests
 
             List<string> fieldList = new List<string>() {
                 "1+2",
-                "1=1",
-                "NOW()"
+                //"1=1",  不支持
+                "3-9",
+                "GETDATE()"
             };
 
             string source = null;
