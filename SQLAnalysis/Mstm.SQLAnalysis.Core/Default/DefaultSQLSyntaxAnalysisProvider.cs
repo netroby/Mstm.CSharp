@@ -243,14 +243,14 @@ namespace Mstm.SQLAnalysis.Core
             if (orderList != null && orderList.Count != 0)
             {
                 //order by `comment_ID` desc,`comment_post_ID` asc,`comment_author` asc,`comment_author` asc
-                orderBuilder.AppendFormat("{0}{3}{1}{3}{0}{2}", Constants.WhiteSpace, Constants.Order, Constants.By, SafeQuote);
+                orderBuilder.AppendFormat("{0}{1}{0}{2}", Constants.WhiteSpace, Constants.Order, Constants.By);
                 orderList.ForEach(order =>
                 {
                     if (string.IsNullOrWhiteSpace(order.FieldName))
                     {
                         throw new ArgumentException("无效的排序参数！", "FieldName");
                     }
-                    orderBuilder.AppendFormat("{0}{1}{0}{2},", Constants.WhiteSpace, order.FieldName, EnumUtility.GetEnumOperation(order.OrderMode));
+                    orderBuilder.AppendFormat("{0}{3}{1}{3}{0}{2},", Constants.WhiteSpace, order.FieldName, EnumUtility.GetEnumOperation(order.OrderMode), SafeQuote);
                 });
                 //去除最后一个逗号
                 orderBuilder.Remove(orderBuilder.Length - 1, 1);
