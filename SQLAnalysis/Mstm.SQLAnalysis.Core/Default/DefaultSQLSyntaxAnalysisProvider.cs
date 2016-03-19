@@ -279,7 +279,7 @@ namespace Mstm.SQLAnalysis.Core
                     selectBuilder.AppendFormat("{0}{1},", Constants.WhiteSpace, field);
                 });
                 selectBuilder.Remove(selectBuilder.Length - 1, 1);
-                selectBuilder.AppendFormat("{0}{1}{2}", Constants.WhiteSpace, Constants.From, source);
+                selectBuilder.AppendFormat("{0}{1}{0}{2}", Constants.WhiteSpace, Constants.From, source);
             }
             else if (string.IsNullOrWhiteSpace(source) == true && fieldList != null && fieldList.Count != 0)
             {
