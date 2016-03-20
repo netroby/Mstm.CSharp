@@ -75,6 +75,10 @@
       <Project>{6c68fe48-45fa-4e40-9a9b-3d9cf481b181}</Project>
       <Name>Mstm.SQLAnalysis.MySQL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mstm.SQLAnalysis.Oracle\Mstm.SQLAnalysis.Oracle.csproj">
+      <Project>{19277f8a-7f02-40db-a8c8-eccfd36905bb}</Project>
+      <Name>Mstm.SQLAnalysis.Oracle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Sybase\Mstm.SQLAnalysis.Sybase.csproj">
       <Project>{c80082af-9947-4d05-b85b-513392131669}</Project>
       <Name>Mstm.SQLAnalysis.Sybase</Name>

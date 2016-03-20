@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Design.UnitTests", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.Sybase", "SQLAnalysis\Mstm.SQLAnalysis.Sybase\Mstm.SQLAnalysis.Sybase.csproj", "{C80082AF-9947-4D05-B85B-513392131669}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.Oracle", "SQLAnalysis\Mstm.SQLAnalysis.Oracle\Mstm.SQLAnalysis.Oracle.csproj", "{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +255,10 @@ Global
 		{C80082AF-9947-4D05-B85B-513392131669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80082AF-9947-4D05-B85B-513392131669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80082AF-9947-4D05-B85B-513392131669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -297,5 +303,6 @@ Global
 		{4707F69E-D899-4414-83D1-936961FC32DF} = {68C24083-47D0-410C-A048-960C32EC798A}
 		{F8F1C327-35E3-4C6A-AA83-282305F9FABF} = {68C24083-47D0-410C-A048-960C32EC798A}
 		{C80082AF-9947-4D05-B85B-513392131669} = {5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}
+		{19277F8A-7F02-40DB-A8C8-ECCFD36905BB} = {5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}
 	EndGlobalSection
 EndGlobal
