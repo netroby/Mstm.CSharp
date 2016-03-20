@@ -11,27 +11,27 @@ namespace Mstm.SQLAnalysis.Sybase
     {
         protected override RelationDictAbstract<NormalWhereRelationEnum> WhereRelationDictData
         {
-            get { throw new NotImplementedException(); }
+            get { return new NormalWhereRelationDict(); }
         }
 
         protected override RelationDictAbstract<CycleWhereRelationEnum> CycleRelationDictData
         {
-            get { throw new NotImplementedException(); }
+            get { return new CycleWhereRelationDict(); }
         }
 
         protected override RelationDictAbstract<PointInTimeWhereRelationEnum> PointInTimeRelationDictData
         {
-            get { throw new NotImplementedException(); }
+            get { return new PointInTimeWhereRelationDict(); }
         }
 
         protected override RelationDictAbstract<StatisticsRelationEnum> StatisticsRelationDictData
         {
-            get { throw new NotImplementedException(); }
+            get { return new StatisticsRelationDict(); }
         }
 
-        protected override string SafeQuote
+        protected override string GetSafeParam(string param)
         {
-            get { throw new NotImplementedException(); }
+            return string.Format("[{0}]", param);
         }
     }
 }
