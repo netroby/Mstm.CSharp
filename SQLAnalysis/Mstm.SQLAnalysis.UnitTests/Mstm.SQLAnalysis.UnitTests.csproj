@@ -59,6 +59,7 @@
     <Compile Include="MySQLDbStructAnalysisProviderTests.cs" />
     <Compile Include="MSSQLServerDbStructAnalysisProviderTests.cs" />
     <Compile Include="MSSQLServerSyntaxAnalysisProviderTests.cs" />
+    <Compile Include="SybaseDbStructAnalysisProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj">
