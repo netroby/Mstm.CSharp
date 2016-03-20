@@ -23,9 +23,9 @@ namespace Mstm.SQLAnalysis.Core
 
 
         /// <summary>
-        /// 包装字段或者表名的引号
+        /// 包装字段或者表名
         /// </summary>
-        protected abstract string SafeQuote { get; }
+        protected abstract string GetSafeParam(string param);
 
 
 
@@ -250,7 +250,7 @@ namespace Mstm.SQLAnalysis.Core
                     {
                         throw new ArgumentException("无效的排序参数！", "FieldName");
                     }
-                    orderBuilder.AppendFormat("{0}{3}{1}{3}{0}{2},", Constants.WhiteSpace, order.FieldName, EnumUtility.GetEnumOperation(order.OrderMode), SafeQuote);
+                    orderBuilder.AppendFormat("{0}{1}{0}{2},", Constants.WhiteSpace, GetSafeParam(order.FieldName), EnumUtility.GetEnumOperation(order.OrderMode));
                 });
                 //去除最后一个逗号
                 orderBuilder.Remove(orderBuilder.Length - 1, 1);

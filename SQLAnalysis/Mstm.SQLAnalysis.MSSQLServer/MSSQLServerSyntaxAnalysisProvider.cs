@@ -43,9 +43,10 @@ namespace Mstm.SQLAnalysis.MSSQLServer
             }
         }
 
-        protected override string SafeQuote
+
+        protected override string GetSafeParam(string param)
         {
-            get { return "'"; }
+            return string.Format("[{0}]", param);
         }
     }
 }

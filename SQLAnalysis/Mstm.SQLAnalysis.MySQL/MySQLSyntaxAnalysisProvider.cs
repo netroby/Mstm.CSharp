@@ -43,10 +43,10 @@ namespace Mstm.SQLAnalysis.MySQL
             }
         }
 
-        protected override string SafeQuote
-        {
-            get { return "`"; }
-        }
 
+        protected override string GetSafeParam(string param)
+        {
+            return string.Format("`{0}`", param);
+        }
     }
 }
