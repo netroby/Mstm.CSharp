@@ -27,6 +27,32 @@ namespace Mstm.SQLAnalysis.UnitTests
             return factory.GetSQLSyntaxAnalysisProvider();
         }
 
+        public static IDbStructAnalysisProvider GetDbStructAnalysisProvider(int dbType)
+        {
+            try
+            {
+                ISQLAnalysisFactory factory = GetSQLAnalysisFactory((DbTypeEnum)dbType);
+                return factory.GetDbStructAnalysisProvider();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("不支持的数据库类型！", "dbType");
+            }
+        }
+
+        public static ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider(int dbType)
+        {
+            try
+            {
+                ISQLAnalysisFactory factory = GetSQLAnalysisFactory((DbTypeEnum)dbType);
+                return factory.GetSQLSyntaxAnalysisProvider();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("不支持的数据库类型！", "dbType");
+            }
+        }
+
 
         static ISQLAnalysisFactory GetSQLAnalysisFactory(DbTypeEnum dbType)
         {
@@ -44,7 +70,6 @@ namespace Mstm.SQLAnalysis.UnitTests
                     break;
                 case DbTypeEnum.Oracle:
                     throw new NotImplementedException("暂不支持Oracle数据库！");
-                    break;
             }
 
             return factory;
