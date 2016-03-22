@@ -39,11 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CycleWhereRelationDict.cs" />
-    <Compile Include="NormalWhereRelationDict.cs" />
-    <Compile Include="PointInTimeWhereRelationDict.cs" />
+    <Compile Include="SybaseCycleWhereRelationDict.cs" />
+    <Compile Include="SybasePointInTimeWhereRelationDict.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatisticsRelationDict.cs" />
     <Compile Include="SybaseAnalysisFactory.cs" />
     <Compile Include="SybaseDbStructAnalysisProvider.cs" />
     <Compile Include="SybaseSyntaxAnalysisProvider.cs" />

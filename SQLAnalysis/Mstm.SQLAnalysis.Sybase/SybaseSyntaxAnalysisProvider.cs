@@ -16,12 +16,12 @@ namespace Mstm.SQLAnalysis.Sybase
 
         protected override RelationDictAbstract<CycleWhereRelationEnum> CycleRelationDictData
         {
-            get { return new CycleWhereRelationDict(); }
+            get { return new SybaseCycleWhereRelationDict(); }
         }
 
         protected override RelationDictAbstract<PointInTimeWhereRelationEnum> PointInTimeRelationDictData
         {
-            get { return new PointInTimeWhereRelationDict(); }
+            get { return new SybasePointInTimeWhereRelationDict(); }
         }
 
         protected override RelationDictAbstract<StatisticsRelationEnum> StatisticsRelationDictData

@@ -1,14 +1,12 @@
-﻿using Mstm.SQLAnalysis.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.SQLAnalysis.Sybase
+namespace Mstm.SQLAnalysis.Core
 {
-
-    internal class StatisticsRelationDict : RelationDictAbstract<StatisticsRelationEnum>
+    public class StatisticsRelationDict : RelationDictAbstract<StatisticsRelationEnum>
     {
 
         private static StatisticsRelationDict _instance;
@@ -39,5 +37,4 @@ namespace Mstm.SQLAnalysis.Sybase
             return dict;
         }
     }
-
 }

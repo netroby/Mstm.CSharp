@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Default\NormalWhereRelationDict.cs" />
+    <Compile Include="Default\StatisticsRelationDict.cs" />
     <Compile Include="Enums\ConnectRelationEnum.cs" />
     <Compile Include="Enums\CycleWhereRelationEnum.cs" />
     <Compile Include="Enums\DbTypeEnum.cs" />

@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class CycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
+    internal class MySQLCycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
     {
-        private static CycleWhereRelationDict _instance;
+        private static MySQLCycleWhereRelationDict _instance;
 
 
-        public static CycleWhereRelationDict GetInstance()
+        public static MySQLCycleWhereRelationDict GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new CycleWhereRelationDict();
+                _instance = new MySQLCycleWhereRelationDict();
             }
             return _instance;
         }

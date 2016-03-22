@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class PointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
+    internal class MySQLPointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
     {
-        private static PointInTimeWhereRelationDict _instance;
+        private static MySQLPointInTimeWhereRelationDict _instance;
 
 
 
-        public static PointInTimeWhereRelationDict GetInstance()
+        public static MySQLPointInTimeWhereRelationDict GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new PointInTimeWhereRelationDict();
+                _instance = new MySQLPointInTimeWhereRelationDict();
             }
             return _instance;
         }

@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace Mstm.SQLAnalysis.Sybase
 {
 
-    internal class PointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
+    internal class SybasePointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
     {
-        private static PointInTimeWhereRelationDict _instance;
+        private static SybasePointInTimeWhereRelationDict _instance;
 
 
 
-        public static PointInTimeWhereRelationDict GetInstance()
+        public static SybasePointInTimeWhereRelationDict GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new PointInTimeWhereRelationDict();
+                _instance = new SybasePointInTimeWhereRelationDict();
             }
             return _instance;
         }

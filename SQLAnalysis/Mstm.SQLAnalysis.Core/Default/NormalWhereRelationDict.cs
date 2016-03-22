@@ -1,13 +1,12 @@
-﻿using Mstm.SQLAnalysis.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.SQLAnalysis.MySQL
+namespace Mstm.SQLAnalysis.Core
 {
-    internal class NormalWhereRelationDict : RelationDictAbstract<NormalWhereRelationEnum>
+    public class NormalWhereRelationDict : RelationDictAbstract<NormalWhereRelationEnum>
     {
         private static NormalWhereRelationDict _instance;
 

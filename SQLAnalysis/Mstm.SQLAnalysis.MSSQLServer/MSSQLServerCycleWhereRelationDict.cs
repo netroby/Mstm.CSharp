@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MSSQLServer
 {
-    internal class CycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
+    internal class MSSQLServerCycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
     {
-        private static CycleWhereRelationDict _instance;
+        private static MSSQLServerCycleWhereRelationDict _instance;
 
 
-        public static CycleWhereRelationDict GetInstance()
+        public static MSSQLServerCycleWhereRelationDict GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new CycleWhereRelationDict();
+                _instance = new MSSQLServerCycleWhereRelationDict();
             }
             return _instance;
         }

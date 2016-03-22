@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace Mstm.SQLAnalysis.Sybase
 {
 
-    internal class CycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
+    internal class SybaseCycleWhereRelationDict : RelationDictAbstract<CycleWhereRelationEnum>
     {
-        private static CycleWhereRelationDict _instance;
+        private static SybaseCycleWhereRelationDict _instance;
 
 
-        public static CycleWhereRelationDict GetInstance()
+        public static SybaseCycleWhereRelationDict GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new CycleWhereRelationDict();
+                _instance = new SybaseCycleWhereRelationDict();
             }
             return _instance;
         }

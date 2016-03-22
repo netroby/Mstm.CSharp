@@ -39,14 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CycleWhereRelationDict.cs" />
+    <Compile Include="MySQLCycleWhereRelationDict.cs" />
     <Compile Include="MySQLAnalysisFactory.cs" />
     <Compile Include="MySQLSyntaxAnalysisProvider.cs" />
     <Compile Include="MySQLDbStructAnalysisProvider.cs" />
-    <Compile Include="PointInTimeWhereRelationDict.cs" />
+    <Compile Include="MySQLPointInTimeWhereRelationDict.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NormalWhereRelationDict.cs" />
-    <Compile Include="StatisticsRelationDict.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj">

@@ -23,7 +23,7 @@ namespace Mstm.SQLAnalysis.MySQL
         {
             get
             {
-                return CycleWhereRelationDict.GetInstance();
+                return MySQLCycleWhereRelationDict.GetInstance();
             }
         }
 
@@ -31,7 +31,7 @@ namespace Mstm.SQLAnalysis.MySQL
         {
             get
             {
-                return PointInTimeWhereRelationDict.GetInstance();
+                return MySQLPointInTimeWhereRelationDict.GetInstance();
             }
         }
 

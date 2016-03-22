@@ -23,7 +23,7 @@ namespace Mstm.SQLAnalysis.MSSQLServer
         {
             get
             {
-                return CycleWhereRelationDict.GetInstance();
+                return MSSQLServerCycleWhereRelationDict.GetInstance();
             }
         }
 
@@ -31,7 +31,7 @@ namespace Mstm.SQLAnalysis.MSSQLServer
         {
             get
             {
-                return PointInTimeWhereRelationDict.GetInstance();
+                return MSSQLServerPointInTimeWhereRelationDict.GetInstance();
             }
         }
 

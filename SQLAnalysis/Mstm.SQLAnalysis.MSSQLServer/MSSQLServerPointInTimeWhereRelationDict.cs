@@ -9,17 +9,17 @@ namespace Mstm.SQLAnalysis.MSSQLServer
 {
 
 
-    internal class PointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
+    internal class MSSQLServerPointInTimeWhereRelationDict : RelationDictAbstract<PointInTimeWhereRelationEnum>
     {
-        private static PointInTimeWhereRelationDict _instance;
+        private static MSSQLServerPointInTimeWhereRelationDict _instance;
 
 
 
-        public static PointInTimeWhereRelationDict GetInstance()
+        public static MSSQLServerPointInTimeWhereRelationDict GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new PointInTimeWhereRelationDict();
+                _instance = new MSSQLServerPointInTimeWhereRelationDict();
             }
             return _instance;
         }
