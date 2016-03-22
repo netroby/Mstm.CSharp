@@ -21,7 +21,7 @@ namespace Mstm.SQLAnalysis.UnitTests
             return factory.GetDbStructAnalysisProvider();
         }
 
-        ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider(DbTypeEnum dbType)
+        public static ISQLSyntaxAnalysisProvider GetSQLSyntaxAnalysisProvider(DbTypeEnum dbType)
         {
             ISQLAnalysisFactory factory = GetSQLAnalysisFactory(dbType);
             return factory.GetSQLSyntaxAnalysisProvider();
