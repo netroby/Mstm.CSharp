@@ -50,6 +50,7 @@
     <Compile Include="Enums\PointInTimeWhereRelationEnum.cs" />
     <Compile Include="Enums\StatisticsRelationEnum.cs" />
     <Compile Include="Interfaces\IDbStructAnalysisProvider.cs" />
+    <Compile Include="Interfaces\IFieldTypeAnalysisProvider.cs" />
     <Compile Include="Interfaces\ISQLAnalysisFactory.cs" />
     <Compile Include="Interfaces\ISQLSyntaxAnalysisProvider.cs" />
     <Compile Include="Models\CycleFilterInfo.cs" />

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="MySQLCycleWhereRelationDict.cs" />
     <Compile Include="MySQLAnalysisFactory.cs" />
+    <Compile Include="MySQLFieldTypeAnalysisProvider.cs" />
     <Compile Include="MySQLSyntaxAnalysisProvider.cs" />
     <Compile Include="MySQLDbStructAnalysisProvider.cs" />
     <Compile Include="MySQLPointInTimeWhereRelationDict.cs" />

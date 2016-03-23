@@ -19,5 +19,11 @@ namespace Mstm.SQLAnalysis.MySQL
         {
             return new MySQLDbStructAnalysisProvider();
         }
+
+
+        public IFieldTypeAnalysisProvider GetFieldTypeAnalysisProvider()
+        {
+            return new MySQLFieldTypeAnalysisProvider();
+        }
     }
 }

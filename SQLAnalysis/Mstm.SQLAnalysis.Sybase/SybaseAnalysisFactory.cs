@@ -19,5 +19,11 @@ namespace Mstm.SQLAnalysis.Sybase
         {
             return new SybaseDbStructAnalysisProvider();
         }
+
+
+        public IFieldTypeAnalysisProvider GetFieldTypeAnalysisProvider()
+        {
+            return new SybaseFieldTypeAnalysisProvider();
+        }
     }
 }

@@ -27,6 +27,12 @@ namespace Mstm.SQLAnalysis.UnitTests
             return factory.GetSQLSyntaxAnalysisProvider();
         }
 
+        public static IFieldTypeAnalysisProvider GetFieldTypeAnalysisProvider(DbTypeEnum dbType)
+        {
+            ISQLAnalysisFactory factory = GetSQLAnalysisFactory(dbType);
+            return factory.GetFieldTypeAnalysisProvider();
+        }
+
         public static IDbStructAnalysisProvider GetDbStructAnalysisProvider(int dbType)
         {
             try
@@ -53,6 +59,18 @@ namespace Mstm.SQLAnalysis.UnitTests
             }
         }
 
+        public static IFieldTypeAnalysisProvider GetFieldTypeAnalysisProvider(int dbType)
+        {
+            try
+            {
+                ISQLAnalysisFactory factory = GetSQLAnalysisFactory((DbTypeEnum)dbType);
+                return factory.GetFieldTypeAnalysisProvider();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("不支持的数据库类型！", "dbType");
+            }
+        }
 
         static ISQLAnalysisFactory GetSQLAnalysisFactory(DbTypeEnum dbType)
         {

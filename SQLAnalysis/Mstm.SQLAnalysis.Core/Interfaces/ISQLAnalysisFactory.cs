@@ -26,5 +26,11 @@ namespace Mstm.SQLAnalysis.Core
         /// <returns></returns>
         IDbStructAnalysisProvider GetDbStructAnalysisProvider();
 
+
+        /// <summary>
+        /// 获取字段类型解析提供程序
+        /// </summary>
+        /// <returns></returns>
+        IFieldTypeAnalysisProvider GetFieldTypeAnalysisProvider();
     }
 }

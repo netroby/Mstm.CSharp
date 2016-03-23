@@ -21,5 +21,11 @@ namespace Mstm.SQLAnalysis.MSSQLServer
         {
             return new MSSQLServerDbStructAnalysisProvider();
         }
+
+
+        public IFieldTypeAnalysisProvider GetFieldTypeAnalysisProvider()
+        {
+            return new MSSQLServerFieldTypeAnalysisProvider();
+        }
     }
 }
