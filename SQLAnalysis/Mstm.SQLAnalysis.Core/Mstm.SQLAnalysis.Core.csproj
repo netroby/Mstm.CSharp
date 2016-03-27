@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Default\AbstractFieldTypeAnalysisProvider.cs" />
     <Compile Include="Default\NormalWhereRelationDict.cs" />
     <Compile Include="Default\StatisticsRelationDict.cs" />
     <Compile Include="Enums\ConnectRelationEnum.cs" />

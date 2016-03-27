@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.Sybase
 {
-    internal class SybaseFieldTypeAnalysisProvider : IFieldTypeAnalysisProvider
+    internal class SybaseFieldTypeAnalysisProvider : AbstractFieldTypeAnalysisProvider
     {
-        //默认类型
-        const FieldTypeEnum _defaultFieldType = FieldTypeEnum.Text;
 
         //类型枚举字典
-        readonly static Dictionary<string, FieldTypeEnum> dict = new Dictionary<string, FieldTypeEnum>()
+        readonly static Dictionary<string, FieldTypeEnum> _dict = new Dictionary<string, FieldTypeEnum>()
         {
             //时间
             { "BIGDATETIME",                 FieldTypeEnum.DateTime        },
@@ -77,23 +75,14 @@ namespace Mstm.SQLAnalysis.Sybase
             { "IMAGE_LOCATOR",               FieldTypeEnum.Text            },
 
         };
-
-        public FieldTypeEnum GetFieldTypeEnum(string fieldType)
+        public override FieldTypeEnum DefaultFieldType
         {
-            if (string.IsNullOrWhiteSpace(fieldType))
-            {
-                return _defaultFieldType;
-            }
-            fieldType = fieldType.ToUpper();
-            if (dict.ContainsKey(fieldType))
-            {
-                return dict[fieldType];
-            }
-            else
-            {
-                return _defaultFieldType;
-            }
+            get { return FieldTypeEnum.Text; }
         }
 
+        public override Dictionary<string, FieldTypeEnum> FieldTypeDict
+        {
+            get { return _dict; }
+        }
     }
 }

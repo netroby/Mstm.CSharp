@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace Mstm.SQLAnalysis.MySQL
 {
-    internal class MySQLFieldTypeAnalysisProvider : IFieldTypeAnalysisProvider
+    internal class MySQLFieldTypeAnalysisProvider : AbstractFieldTypeAnalysisProvider
     {
 
-        //默认类型
-        const FieldTypeEnum _defaultFieldType = FieldTypeEnum.Text;
-
         //类型枚举字典
-        readonly static Dictionary<string, FieldTypeEnum> dict = new Dictionary<string, FieldTypeEnum>()
+        readonly static Dictionary<string, FieldTypeEnum> _dict = new Dictionary<string, FieldTypeEnum>()
         {
             //时间
             { "DATE",                      FieldTypeEnum.DateTime        },
@@ -65,21 +62,15 @@ namespace Mstm.SQLAnalysis.MySQL
 
         };
 
-        public FieldTypeEnum GetFieldTypeEnum(string fieldType)
+
+        public override FieldTypeEnum DefaultFieldType
         {
-            if (string.IsNullOrWhiteSpace(fieldType))
-            {
-                return _defaultFieldType;
-            }
-            fieldType = fieldType.ToUpper();
-            if (dict.ContainsKey(fieldType))
-            {
-                return dict[fieldType];
-            }
-            else
-            {
-                return _defaultFieldType;
-            }
+            get { return FieldTypeEnum.Text; }
+        }
+
+        public override Dictionary<string, FieldTypeEnum> FieldTypeDict
+        {
+            get { return _dict; }
         }
     }
 }
