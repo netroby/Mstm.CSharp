@@ -15,9 +15,9 @@ namespace Mstm.SQLAnalysis.Core
         /// <summary>
         /// 将数据库中的类型转换成枚举
         /// </summary>
-        /// <param name="dbType"></param>
+        /// <param name="fieldType"></param>
         /// <returns></returns>
-        FieldTypeEnum GetFieldTypeEnum(string dbType);
+        FieldTypeEnum GetFieldTypeEnum(string fieldType);
     }
 
 
