@@ -27,12 +27,14 @@ namespace Mstm.SQLAnalysis.Core
 
         /// <summary>
         /// 最小值
+        /// 注意：周日为每星期的第一天即值为1
         /// </summary>
         public int MinValue { get; set; }
 
 
         /// <summary>
         /// 最大值
+        /// 注意：周日为每星期的第一天即值为1
         /// </summary>
         public int MaxValue { get; set; }
 
