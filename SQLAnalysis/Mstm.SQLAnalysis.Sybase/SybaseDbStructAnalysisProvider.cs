@@ -31,7 +31,7 @@ namespace Mstm.SQLAnalysis.Sybase
             {
                 throw new ArgumentException("数据表名称不能为空！", "tableName");
             }
-            string sql = string.Format("SELECT tb_col.name,tb_type.name FROM syscolumns as tb_col,systypes as tb_type WHERE　id = OBJECT_ID('{0}')  AND tb_col.usertype=tb_type.usertype", tableName);
+            string sql = string.Format("SELECT tb_col.name,tb_type.name FROM syscolumns as tb_col,systypes as tb_type WHERE tb_col.id = OBJECT_ID('{0}')  AND tb_col.usertype=tb_type.usertype", tableName);
             return sql;
         }
     }

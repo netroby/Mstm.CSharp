@@ -66,7 +66,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         {
             string tableName = "userinfo";
             string sql = _provider.BuildSelectFields(null, tableName);
-            string expectSql = string.Format("SELECT tb_col.name,tb_type.name FROM syscolumns as tb_col,systypes as tb_type WHERE　id = OBJECT_ID('{0}')  AND tb_col.usertype=tb_type.usertype", tableName);
+            string expectSql = string.Format("SELECT tb_col.name,tb_type.name FROM syscolumns as tb_col,systypes as tb_type WHERE tb_col.id = OBJECT_ID('{0}')  AND tb_col.usertype=tb_type.usertype", tableName);
 
             sql.ShouldBe(expectSql);
         }
