@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{291B6011-94E1-433F-B731-6819CDE952CA}</ProjectGuid>
+    <ProjectGuid>{44295B06-1379-47CF-8A8A-7543E068802A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mstm.NoSQL.Core</RootNamespace>
-    <AssemblyName>Mstm.NoSQL.Core</AssemblyName>
+    <RootNamespace>Mstm.NoSQL.Redis.Core</RootNamespace>
+    <AssemblyName>Mstm.NoSQL.Redis.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,7 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRedisHash.cs" />
+    <Compile Include="IRedisKey.cs" />
+    <Compile Include="IRedisList.cs" />
+    <Compile Include="IRedisProvider.cs" />
+    <Compile Include="IRedisSet.cs" />
+    <Compile Include="IRedisSortedSet.cs" />
+    <Compile Include="IRedisString.cs" />
+    <Compile Include="IRedisTransaction.cs" />
+    <Compile Include="ISerializeProvider.cs" />
+    <Compile Include="JsonSerializeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

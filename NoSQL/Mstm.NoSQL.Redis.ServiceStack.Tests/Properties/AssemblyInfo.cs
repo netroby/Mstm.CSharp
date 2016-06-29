@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Mstm.NoSQL.Core")]
+[assembly: AssemblyTitle("Mstm.NoSQL.Redis.ServiceStack.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mstm.NoSQL.Core")]
+[assembly: AssemblyProduct("Mstm.NoSQL.Redis.ServiceStack.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("eb892684-49da-404a-80f7-172317732fb2")]
+[assembly: Guid("10547794-d24b-43ef-8856-768bbdae576e")]
 
 // 程序集的版本信息由下面四个值组成: 
 //
