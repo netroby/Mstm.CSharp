@@ -108,7 +108,59 @@ namespace Mstm.NoSQL.Redis.StackExchange
             return _redisDB.KeyExists(key);
         }
 
-        #endregion
 
+        public long DeleteKey(params string[] keys)
+        {
+            if (keys == null || keys.Length == 0) { return 0; }
+            RedisKey[] redisKeys = keys.Cast<RedisKey>().ToArray();
+            return _redisDB.KeyDelete(redisKeys);
+        }
+
+        public RedisDataType GetKeyType(string key)
+        {
+            return (RedisDataType)_redisDB.KeyType(key);
+        }
+
+        public List<string> GetKeys(string pattern)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetRandomKey()
+        {
+            return _redisDB.KeyRandom();
+        }
+
+        public int GetTTL(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool PersistKey(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ReNameKeyWithCover(string oldKey, string newKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ReNameKeyWithOutCover(string oldKey, string newKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SetExpireKey(string key, int seconds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SetExpireatKey(string key, int timestamp)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
