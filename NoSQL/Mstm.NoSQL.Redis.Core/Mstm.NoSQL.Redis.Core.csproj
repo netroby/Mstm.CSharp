@@ -46,6 +46,7 @@
     <Compile Include="IRedisHash.cs" />
     <Compile Include="IRedisKey.cs" />
     <Compile Include="IRedisList.cs" />
+    <Compile Include="IRedisPageList.cs" />
     <Compile Include="IRedisProvider.cs" />
     <Compile Include="IRedisSet.cs" />
     <Compile Include="IRedisSortedSet.cs" />
