@@ -1,4 +1,6 @@
-﻿using Mstm.NoSQL.Redis.Core;
+﻿using Mstm.Json.Core;
+using Mstm.Json.Newtonsoft;
+using Mstm.NoSQL.Redis.Core;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;

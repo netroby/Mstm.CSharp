@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Mstm.Json.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.NoSQL.Redis.Core
+namespace Mstm.Json.Newtonsoft
 {
 
     /// <summary>

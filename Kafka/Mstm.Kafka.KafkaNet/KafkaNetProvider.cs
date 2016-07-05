@@ -87,5 +87,11 @@ namespace Mstm.Kafka.KafkaNet
         #endregion
 
 
+
+
+        public KafkaTopic GetTopic(string topic)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

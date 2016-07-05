@@ -52,6 +52,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Json\Mstm.Json.Core\Mstm.Json.Core.csproj">
+      <Project>{91dca2c7-9b27-481b-a2d5-846db4495d9e}</Project>
+      <Name>Mstm.Json.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Json\Mstm.Json.Newtonsoft\Mstm.Json.Newtonsoft.csproj">
+      <Project>{97a41878-9428-4499-84ec-997cd3a996ca}</Project>
+      <Name>Mstm.Json.Newtonsoft</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mstm.NoSQL.Redis.Core\Mstm.NoSQL.Redis.Core.csproj">
       <Project>{44295b06-1379-47cf-8a8a-7543e068802a}</Project>
       <Name>Mstm.NoSQL.Redis.Core</Name>
