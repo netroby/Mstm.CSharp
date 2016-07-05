@@ -63,13 +63,30 @@ namespace Mstm.Kafka.KafkaNet
         }
 
 
+        public KafkaTopic GetTopic(string topic)
+        {
+            if (string.IsNullOrWhiteSpace(topic))
+            {
+                throw new ArgumentNullException("topic", "主题名称不能为空！");
+            }
+            var topicTemp = _producer.GetTopic(topic);
+            return new KafkaTopic()
+            {
+                ErrorCode = topicTemp.ErrorCode,
+                Name = topicTemp.Name,
+                Partitions = ConvertToKafkaPartition(topicTemp.Partitions).ToList()
+            };
+        }
+
         #endregion
 
 
 
         #region 私有方法
-        private IEnumerable<Uri> ConvertToUrl(string[] urls)
+
+        private IEnumerable<Uri> ConvertToUrl(IEnumerable<string> urls)
         {
+            if (urls == null || urls.Count() == 0) { yield break; }
             foreach (var urlStr in urls)
             {
                 yield return new Uri(urlStr);
@@ -79,19 +96,31 @@ namespace Mstm.Kafka.KafkaNet
 
         private IEnumerable<Message> ConvertToMessage(IEnumerable<string> msgs)
         {
+            if (msgs == null || msgs.Count() == 0) { yield break; }
             foreach (var msg in msgs)
             {
                 yield return new Message(msg);
             }
         }
+
+        private IEnumerable<KafkaPartition> ConvertToKafkaPartition(IEnumerable<Partition> partitions)
+        {
+            if (partitions == null || partitions.Count() == 0) { yield break; }
+            foreach (var partition in partitions)
+            {
+                yield return new KafkaPartition()
+                {
+                    ErrorCode = partition.ErrorCode,
+                    Isrs = partition.Isrs,
+                    LeaderId = partition.LeaderId,
+                    PartitionId = partition.PartitionId,
+                    Replicas = partition.Replicas
+                };
+            }
+        }
+
         #endregion
 
 
-
-
-        public KafkaTopic GetTopic(string topic)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
