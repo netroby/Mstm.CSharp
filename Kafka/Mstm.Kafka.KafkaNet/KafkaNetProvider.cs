@@ -1,6 +1,8 @@
 ﻿using KafkaNet;
 using KafkaNet.Model;
 using KafkaNet.Protocol;
+using Mstm.Json.Core;
+using Mstm.Json.Newtonsoft;
 using Mstm.Kafka.Core;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace Mstm.Kafka.KafkaNet
         private Producer _producer;
         private Consumer _consumer;
         private string _topicName;
+        private ISerializeProvider _serializeProvider;
 
         public KafkaNetProvider(string topic, params string[] urls)
         {
@@ -36,6 +39,7 @@ namespace Mstm.Kafka.KafkaNet
             _router = new BrokerRouter(_options);
             _producer = new Producer(_router);
             _consumer = new Consumer(new ConsumerOptions(_topicName, _router));
+            _serializeProvider = JsonSerializeProvider.GetProvider();
         }
 
 
@@ -60,6 +64,17 @@ namespace Mstm.Kafka.KafkaNet
         public void SendMessage(params string[] msgs)
         {
             _producer.SendMessageAsync(_topicName, ConvertToMessage(msgs));
+        }
+
+
+        public void SendMessage<T>(T data)
+        {
+            string json = _serializeProvider.SerializeObject<T>(data);
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                throw new ArgumentNullException("data");
+            }
+            SendMessage(json);
         }
 
 
@@ -120,7 +135,6 @@ namespace Mstm.Kafka.KafkaNet
         }
 
         #endregion
-
 
     }
 }

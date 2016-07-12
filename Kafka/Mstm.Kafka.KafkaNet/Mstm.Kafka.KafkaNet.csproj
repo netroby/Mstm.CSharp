@@ -47,6 +47,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Json\Mstm.Json.Core\Mstm.Json.Core.csproj">
+      <Project>{91dca2c7-9b27-481b-a2d5-846db4495d9e}</Project>
+      <Name>Mstm.Json.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Json\Mstm.Json.Newtonsoft\Mstm.Json.Newtonsoft.csproj">
+      <Project>{97a41878-9428-4499-84ec-997cd3a996ca}</Project>
+      <Name>Mstm.Json.Newtonsoft</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mstm.Kafka.Core\Mstm.Kafka.Core.csproj">
       <Project>{f85d77b6-dd6d-40cd-8d2d-12707a6dccf8}</Project>
       <Name>Mstm.Kafka.Core</Name>

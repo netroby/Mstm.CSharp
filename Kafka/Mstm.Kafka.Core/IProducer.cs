@@ -20,6 +20,12 @@ namespace Mstm.Kafka.Core
         void SendMessage(params string[] msgs);
 
         /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="data">要发送的消息对象</param>
+        void SendMessage<T>(T data);
+
+        /// <summary>
         /// 获取主题信息
         /// </summary>
         /// <param name="topic">主题名称</param>
