@@ -123,44 +123,43 @@ namespace Mstm.NoSQL.Redis.StackExchange
             return (RedisDataType)_redisDB.KeyType(key);
         }
 
-        public List<string> GetKeys(string pattern)
-        {
-            throw new NotImplementedException();
-        }
 
         public string GetRandomKey()
         {
             return _redisDB.KeyRandom();
         }
 
-        public int GetTTL(string key)
+        public double GetTTL(string key)
         {
-            throw new NotImplementedException();
+            var timeSpan = _redisDB.KeyTimeToLive(key);
+            return timeSpan == null ? 0 : timeSpan.Value.TotalSeconds;
         }
 
         public bool PersistKey(string key)
         {
-            throw new NotImplementedException();
+            return _redisDB.KeyPersist(key);
         }
 
         public bool ReNameKeyWithCover(string oldKey, string newKey)
         {
-            throw new NotImplementedException();
+            return _redisDB.KeyRename(oldKey, newKey, When.Always);
         }
 
         public bool ReNameKeyWithOutCover(string oldKey, string newKey)
         {
-            throw new NotImplementedException();
+            return _redisDB.KeyRename(oldKey, newKey, When.NotExists);
         }
 
         public bool SetExpireKey(string key, int seconds)
         {
-            throw new NotImplementedException();
+            return _redisDB.KeyExpire(key, TimeSpan.FromSeconds(seconds));
         }
 
         public bool SetExpireatKey(string key, int timestamp)
         {
-            throw new NotImplementedException();
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            DateTime time = startTime.AddMilliseconds(timestamp);
+            return _redisDB.KeyExpire(key, time);
         }
 
         #endregion

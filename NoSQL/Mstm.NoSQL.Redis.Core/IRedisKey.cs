@@ -21,14 +21,6 @@ namespace Mstm.NoSQL.Redis.Core
 
 
         /// <summary>
-        /// 根据匹配规则查询所有的Key
-        /// </summary>
-        /// <param name="pattern">匹配规则</param>
-        /// <returns>符合规则的所有Key</returns>
-        List<string> GetKeys(string pattern);
-
-
-        /// <summary>
         /// 删除指定的key
         /// </summary>
         /// <param name="keys">要删除的多个key</param>
@@ -84,7 +76,7 @@ namespace Mstm.NoSQL.Redis.Core
         /// </summary>
         /// <param name="key">键</param>
         /// <returns>超时秒数，如果为-1表示键不存在</returns>
-        int GetTTL(string key);
+        double GetTTL(string key);
 
 
 
