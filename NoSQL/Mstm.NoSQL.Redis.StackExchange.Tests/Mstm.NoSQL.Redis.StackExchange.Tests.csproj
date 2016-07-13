@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractRedisTests.cs" />
+    <Compile Include="IRedisKeyTests.cs" />
     <Compile Include="IRedisStringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

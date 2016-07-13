@@ -20,7 +20,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
         IDatabase _redisDB;
         ISerializeProvider _serializeProvider;
 
-        public StackExchangeRedisProvider(string connStr, int db)
+        public StackExchangeRedisProvider(string connStr, int db = 0)
         {
             _serializeProvider = JsonSerializeProvider.GetProvider();
 
@@ -114,8 +114,12 @@ namespace Mstm.NoSQL.Redis.StackExchange
         public long DeleteKey(params string[] keys)
         {
             if (keys == null || keys.Length == 0) { return 0; }
-            RedisKey[] redisKeys = keys.Cast<RedisKey>().ToArray();
-            return _redisDB.KeyDelete(redisKeys);
+            List<RedisKey> redisKeys = new List<RedisKey>();
+            keys.ToList().ForEach((item) =>
+            {
+                redisKeys.Add(item);
+            });
+            return _redisDB.KeyDelete(redisKeys.ToArray());
         }
 
         public RedisDataType GetKeyType(string key)
@@ -129,10 +133,10 @@ namespace Mstm.NoSQL.Redis.StackExchange
             return _redisDB.KeyRandom();
         }
 
-        public double GetTTL(string key)
+        public int GetTTL(string key)
         {
             var timeSpan = _redisDB.KeyTimeToLive(key);
-            return timeSpan == null ? 0 : timeSpan.Value.TotalSeconds;
+            return timeSpan == null ? 0 : (int)Math.Ceiling(timeSpan.Value.TotalSeconds);
         }
 
         public bool PersistKey(string key)
@@ -155,7 +159,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
             return _redisDB.KeyExpire(key, TimeSpan.FromSeconds(seconds));
         }
 
-        public bool SetExpireatKey(string key, int timestamp)
+        public bool SetExpireatKey(string key, long timestamp)
         {
             DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
             DateTime time = startTime.AddMilliseconds(timestamp);

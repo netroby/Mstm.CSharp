@@ -69,14 +69,14 @@ namespace Mstm.NoSQL.Redis.Core
         /// <param name="key">键</param>
         /// <param name="timestamp">该时间参数是Unix timestamp格式的，即从1970年1月1日开始所流经的秒数</param>
         /// <returns>是否设置成功</returns>
-        bool SetExpireatKey(string key, int timestamp);
+        bool SetExpireatKey(string key, long timestamp);
 
         /// <summary>
         /// 查询Key的剩余超时时间
         /// </summary>
         /// <param name="key">键</param>
         /// <returns>超时秒数，如果为-1表示键不存在</returns>
-        double GetTTL(string key);
+        int GetTTL(string key);
 
 
 
