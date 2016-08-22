@@ -14,16 +14,30 @@ namespace Mstm.Kafka.Core
     {
 
         /// <summary>
-        /// 发送消息
+        /// 异步发送消息
         /// </summary>
         /// <param name="msgs">要发送的消息集合</param>
-        void SendMessage(params string[] msgs);
+        void SendMessageAsync(params string[] msgs);
 
         /// <summary>
-        /// 发送消息
+        /// 同步发送消息
+        /// </summary>
+        /// <param name="msgs">要发送的消息集合</param>
+        /// <returns>响应集合</returns>
+        List<KafkaProduceResponse> SendMessageSync(params string[] msgs);
+
+        /// <summary>
+        /// 异步发送消息
         /// </summary>
         /// <param name="data">要发送的消息对象</param>
-        void SendMessage<T>(T data);
+        void SendObjectAsync<T>(params T[] datas);
+
+        /// <summary>
+        /// 同步发送消息
+        /// </summary>
+        /// <param name="data">要发送的消息对象</param>
+        /// <returns>响应集合</returns>
+        List<KafkaProduceResponse> SendObjectSync<T>(params T[] datas);
 
         /// <summary>
         /// 获取主题信息

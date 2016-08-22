@@ -61,20 +61,45 @@ namespace Mstm.Kafka.KafkaNet
 
         #region IProducer
 
-        public void SendMessage(params string[] msgs)
+        public void SendMessageAsync(params string[] msgs)
         {
             _producer.SendMessageAsync(_topicName, ConvertToMessage(msgs));
         }
 
-
-        public void SendMessage<T>(T data)
+        public List<KafkaProduceResponse> SendMessageSync(params string[] msgs)
         {
-            string json = _serializeProvider.SerializeObject<T>(data);
-            if (string.IsNullOrWhiteSpace(json))
+            Task<List<ProduceResponse>> task = _producer.SendMessageAsync(_topicName, ConvertToMessage(msgs));
+            task.Wait();
+            if (task.Status != TaskStatus.RanToCompletion)
             {
-                throw new ArgumentNullException("data");
+                return null;
             }
-            SendMessage(json);
+            List<KafkaProduceResponse> list = new List<KafkaProduceResponse>();
+            task.Result.ForEach(response =>
+            {
+                list.Add(new KafkaProduceResponse()
+                {
+                    Error = response.Error,
+                    Offset = response.Offset,
+                    PartitionId = response.PartitionId,
+                    Topic = response.Topic
+                });
+            });
+            return list;
+        }
+
+
+        public void SendObjectAsync<T>(params T[] datas)
+        {
+            string[] jsons = SendObject<T>(datas);
+            SendMessageAsync(jsons.ToArray());
+        }
+
+        public List<KafkaProduceResponse> SendObjectSync<T>(params T[] datas)
+        {
+            string[] jsons = SendObject<T>(datas);
+            var responses = SendMessageSync(jsons.ToArray());
+            return responses;
         }
 
 
@@ -132,6 +157,22 @@ namespace Mstm.Kafka.KafkaNet
                     Replicas = partition.Replicas
                 };
             }
+        }
+
+        private string[] SendObject<T>(T[] datas)
+        {
+            if (datas == null)
+            {
+                throw new ArgumentNullException("datas", "发送的数据不能为空！");
+            }
+            List<string> jsons = new List<string>();
+            datas.ToList().ForEach(data =>
+            {
+                string json = _serializeProvider.SerializeObject<T>(data);
+                if (json == null) { throw new Exception("序列化发送数据失败！"); }
+                jsons.Add(json);
+            });
+            return jsons.ToArray();
         }
 
         #endregion

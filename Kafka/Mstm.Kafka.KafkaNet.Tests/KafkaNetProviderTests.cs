@@ -6,28 +6,83 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
+using System.Threading;
+using System.Configuration;
 
 namespace Mstm.Kafka.KafkaNet.Tests
 {
     public class KafkaNetProviderTests
     {
         private IKafkaProvider _provider;
+        private static string _kafkaTopic = ConfigurationManager.AppSettings["kafka_topic"];
+        private static string _kafka_conns = ConfigurationManager.AppSettings["kafka_conns"];
+
 
         public KafkaNetProviderTests()
         {
-            _provider = new KafkaNetProvider("TestForMstm", "http://192.168.233.129:9092");
+            _provider = new KafkaNetProvider(_kafkaTopic, _kafka_conns);
         }
 
 
         /// <summary>
-        /// 发送消息测试
+        /// 异步发送消息测试
         /// </summary>
         [Fact]
-        public void SendMessageTest_Success()
+        public void SendMessageAsyncTest_Success()
         {
-            _provider.SendMessage("Hello Test");
+            _provider.SendMessageAsync("Hello Test Async");
+            Thread.Sleep(5000);
         }
 
+        /// <summary>
+        /// 同步发送消息测试
+        /// </summary>
+        [Fact]
+        public void SendMessageSyncTest_Success()
+        {
+            _provider.SendMessageSync("Hello Test Sync");
+        }
+
+
+        /// <summary>
+        /// 异步发送消息测试
+        /// </summary>
+        [Fact]
+        public void SendObjectAsyncTest_Success()
+        {
+            _provider.SendObjectAsync(new { UserName = "Tom", Age = 16, Address = "北京", Time = DateTime.Now });
+            Thread.Sleep(5000);
+        }
+
+        /// <summary>
+        /// 同步发送消息测试
+        /// </summary>
+        [Fact]
+        public void SendObjectSyncTest_Success()
+        {
+            _provider.SendObjectSync(new { UserName = "Marry", Age = 17, Address = "河北", Time = DateTime.Now });
+        }
+
+        /// <summary>
+        /// 异步发送消息测试
+        /// </summary>
+        [Fact]
+        public void SendObjectAsyncTest_MutiObject_Success()
+        {
+            _provider.SendObjectAsync(new { UserName = "Tom", Age = 16, Address = "北京", Time = DateTime.Now },
+                                      new { UserName = "五五", Age = 23, Address = "天津", Time = DateTime.Now });
+            Thread.Sleep(5000);
+        }
+
+        /// <summary>
+        /// 同步发送消息测试
+        /// </summary>
+        [Fact]
+        public void SendObjectSyncTest_MutiObject_Success()
+        {
+            _provider.SendObjectSync(new { UserName = "Marry", Age = 17, Address = "河北", Time = DateTime.Now },
+                                     new { UserName = "李四", Age = 23, Address = "河南", Time = DateTime.Now });
+        }
 
         /// <summary>
         /// 接收消息测试

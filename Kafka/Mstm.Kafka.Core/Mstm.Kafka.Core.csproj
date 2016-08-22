@@ -43,6 +43,7 @@
     <Compile Include="IKafkaProvider.cs" />
     <Compile Include="IProducer.cs" />
     <Compile Include="KafkaPartition.cs" />
+    <Compile Include="KafkaProduceResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KafkaTopic.cs" />
   </ItemGroup>
