@@ -63,11 +63,13 @@ namespace Mstm.Kafka.KafkaNet
 
         public void SendMessageAsync(params string[] msgs)
         {
+            ValidateMessageIsNotNull(msgs);
             _producer.SendMessageAsync(_topicName, ConvertToMessage(msgs));
         }
 
         public List<KafkaProduceResponse> SendMessageSync(params string[] msgs)
         {
+            ValidateMessageIsNotNull(msgs);
             Task<List<ProduceResponse>> task = _producer.SendMessageAsync(_topicName, ConvertToMessage(msgs));
             task.Wait();
             if (task.Status != TaskStatus.RanToCompletion)
@@ -91,12 +93,14 @@ namespace Mstm.Kafka.KafkaNet
 
         public void SendObjectAsync<T>(params T[] datas)
         {
+            ValidateMessageIsNotNull(datas);
             string[] jsons = SendObject<T>(datas);
             SendMessageAsync(jsons.ToArray());
         }
 
         public List<KafkaProduceResponse> SendObjectSync<T>(params T[] datas)
         {
+            ValidateMessageIsNotNull(datas);
             string[] jsons = SendObject<T>(datas);
             var responses = SendMessageSync(jsons.ToArray());
             return responses;
@@ -175,6 +179,13 @@ namespace Mstm.Kafka.KafkaNet
             return jsons.ToArray();
         }
 
+        private void ValidateMessageIsNotNull(Object msg)
+        {
+            if (msg == null)
+            {
+                throw new ArgumentException("发送的消息不能为空！");
+            }
+        }
         #endregion
 
     }
