@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PatternDemo", "PatternDemo", "{45C277D8-A6F7-4B92-9C3E-EAD36980A64E}"
 EndProject
@@ -142,6 +142,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Cache.ClusterSync.Tests", "Cache\Mstm.Cache.ClusterSync.Tests\Mstm.Cache.ClusterSync.Tests.csproj", "{3E76BEDF-CF60-48AC-B821-40E88FF1FBAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Cache.ClusterSync.TestConsole", "Cache\Mstm.Cache.ClusterSync.TestConsole\Mstm.Cache.ClusterSync.TestConsole.csproj", "{0B95AB94-BA93-420D-9A66-943A80F1F67B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A622D9B5-011B-4590-B309-26C0E013EA3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Common", "Common\Mstm.Common\Mstm.Common.csproj", "{C92C2E37-3562-4A35-AEC3-46C1593F19DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -385,6 +389,10 @@ Global
 		{0B95AB94-BA93-420D-9A66-943A80F1F67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B95AB94-BA93-420D-9A66-943A80F1F67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B95AB94-BA93-420D-9A66-943A80F1F67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -449,5 +457,6 @@ Global
 		{8D870D0B-653B-4A3A-BB0F-5AD0D4BBC58D} = {B12D9456-F453-4A71-A831-5A634442E5DE}
 		{3E76BEDF-CF60-48AC-B821-40E88FF1FBAD} = {B12D9456-F453-4A71-A831-5A634442E5DE}
 		{0B95AB94-BA93-420D-9A66-943A80F1F67B} = {B12D9456-F453-4A71-A831-5A634442E5DE}
+		{C92C2E37-3562-4A35-AEC3-46C1593F19DF} = {A622D9B5-011B-4590-B309-26C0E013EA3D}
 	EndGlobalSection
 EndGlobal
