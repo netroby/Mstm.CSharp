@@ -28,7 +28,25 @@ namespace Mstm.Common.Text
             {
                 encoding = DefaultEncoding;
             }
+            if (string.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
             byte[] bytes = encoding.GetBytes(text);
+            return GetBase64String(bytes);
+        }
+
+        /// <summary>
+        /// 将字节数组转化为Base64编码
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <returns>Base64编码结果</returns>
+        public static string GetBase64String(byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0)
+            {
+                return string.Empty;
+            }
             string base64Str = Convert.ToBase64String(bytes);
             return base64Str;
         }
@@ -44,6 +62,10 @@ namespace Mstm.Common.Text
             if (encoding == null)
             {
                 encoding = DefaultEncoding;
+            }
+            if (string.IsNullOrEmpty(base64Str))
+            {
+                return string.Empty;
             }
             byte[] bytes = Convert.FromBase64String(base64Str);
             string text = encoding.GetString(bytes);
