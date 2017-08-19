@@ -41,9 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLR\AppDomainUtil.cs" />
+    <Compile Include="CLR\GCUtil.cs" />
+    <Compile Include="CLR\SystemUtil.cs" />
+    <Compile Include="Reflection\DynamicUtil.cs" />
+    <Compile Include="Model\AppDomainInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ReflectionUtil.cs" />
     <Compile Include="Text\Base64Util.cs" />
     <Compile Include="Text\StringUtil.cs" />
+    <Compile Include="Thread\LockType.cs" />
+    <Compile Include="Thread\SingletonWrap.cs" />
+    <Compile Include="Thread\SuperLock.cs" />
+    <Compile Include="Thread\ThreadUtil.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
