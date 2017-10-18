@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PatternDemo", "PatternDemo", "{45C277D8-A6F7-4B92-9C3E-EAD36980A64E}"
 EndProject
@@ -146,8 +146,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A622D9B5-011B-4590-B309-26C0E013EA3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Common", "Common\Mstm.Common\Mstm.Common.csproj", "{C92C2E37-3562-4A35-AEC3-46C1593F19DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "C:\Users\dev\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.csproj", "{26F990CC-4863-4DD0-AFA1-DEF7499EE5CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -395,10 +393,6 @@ Global
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26F990CC-4863-4DD0-AFA1-DEF7499EE5CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26F990CC-4863-4DD0-AFA1-DEF7499EE5CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26F990CC-4863-4DD0-AFA1-DEF7499EE5CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26F990CC-4863-4DD0-AFA1-DEF7499EE5CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
