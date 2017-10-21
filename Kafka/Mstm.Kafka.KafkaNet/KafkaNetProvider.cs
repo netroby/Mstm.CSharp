@@ -39,7 +39,7 @@ namespace Mstm.Kafka.KafkaNet
             _router = new BrokerRouter(_options);
             _producer = new Producer(_router);
             _consumer = new Consumer(new ConsumerOptions(_topicName, _router));
-            _serializeProvider = JsonSerializeProvider.GetProvider();
+            _serializeProvider = JsonFactory.GetProvider();
         }
 
 

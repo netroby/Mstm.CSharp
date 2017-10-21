@@ -16,6 +16,10 @@
     <ProjectReference Include="..\Mstm.NoSQL.Redis.StackExchange\Mstm.NoSQL.Redis.StackExchange.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
+  </ItemGroup>
+  
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -22,7 +22,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
 
         public StackExchangeRedisProvider(string connStr, int db = 0)
         {
-            _serializeProvider = JsonSerializeProvider.GetProvider();
+            _serializeProvider = JsonFactory.GetProvider();
 
             if (string.IsNullOrWhiteSpace(connStr))
             {

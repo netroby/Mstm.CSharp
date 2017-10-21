@@ -14,18 +14,6 @@ namespace Mstm.Json.Newtonsoft
     /// </summary>
     public class JsonSerializeProvider : ISerializeProvider
     {
-        private static ISerializeProvider _provider;
-
-        private JsonSerializeProvider() { }
-
-        public static ISerializeProvider GetProvider()
-        {
-            if (_provider == null)
-            {
-                _provider = new JsonSerializeProvider();
-            }
-            return _provider;
-        }
         public string SerializeObject<T>(T data)
         {
             return JsonConvert.SerializeObject(data);

@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Mstm.SQLAnalysis.Sybase\Mstm.SQLAnalysis.Sybase.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
+  </ItemGroup>
+
 </Project>
