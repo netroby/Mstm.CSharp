@@ -19,7 +19,7 @@ namespace Mstm.Log.Core
             if (type == null) { type = typeof(LogFactory); }
             if (string.IsNullOrWhiteSpace(groupName)) { groupName = DefaultGroupName; }
             ILogProvider logger = null;
-            string key = groupName + type.FullName;
+            string key = groupName + "_" + type.FullName;
             if (_loggerDict.ContainsKey(key))
             {
                 _loggerDict.TryGetValue(key, out logger);
@@ -39,7 +39,7 @@ namespace Mstm.Log.Core
             if (assembly == null) { throw new ArgumentNullException(nameof(assembly), string.Format("未找到{0}程序集", config.AssemblyName)); }
             logger = assembly.CreateInstance(config.ClassFullName, true, BindingFlags.CreateInstance, null, new object[] { type }, CultureInfo.CurrentCulture, null) as ILogProvider;
             if (logger == null) { throw new ArgumentNullException(nameof(logger), string.Format("实例化类型{0}失败", config.ClassFullName)); }
-            _loggerDict.TryAdd(groupName, logger);
+            _loggerDict.TryAdd(key, logger);
             return logger;
         }
 

@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Log\Mstm.Log.Core\Mstm.Log.Core.csproj" />
+    <ProjectReference Include="..\..\Log\Mstm.Log.Log4Net\Mstm.Log.Log4Net.csproj" />
     <ProjectReference Include="..\Mstm.NoSQL.Redis.Core\Mstm.NoSQL.Redis.Core.csproj" />
     <ProjectReference Include="..\Mstm.NoSQL.Redis.StackExchange\Mstm.NoSQL.Redis.StackExchange.csproj" />
   </ItemGroup>
@@ -22,6 +24,9 @@
   
   <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

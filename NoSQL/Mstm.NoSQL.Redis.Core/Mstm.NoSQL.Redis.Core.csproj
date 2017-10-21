@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>mstmdev</Authors>
     <Company>mstmdev</Company>
     <Description>Redis连接客户端统一抽象模型</Description>
@@ -15,6 +15,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Log\Mstm.Log.Core\Mstm.Log.Core.csproj" />
   </ItemGroup>
 
 </Project>

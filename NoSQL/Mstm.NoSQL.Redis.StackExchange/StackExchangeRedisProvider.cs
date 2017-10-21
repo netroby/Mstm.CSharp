@@ -26,14 +26,16 @@ namespace Mstm.NoSQL.Redis.StackExchange
 
             if (string.IsNullOrWhiteSpace(connStr))
             {
+                Logger.Error("Redis连接字符串配置错误");
                 throw new ArgumentNullException("connStr", "Redis连接字符串配置错误！");
             }
             try
             {
                 _redisConn = ConnectionMultiplexer.Connect(connStr);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error("Redis连接超时，请检查连接配置！", ex);
                 throw new TimeoutException("Redis连接超时，请检查连接配置！");
             }
             _redisDB = _redisConn.GetDatabase(db);

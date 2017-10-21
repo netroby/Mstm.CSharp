@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mstm.Log.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,12 @@ namespace Mstm.NoSQL.Redis.Core
 {
     public abstract partial class AbstractRedisProvider : IRedisProvider
     {
+        public ILogProvider Logger;
+        public AbstractRedisProvider()
+        {
+            Type type = this.GetType();
+            Logger = LogFactory.GetLogger(type);
+        }
 
         public string AppendString(string key, string appendStr)
         {
@@ -65,7 +72,10 @@ namespace Mstm.NoSQL.Redis.Core
             #endregion
 
             #region 缓存操作后
-
+            if (result == null)
+            {
+                Logger.DebugFormat("GetBytes 缓存查询未命中 Key=【{0}】", key);
+            }
             #endregion
             return result;
         }
@@ -81,6 +91,10 @@ namespace Mstm.NoSQL.Redis.Core
             #endregion
 
             #region 缓存操作后
+            if (result == null)
+            {
+                Logger.DebugFormat("GetData 缓存查询未命中 Key=【{0}】", key);
+            }
             #endregion
             return result;
         }
@@ -126,6 +140,10 @@ namespace Mstm.NoSQL.Redis.Core
             #endregion
 
             #region 缓存操作后
+            if (result == null)
+            {
+                Logger.DebugFormat("GetString 缓存查询未命中 Key=【{0}】", key);
+            }
             #endregion
             return result;
         }
