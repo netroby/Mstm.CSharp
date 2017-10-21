@@ -14,11 +14,12 @@ namespace Mstm.Log.Core
         private static ConcurrentDictionary<string, ILogProvider> _loggerDict = new ConcurrentDictionary<string, ILogProvider>();
         private const string DefaultGroupName = "Default";
 
-        public static ILogProvider GetLogger<T>(string groupName = null)
+        public static ILogProvider GetLogger(Type type, string groupName = null)
         {
+            if (type == null) { type = typeof(LogFactory); }
             if (string.IsNullOrWhiteSpace(groupName)) { groupName = DefaultGroupName; }
             ILogProvider logger = null;
-            string key = groupName + typeof(T).FullName;
+            string key = groupName + type.FullName;
             if (_loggerDict.ContainsKey(key))
             {
                 _loggerDict.TryGetValue(key, out logger);
@@ -36,10 +37,16 @@ namespace Mstm.Log.Core
             }
             var assembly = Assembly.Load(config.AssemblyName);
             if (assembly == null) { throw new ArgumentNullException(nameof(assembly), string.Format("未找到{0}程序集", config.AssemblyName)); }
-            logger = assembly.CreateInstance(config.ClassFullName, true, BindingFlags.CreateInstance, null, new object[] { typeof(T) }, CultureInfo.CurrentCulture, null) as ILogProvider;
+            logger = assembly.CreateInstance(config.ClassFullName, true, BindingFlags.CreateInstance, null, new object[] { type }, CultureInfo.CurrentCulture, null) as ILogProvider;
             if (logger == null) { throw new ArgumentNullException(nameof(logger), string.Format("实例化类型{0}失败", config.ClassFullName)); }
             _loggerDict.TryAdd(groupName, logger);
             return logger;
+        }
+
+        public static ILogProvider GetLogger<T>(string groupName = null)
+        {
+            Type type = typeof(T);
+            return GetLogger(type, groupName);
         }
     }
 }
