@@ -20,7 +20,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
 
         public IRedisKeyTests()
         {
-            _provider = new StackExchangeRedisProvider(RedisConnStr);
+            _provider = RedisFactory.GetProvider();
         }
 
         [Fact]

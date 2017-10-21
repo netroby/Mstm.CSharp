@@ -21,7 +21,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
 
         public IRedisStringTests()
         {
-            _provider = new StackExchangeRedisProvider(RedisConnStr);
+            _provider = RedisFactory.GetProvider();
         }
 
 

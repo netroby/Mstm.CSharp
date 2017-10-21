@@ -11,7 +11,7 @@ namespace Mstm.Json.Core
 {
     public class JsonFactory
     {
-        private static Assembly _logAssembly;
+        private static Assembly _assembly;
         private static readonly string _assemblyName;
         private static readonly string _classFullName;
         private static ISerializeProvider _provider;
@@ -36,12 +36,12 @@ namespace Mstm.Json.Core
         public static ISerializeProvider GetProvider()
         {
             if (_provider != null) { return _provider; }
-            if (_logAssembly == null)
+            if (_assembly == null)
             {
-                _logAssembly = Assembly.Load(_assemblyName);
+                _assembly = Assembly.Load(_assemblyName);
             }
-            if (_logAssembly == null) { throw new ArgumentNullException(string.Format("未找到{0}程序集"), _assemblyName); }
-            _provider = _logAssembly.CreateInstance(_classFullName, true, BindingFlags.CreateInstance, null, null, CultureInfo.CurrentCulture, null) as ISerializeProvider;
+            if (_assembly == null) { throw new ArgumentNullException(string.Format("未找到{0}程序集"), _assemblyName); }
+            _provider = _assembly.CreateInstance(_classFullName, true, BindingFlags.CreateInstance, null, null, CultureInfo.CurrentCulture, null) as ISerializeProvider;
             if (_provider == null) { throw new ArgumentNullException(string.Format("实例化类型{0}失败"), _classFullName); }
             return _provider;
         }
