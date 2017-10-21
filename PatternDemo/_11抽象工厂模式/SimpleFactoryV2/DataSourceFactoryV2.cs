@@ -1,11 +1,8 @@
 ﻿using _11抽象工厂模式.Classics;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace _11抽象工厂模式.SimpleFactoryV2
 {
@@ -16,8 +13,19 @@ namespace _11抽象工厂模式.SimpleFactoryV2
     /// </summary>
     public class DataSourceFactoryV2
     {
-        private static readonly string factoryAssemblyName = ConfigurationManager.AppSettings["DataSourceFactoryAssemblyName"];
-        private static readonly string factoryClassFullName = ConfigurationManager.AppSettings["DataSourceFactoryClassFullName"];
+        static IConfigurationRoot config;
+
+        static DataSourceFactoryV2()
+        {
+            config = new ConfigurationBuilder()
+             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+             .AddJsonFile("appsettings.json").Build();
+            factoryAssemblyName = config["SimpleFactoryV2:DataSourceFactoryAssemblyName"];
+            factoryClassFullName = config["SimpleFactoryV2:DataSourceFactoryClassFullName"];
+        }
+
+        private static readonly string factoryAssemblyName;
+        private static readonly string factoryClassFullName;
 
         public static IUser CreateUserInstance()
         {

@@ -1,9 +1,8 @@
-﻿using Mstm.OAuth.Core;
+﻿using Microsoft.Extensions.Configuration;
+using Mstm.OAuth.Core;
+using RestSharp.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mstm.OAuth.Weibo
 {
@@ -13,26 +12,38 @@ namespace Mstm.OAuth.Weibo
     /// </summary>
     class WeiboOAuthProvider : IOAuthProvider
     {
+        static IConfigurationRoot config;
+
+        static WeiboOAuthProvider()
+        {
+            config = new ConfigurationBuilder()
+             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+             .AddJsonFile("appsettings.json").Build();
+            _appKey = config["WeiboAuth:AppKey"];
+            _appSercet = config["WeiboAuth:AppSercet"];
+            _returnUrl = config["WeiboAuth:CallbackUrl"];
+            _forcelogin = config["WeiboAuth:Forcelogin"];
+        }
 
         /// <summary>
         /// 微博开放平台-AppKey
         /// </summary>
-        private static readonly string _appKey = System.Configuration.ConfigurationManager.AppSettings["Weibo_App_Key"];
+        private static readonly string _appKey;
 
         /// <summary>
         /// 微博开放平台-AppSercet
         /// </summary>
-        private static readonly string _appSercet = System.Configuration.ConfigurationManager.AppSettings["Weibo_App_Sercet"];
+        private static readonly string _appSercet;
 
         /// <summary>
         /// 回调地址
         /// </summary>
-        private static readonly string _returnUrl = System.Configuration.ConfigurationManager.AppSettings["WeiboCallbackUrl"];
+        private static readonly string _returnUrl;
 
         /// <summary>
         /// 是否强制重新登录微博
         /// </summary>
-        private static readonly string _forcelogin = System.Configuration.ConfigurationManager.AppSettings["WeiboForcelogin"];
+        private static readonly string _forcelogin;
 
         /// <summary>
         /// 登录地址
@@ -69,7 +80,7 @@ namespace Mstm.OAuth.Weibo
             {
                 return null;
             }
-            string redirect_uri = System.Web.HttpUtility.UrlEncode(_returnUrl);
+            string redirect_uri = StringExtensions.UrlEncode(_returnUrl);
             //设置为true则强制用户重新登录微博
             string forcelogin = _forcelogin == "true" ? "true" : "false";
             string url = string.Format(_loginUrl, _appKey, redirect_uri, state, forcelogin);
@@ -119,7 +130,7 @@ namespace Mstm.OAuth.Weibo
             try
             {
                 if (string.IsNullOrEmpty(code)) { return null; }
-                Dictionary<string, string> data = new Dictionary<string, string>() { 
+                Dictionary<string, string> data = new Dictionary<string, string>() {
                  {"client_id",_appKey},
                  {"client_secret",_appSercet},
                  {"grant_type","authorization_code"},

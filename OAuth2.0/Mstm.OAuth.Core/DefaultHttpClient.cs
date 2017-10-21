@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Mstm.Json.Core;
+using Mstm.Json.Newtonsoft;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mstm.OAuth.Core
 {
-
+#if net47
     /// <summary>
     /// 默认Http客户端
     /// 使用微软的HttpClient和Microsoft.AspNet.WebApi.Client相关扩展实现
@@ -17,9 +18,11 @@ namespace Mstm.OAuth.Core
     {
 
         HttpClient client;
+        ISerializeProvider jsonProvider;
 
         public DefaultHttpClient()
         {
+            jsonProvider = JsonSerializeProvider.GetProvider();
             client = new HttpClient();
         }
 
@@ -86,7 +89,7 @@ namespace Mstm.OAuth.Core
             if (response.IsSuccessStatusCode)
             {
                 var str = response.Content.ReadAsStringAsync().Result;
-                TResult result = JsonConvert.DeserializeObject<TResult>(str);
+                TResult result = jsonProvider.DeserializeObject<TResult>(str);
                 return result;
             }
             else
@@ -97,4 +100,5 @@ namespace Mstm.OAuth.Core
 
         }
     }
+#endif
 }

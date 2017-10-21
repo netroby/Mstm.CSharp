@@ -1,14 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mstm.RedPacket.Core;
 using System.Collections.Generic;
+using Xunit;
+using Shouldly;
 
 namespace Mstm.RedPacket.Tests
 {
-    [TestClass]
     public class RedPacketProviderTests
     {
-        [TestMethod]
+        [Fact]
         public void GetOneRedPacketTestLoop()
         {
             for (int i = 0; i < 100; i++)
@@ -18,7 +18,7 @@ namespace Mstm.RedPacket.Tests
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void GetOneRedPacketTestSingle()
         {
             GetOneRedPacketTest();
@@ -65,8 +65,8 @@ namespace Mstm.RedPacket.Tests
                 }
             }
 
-            Assert.AreEqual(config.Amount, currentAmount);
-            Assert.IsTrue(errorCount == 0);
+            config.Amount.ShouldBe(currentAmount);
+            errorCount.ShouldBe(0);
         }
 
 

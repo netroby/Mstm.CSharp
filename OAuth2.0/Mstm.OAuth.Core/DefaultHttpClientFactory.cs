@@ -15,7 +15,11 @@ namespace Mstm.OAuth.Core
 
         public IHttpClient GetHttpClient()
         {
+#if net47
             return new DefaultHttpClient();
+#else
+            throw new Exception("当前框架暂未实现对应的HttpClient");
+#endif
         }
     }
 }

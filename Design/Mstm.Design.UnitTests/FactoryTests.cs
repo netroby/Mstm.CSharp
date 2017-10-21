@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mstm.Design.Core;
 using System.Collections.Generic;
 using Shouldly;
+using Xunit;
 
 namespace Mstm.Design.UnitTests
 {
-    [TestClass]
     public class FactoryTests
     {
         IFactory<string, FactoryImpl> _factory;
@@ -15,8 +14,7 @@ namespace Mstm.Design.UnitTests
         /// <summary>
         /// 单个测试开始前
         /// </summary>
-        [TestInitialize]
-        public void MethodInit()
+        public FactoryTests()
         {
             _factory = new FactoryImpl();
         }
@@ -25,8 +23,8 @@ namespace Mstm.Design.UnitTests
         /// <summary>
         /// 单个测试结束后
         /// </summary>
-        [TestCleanup]
-        public void MethodDispose()
+
+        ~FactoryTests()
         {
             _factory = null;
         }
@@ -35,7 +33,7 @@ namespace Mstm.Design.UnitTests
         /// <summary>
         /// 测试正常的输入
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void GetProviderTest_NotNull()
         {
             var f1 = _factory.GetProvider("F1");
@@ -50,7 +48,7 @@ namespace Mstm.Design.UnitTests
         /// <summary>
         /// 测试未获取到指定键的情况
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void GetProviderTest_IsNull()
         {
             IFactory<string, FactoryImpl> f6 = _factory.GetProvider("F6");
@@ -61,7 +59,7 @@ namespace Mstm.Design.UnitTests
         /// <summary>
         /// 测试键为空的情况
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void GetProviderTest_ArgIsNull()
         {
             IFactory<string, FactoryImpl> f6 = _factory.GetProvider(null);

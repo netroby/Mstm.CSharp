@@ -28,38 +28,38 @@ namespace Mstm.Common.Text
             return secure;
         }
 
-        /// <summary>
-        /// 解密SecureString
-        /// </summary>
-        /// <param name="secureStr">SecureString实例</param>
-        /// <returns>加密前的数据</returns>
-        public string FromSecureString(SecureString secureStr)
-        {
-            string text = "";
-            unsafe
-            {
-                IntPtr ptr = new IntPtr();
-                try
-                {
-                    ptr = Marshal.SecureStringToCoTaskMemUnicode(secureStr);
-                    Char* pc = (Char*)ptr;
+        ///// <summary>
+        ///// 解密SecureString
+        ///// </summary>
+        ///// <param name="secureStr">SecureString实例</param>
+        ///// <returns>加密前的数据</returns>
+        //public string FromSecureString(SecureString secureStr)
+        //{
+        //    string text = "";
+        //    unsafe
+        //    {
+        //        IntPtr ptr = new IntPtr();
+        //        try
+        //        {
+        //            ptr = Marshal.SecureStringToCoTaskMemUnicode(secureStr);
+        //            Char* pc = (Char*)ptr;
 
-                    for (int i = 0; pc[i] != 0; i++)
-                    {
-                        text += pc[i];
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                finally
-                {
-                    Marshal.ZeroFreeCoTaskMemUnicode(ptr);
-                }
-            }
-            return text;
-        }
+        //            for (int i = 0; pc[i] != 0; i++)
+        //            {
+        //                text += pc[i];
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            throw;
+        //        }
+        //        finally
+        //        {
+        //            Marshal.ZeroFreeCoTaskMemUnicode(ptr);
+        //        }
+        //    }
+        //    return text;
+        //}
         #endregion
     }
 }

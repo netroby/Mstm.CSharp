@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _11抽象工厂模式.SimpleFactoryV1
 {
@@ -13,10 +9,23 @@ namespace _11抽象工厂模式.SimpleFactoryV1
     /// </summary>
     public class DataSourceFactoryV1
     {
-        private static readonly string userAssemblyName = ConfigurationManager.AppSettings["UserAssemblyName"];
-        private static readonly string userClassFullName = ConfigurationManager.AppSettings["UserClassFullName"];
-        private static readonly string productAssemblyName = ConfigurationManager.AppSettings["ProductAssemblyName"];
-        private static readonly string productClassFullName = ConfigurationManager.AppSettings["ProductClassFullName"];
+        static IConfigurationRoot config;
+        static DataSourceFactoryV1()
+        {
+            config = new ConfigurationBuilder()
+             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+             .AddJsonFile("appsettings.json").Build();
+            userAssemblyName = config["SimpleFactoryV1:UserAssemblyName"];
+            userClassFullName = config["SimpleFactoryV1:UserClassFullName"];
+            productAssemblyName = config["SimpleFactoryV1:ProductAssemblyName"];
+            productClassFullName = config["SimpleFactoryV1:ProductClassFullName"];
+        }
+
+        private static readonly string userAssemblyName;
+        private static readonly string userClassFullName;
+        private static readonly string productAssemblyName;
+        private static readonly string productClassFullName;
+
         public static IUser CreateUserInstance()
         {
             IUser userInsrance = CreateInstance<IUser>(userAssemblyName, userClassFullName);

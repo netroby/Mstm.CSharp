@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mstm.SQLAnalysis.Core;
 using Mstm.SQLAnalysis.MSSQLServer;
 using System.Collections.Generic;
+using Xunit;
 
 namespace Mstm.SQLAnalysis.UnitTests
 {
-    [TestClass]
     public class MSSQLServerSyntaxAnalysisProviderTests
     {
 
@@ -15,8 +14,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 单个测试开始前
         /// </summary>
-        [TestInitialize]
-        public void MethodInit()
+        public MSSQLServerSyntaxAnalysisProviderTests()
         {
             ISQLAnalysisFactory factory = new MSSQLServerAnalysisFactory();
             _provider = factory.GetSQLSyntaxAnalysisProvider();
@@ -26,8 +24,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 单个测试结束后
         /// </summary>
-        [TestCleanup]
-        public void MethodDispose()
+        ~MSSQLServerSyntaxAnalysisProviderTests()
         {
             _provider = null;
         }
@@ -36,11 +33,11 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建完整where语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildWhereTest()
         {
             FilterInfo filterInfo = new FilterInfo();
-            List<NormalFilterInfo> normalList = new List<NormalFilterInfo>() { 
+            List<NormalFilterInfo> normalList = new List<NormalFilterInfo>() {
                 new NormalFilterInfo(){
                     ConnectRelation= ConnectRelationEnum.And,
                     FieldName="UserName",
@@ -55,7 +52,7 @@ namespace Mstm.SQLAnalysis.UnitTests
                     WhereValue="123"
                 }
             };
-            List<CycleFilterInfo> cycleList = new List<CycleFilterInfo>() { 
+            List<CycleFilterInfo> cycleList = new List<CycleFilterInfo>() {
                 new CycleFilterInfo(){
                     ConnectRelation= ConnectRelationEnum.And,
                     CycleRelation= CycleWhereRelationEnum.Day,
@@ -72,7 +69,7 @@ namespace Mstm.SQLAnalysis.UnitTests
                 },
             };
 
-            List<PointInTimeFilterInfo> pointInTimeList = new List<PointInTimeFilterInfo>() { 
+            List<PointInTimeFilterInfo> pointInTimeList = new List<PointInTimeFilterInfo>() {
                 new PointInTimeFilterInfo(){
                     ConnectRelation= ConnectRelationEnum.And,
                     FieldName="CreatedTime",
@@ -99,10 +96,10 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建标准的不带where的筛选语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildNormalWhereTest()
         {
-            var list = new List<NormalFilterInfo>() { 
+            var list = new List<NormalFilterInfo>() {
             new NormalFilterInfo(){
                 FieldName="UserName",
                 FieldType= FieldTypeEnum.Text,
@@ -151,10 +148,10 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建周期类型的不带where的筛选语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildCycleWhereTest()
         {
-            var list = new List<CycleFilterInfo>() { 
+            var list = new List<CycleFilterInfo>() {
                 new CycleFilterInfo(){
                     FieldName="CreatedTime",
                     ConnectRelation= ConnectRelationEnum.And,
@@ -192,10 +189,10 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建时间点类型的不带where的筛选语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildPointInTimeWhereTest()
         {
-            List<PointInTimeFilterInfo> list = new List<PointInTimeFilterInfo>() { 
+            List<PointInTimeFilterInfo> list = new List<PointInTimeFilterInfo>() {
                 new PointInTimeFilterInfo(){
                     ConnectRelation= ConnectRelationEnum.And,
                     FieldName="CreatedTime",
@@ -217,7 +214,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建Max统计语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildStatisticsTest_Max()
         {
             StatisticsInfo filter = new StatisticsInfo()
@@ -234,7 +231,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建Count统计语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildStatisticsTest_Count()
         {
             StatisticsInfo filter = new StatisticsInfo()
@@ -249,7 +246,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建带统计的简单where语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildWhereWithStatisticsTest()
         {
             //筛选出用户Id大于平均值的,并且密保问题不为空的用户
@@ -262,7 +259,7 @@ namespace Mstm.SQLAnalysis.UnitTests
 
             string avgSql = _provider.BuildStatistics(statisticsFilter);
 
-            var normalList = new List<NormalFilterInfo>() { 
+            var normalList = new List<NormalFilterInfo>() {
             new NormalFilterInfo(){
                 FieldName="UserId",
                 FieldType= FieldTypeEnum.Number,
@@ -287,11 +284,11 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建排序语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildOrderTest()
         {
 
-            List<OrderInfo> orderList = new List<OrderInfo>() { 
+            List<OrderInfo> orderList = new List<OrderInfo>() {
                 new OrderInfo(){
                     FieldName = "UserId",
                     OrderMode = OrderModeEnum.Asc
@@ -310,7 +307,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 测试构建带排序的简单where语句
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildWhereWithOrderTest()
         {
             //筛选出用户Id大于平均值的,并且密保问题不为空的用户
@@ -323,7 +320,7 @@ namespace Mstm.SQLAnalysis.UnitTests
 
             string avgSql = _provider.BuildStatistics(statisticsFilter);
 
-            var normalList = new List<NormalFilterInfo>() { 
+            var normalList = new List<NormalFilterInfo>() {
             new NormalFilterInfo(){
                 FieldName="UserId",
                 FieldType= FieldTypeEnum.Number,
@@ -339,7 +336,7 @@ namespace Mstm.SQLAnalysis.UnitTests
             }
             };
 
-            List<OrderInfo> orderList = new List<OrderInfo>() { 
+            List<OrderInfo> orderList = new List<OrderInfo>() {
                 new OrderInfo(){
                     FieldName = "UserId",
                     OrderMode = OrderModeEnum.Asc
@@ -364,7 +361,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// 测试构建select
         /// 正常情况
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildSelectTest_Normal()
         {
 
@@ -384,7 +381,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// 测试构建select
         /// 没有数据源的情况
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildSelectTest_NoSource()
         {
 
@@ -404,7 +401,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// 测试构建select
         /// 没有字段的情况
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildSelectTest_NoFieldList()
         {
             string source = "UserInfo";

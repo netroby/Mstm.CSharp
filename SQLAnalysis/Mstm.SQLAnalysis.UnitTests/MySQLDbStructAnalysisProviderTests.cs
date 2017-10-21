@@ -1,13 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Mstm.SQLAnalysis.Core;
 using Mstm.SQLAnalysis.MySQL;
 using Shouldly;
 
 namespace Mstm.SQLAnalysis.UnitTests
 {
-
-    [TestClass]
     public class MySQLDbStructAnalysisProviderTests
     {
 
@@ -16,8 +14,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 单个测试开始前
         /// </summary>
-        [TestInitialize]
-        public void MethodInit()
+        public MySQLDbStructAnalysisProviderTests()
         {
             ISQLAnalysisFactory factory = new MySQLAnalysisFactory();
             _provider = factory.GetDbStructAnalysisProvider();
@@ -27,8 +24,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 单个测试结束后
         /// </summary>
-        [TestCleanup]
-        public void MethodDispose()
+        ~MySQLDbStructAnalysisProviderTests()
         {
             _provider = null;
         }
@@ -38,7 +34,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 构建获取当前所有的数据库名的sql语句测试
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildSelectDatabasesTest()
         {
             string sql = _provider.BuildSelectDatabases();
@@ -50,7 +46,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 构建获取指定数据库下的所有表名的sql语句测试
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildSelectTablesTest()
         {
             string dbName = "userdb";
@@ -63,7 +59,7 @@ namespace Mstm.SQLAnalysis.UnitTests
         /// <summary>
         /// 构建获取当前表中所有字段信息的sql语句测试
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void BuildSelectFieldsTest()
         {
             string dbName = "userdb";

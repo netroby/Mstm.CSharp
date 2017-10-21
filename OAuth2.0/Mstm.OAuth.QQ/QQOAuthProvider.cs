@@ -1,5 +1,7 @@
-﻿using Mstm.OAuth.Core;
+﻿using Microsoft.Extensions.Configuration;
+using Mstm.OAuth.Core;
 using Newtonsoft.Json;
+using RestSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +15,31 @@ namespace Mstm.OAuth.QQ
     /// </summary>
     class QQOAuthProvider : IOAuthProvider
     {
+        static IConfigurationRoot config;
+        static QQOAuthProvider()
+        {
+            config = new ConfigurationBuilder()
+             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+             .AddJsonFile("appsettings.json").Build();
+
+            _appId = config["QQAuth:AppId"];
+            _appKey = config["QQAuth:AppKey"];
+            _returnUrl = config["QQAuth:CallbackUrl"];
+        }
         /// <summary>
         /// QQ互联-APPID
         /// </summary>
-        private static readonly string _appId = System.Configuration.ConfigurationManager.AppSettings["QQAppId"];
+        private static readonly string _appId;
 
         /// <summary>
         /// QQ互联-APPKEY
         /// </summary>
-        private static readonly string _appKey = System.Configuration.ConfigurationManager.AppSettings["QQAppKey"];
+        private static readonly string _appKey;
 
         /// <summary>
         /// 回调地址
         /// </summary>
-        private static readonly string _returnUrl = System.Configuration.ConfigurationManager.AppSettings["QQCallbackUrl"];
+        private static readonly string _returnUrl;
 
         /// <summary>
         /// 登录地址
@@ -68,7 +81,7 @@ namespace Mstm.OAuth.QQ
         {
             string response_type = "code";
             string client_id = _appId;
-            string redirect_uri = System.Web.HttpUtility.UrlEncode(_returnUrl);
+            string redirect_uri = StringExtensions.UrlEncode(_returnUrl);
             if (string.IsNullOrEmpty(state)) { return null; }
             string scope = QQAPIList.GetUserInfoApi;
             string display = "mobile";

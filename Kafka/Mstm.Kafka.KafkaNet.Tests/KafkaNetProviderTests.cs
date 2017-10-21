@@ -1,25 +1,27 @@
 ﻿using Mstm.Kafka.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
 using System.Threading;
-using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Mstm.Kafka.KafkaNet.Tests
 {
     public class KafkaNetProviderTests
     {
         private IKafkaProvider _provider;
-        private static string _kafkaTopic = ConfigurationManager.AppSettings["kafka_topic"];
-        private static string _kafka_conns = ConfigurationManager.AppSettings["kafka_conns"];
+        private static string _kafkaTopic;
+        private static string _kafka_conns;
 
 
         public KafkaNetProviderTests()
         {
+            IConfigurationRoot config = new ConfigurationBuilder()
+              .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+              .AddJsonFile("appsettings.json").Build();
+            _kafkaTopic = config["KafKa:Topic"];
+            _kafka_conns = config["KafKa:Conns"];
             _provider = new KafkaNetProvider(_kafkaTopic, _kafka_conns);
         }
 
