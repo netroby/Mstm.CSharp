@@ -5,145 +5,153 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PatternDemo", "PatternDemo", "{45C277D8-A6F7-4B92-9C3E-EAD36980A64E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_01简单工厂模式", "PatternDemo\_01简单工厂模式\_01简单工厂模式.csproj", "{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_01简单工厂模式", "PatternDemo\_01简单工厂模式\_01简单工厂模式.csproj", "{A1CE439E-E86C-4A38-A93A-B71216EAF8EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_02策略模式", "PatternDemo\_02策略模式\_02策略模式.csproj", "{62E879D6-6F4D-4187-BE40-8F06B6B12B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_02策略模式", "PatternDemo\_02策略模式\_02策略模式.csproj", "{62E879D6-6F4D-4187-BE40-8F06B6B12B90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_03装饰模式", "PatternDemo\_03装饰模式\_03装饰模式.csproj", "{109BBD4A-8108-44F9-B84E-4D072596B195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_03装饰模式", "PatternDemo\_03装饰模式\_03装饰模式.csproj", "{109BBD4A-8108-44F9-B84E-4D072596B195}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_04代理模式", "PatternDemo\_04代理模式\_04代理模式.csproj", "{5857594E-0BD7-4A74-B660-B796813C021D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_04代理模式", "PatternDemo\_04代理模式\_04代理模式.csproj", "{5857594E-0BD7-4A74-B660-B796813C021D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_05工厂方法模式", "PatternDemo\_05工厂方法模式\_05工厂方法模式.csproj", "{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_05工厂方法模式", "PatternDemo\_05工厂方法模式\_05工厂方法模式.csproj", "{D13F2CD6-40D9-4FED-85E6-978E0783DBA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_06原型模式", "PatternDemo\_06原型模式\_06原型模式.csproj", "{92660DA5-647C-4BE6-A7DA-9A38EA334B39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_06原型模式", "PatternDemo\_06原型模式\_06原型模式.csproj", "{92660DA5-647C-4BE6-A7DA-9A38EA334B39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_07模板方法模式", "PatternDemo\_07模板方法模式\_07模板方法模式.csproj", "{E8578B38-AC86-478E-A681-77D1262DB2B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_07模板方法模式", "PatternDemo\_07模板方法模式\_07模板方法模式.csproj", "{E8578B38-AC86-478E-A681-77D1262DB2B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_08外观模式", "PatternDemo\_08外观模式\_08外观模式.csproj", "{40FF8711-B8AB-4F41-98AF-E52E4A9DAFDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_08外观模式", "PatternDemo\_08外观模式\_08外观模式.csproj", "{40FF8711-B8AB-4F41-98AF-E52E4A9DAFDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_09建造者模式", "PatternDemo\_09建造者模式\_09建造者模式.csproj", "{FC401B04-1A27-4568-A2D9-CACD3971DCD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_09建造者模式", "PatternDemo\_09建造者模式\_09建造者模式.csproj", "{FC401B04-1A27-4568-A2D9-CACD3971DCD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_10观察者模式", "PatternDemo\_10观察者模式\_10观察者模式.csproj", "{497B22AC-C64A-430B-8A5B-37D2FDBED2A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_10观察者模式", "PatternDemo\_10观察者模式\_10观察者模式.csproj", "{497B22AC-C64A-430B-8A5B-37D2FDBED2A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_11抽象工厂模式", "PatternDemo\_11抽象工厂模式\_11抽象工厂模式.csproj", "{E4D69F58-36C1-4890-8150-3D30C8098446}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_11抽象工厂模式", "PatternDemo\_11抽象工厂模式\_11抽象工厂模式.csproj", "{E4D69F58-36C1-4890-8150-3D30C8098446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_11抽象工厂模式Demo", "PatternDemo\_11抽象工厂模式Demo\_11抽象工厂模式Demo.csproj", "{207E3845-5B9E-4BDE-8221-86776858A677}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_11抽象工厂模式Demo", "PatternDemo\_11抽象工厂模式Demo\_11抽象工厂模式Demo.csproj", "{207E3845-5B9E-4BDE-8221-86776858A677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_12状态模式", "PatternDemo\_12状态模式\_12状态模式.csproj", "{74899866-BA64-4DEB-BB44-A85C7309271F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_12状态模式", "PatternDemo\_12状态模式\_12状态模式.csproj", "{74899866-BA64-4DEB-BB44-A85C7309271F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_13适配器模式", "PatternDemo\_13适配器模式\_13适配器模式.csproj", "{4BECBCE0-B123-481B-B786-56114D25BE60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_13适配器模式", "PatternDemo\_13适配器模式\_13适配器模式.csproj", "{4BECBCE0-B123-481B-B786-56114D25BE60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_14备忘录模式", "PatternDemo\_14备忘录模式\_14备忘录模式.csproj", "{D2CA67A7-9B1E-4949-8014-3795124D0093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_14备忘录模式", "PatternDemo\_14备忘录模式\_14备忘录模式.csproj", "{D2CA67A7-9B1E-4949-8014-3795124D0093}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_15组合模式", "PatternDemo\_15组合模式\_15组合模式.csproj", "{CBCE9E64-FF0B-48A2-8FF4-6E7C62067C3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_15组合模式", "PatternDemo\_15组合模式\_15组合模式.csproj", "{CBCE9E64-FF0B-48A2-8FF4-6E7C62067C3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_16迭代器模式", "PatternDemo\_16迭代器模式\_16迭代器模式.csproj", "{695BF109-CE29-4CD0-835D-E97EB3866D29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_16迭代器模式", "PatternDemo\_16迭代器模式\_16迭代器模式.csproj", "{695BF109-CE29-4CD0-835D-E97EB3866D29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_17单例模式", "PatternDemo\_17单例模式\_17单例模式.csproj", "{A1CC283A-037E-471C-BE10-3C96ACEE922A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_17单例模式", "PatternDemo\_17单例模式\_17单例模式.csproj", "{A1CC283A-037E-471C-BE10-3C96ACEE922A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_18桥接模式", "PatternDemo\_18桥接模式\_18桥接模式.csproj", "{3A5E72FD-CADF-4F86-B3D2-F8B96F734BA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_18桥接模式", "PatternDemo\_18桥接模式\_18桥接模式.csproj", "{3A5E72FD-CADF-4F86-B3D2-F8B96F734BA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_19命令模式", "PatternDemo\_19命令模式\_19命令模式.csproj", "{24CFC372-8AFE-41F9-A8B9-1C983392E9CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_19命令模式", "PatternDemo\_19命令模式\_19命令模式.csproj", "{24CFC372-8AFE-41F9-A8B9-1C983392E9CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_20职责链模式", "PatternDemo\_20职责链模式\_20职责链模式.csproj", "{A6A9B6F0-565D-4295-A184-295353CDC551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_20职责链模式", "PatternDemo\_20职责链模式\_20职责链模式.csproj", "{A6A9B6F0-565D-4295-A184-295353CDC551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_21中介者模式", "PatternDemo\_21中介者模式\_21中介者模式.csproj", "{58A4EA33-5676-4D86-B28E-92FE4D2A1678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_21中介者模式", "PatternDemo\_21中介者模式\_21中介者模式.csproj", "{58A4EA33-5676-4D86-B28E-92FE4D2A1678}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_22享元模式", "PatternDemo\_22享元模式\_22享元模式.csproj", "{C08F229E-23A8-4360-9388-82A732B38108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_22享元模式", "PatternDemo\_22享元模式\_22享元模式.csproj", "{C08F229E-23A8-4360-9388-82A732B38108}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_23解释器模式", "PatternDemo\_23解释器模式\_23解释器模式.csproj", "{453ECF27-558C-4EB5-BF6A-B325D0703103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_23解释器模式", "PatternDemo\_23解释器模式\_23解释器模式.csproj", "{453ECF27-558C-4EB5-BF6A-B325D0703103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_24访问者模式", "PatternDemo\_24访问者模式\_24访问者模式.csproj", "{DF7E6B6A-FA4C-45EE-A449-2862CD44BB05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_24访问者模式", "PatternDemo\_24访问者模式\_24访问者模式.csproj", "{DF7E6B6A-FA4C-45EE-A449-2862CD44BB05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OAuth2.0", "OAuth2.0", "{4F0E835E-0BE4-47A6-A3AA-01C49FD11056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.OAuth.Core", "OAuth2.0\Mstm.OAuth.Core\Mstm.OAuth.Core.csproj", "{DF73C042-4C7E-4B96-81C9-515F6CCB5494}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.OAuth.Core", "OAuth2.0\Mstm.OAuth.Core\Mstm.OAuth.Core.csproj", "{DF73C042-4C7E-4B96-81C9-515F6CCB5494}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.OAuth.QQ", "OAuth2.0\Mstm.OAuth.QQ\Mstm.OAuth.QQ.csproj", "{BEF790F7-BA17-4380-B660-9E23B0189E5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.OAuth.QQ", "OAuth2.0\Mstm.OAuth.QQ\Mstm.OAuth.QQ.csproj", "{BEF790F7-BA17-4380-B660-9E23B0189E5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.OAuth.Weibo", "OAuth2.0\Mstm.OAuth.Weibo\Mstm.OAuth.Weibo.csproj", "{B6BC711B-207E-4F27-AA94-E61AF7EC301D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.OAuth.Weibo", "OAuth2.0\Mstm.OAuth.Weibo\Mstm.OAuth.Weibo.csproj", "{B6BC711B-207E-4F27-AA94-E61AF7EC301D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RedPacket", "RedPacket", "{0607AEBA-E6CE-4F69-8B1C-FBED8EC9F4E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.RedPacket.Console", "RedPacket\Mstm.RedPacket.Console\Mstm.RedPacket.Console.csproj", "{3BECF413-F670-4BFD-A969-C3B1BCA32C90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.RedPacket.Console", "RedPacket\Mstm.RedPacket.Console\Mstm.RedPacket.Console.csproj", "{3BECF413-F670-4BFD-A969-C3B1BCA32C90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.RedPacket.Core", "RedPacket\Mstm.RedPacket.Core\Mstm.RedPacket.Core.csproj", "{DDA27B0A-CDB3-4895-BA71-619F2CE5F6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.RedPacket.Core", "RedPacket\Mstm.RedPacket.Core\Mstm.RedPacket.Core.csproj", "{DDA27B0A-CDB3-4895-BA71-619F2CE5F6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.RedPacket.Tests", "RedPacket\Mstm.RedPacket.Tests\Mstm.RedPacket.Tests.csproj", "{774BFD4E-938D-4296-838E-49B03033422F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.RedPacket.Tests", "RedPacket\Mstm.RedPacket.Tests\Mstm.RedPacket.Tests.csproj", "{774BFD4E-938D-4296-838E-49B03033422F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLAnalysis", "SQLAnalysis", "{5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.Core", "SQLAnalysis\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj", "{11C8314B-0014-4960-AAEF-717995AE1FB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.Core", "SQLAnalysis\Mstm.SQLAnalysis.Core\Mstm.SQLAnalysis.Core.csproj", "{11C8314B-0014-4960-AAEF-717995AE1FB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.MySQL", "SQLAnalysis\Mstm.SQLAnalysis.MySQL\Mstm.SQLAnalysis.MySQL.csproj", "{6C68FE48-45FA-4E40-9A9B-3D9CF481B181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.MySQL", "SQLAnalysis\Mstm.SQLAnalysis.MySQL\Mstm.SQLAnalysis.MySQL.csproj", "{6C68FE48-45FA-4E40-9A9B-3D9CF481B181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.UnitTests", "SQLAnalysis\Mstm.SQLAnalysis.UnitTests\Mstm.SQLAnalysis.UnitTests.csproj", "{2154211D-6574-4D1B-82DE-4C1A6FF4CA1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.UnitTests", "SQLAnalysis\Mstm.SQLAnalysis.UnitTests\Mstm.SQLAnalysis.UnitTests.csproj", "{2154211D-6574-4D1B-82DE-4C1A6FF4CA1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.MSSQLServer", "SQLAnalysis\Mstm.SQLAnalysis.MSSQLServer\Mstm.SQLAnalysis.MSSQLServer.csproj", "{1CEBA701-FD80-41EC-8FA4-5290F51C08B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.MSSQLServer", "SQLAnalysis\Mstm.SQLAnalysis.MSSQLServer\Mstm.SQLAnalysis.MSSQLServer.csproj", "{1CEBA701-FD80-41EC-8FA4-5290F51C08B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{68C24083-47D0-410C-A048-960C32EC798A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Design.Core", "Design\Mstm.Design.Core\Mstm.Design.Core.csproj", "{4707F69E-D899-4414-83D1-936961FC32DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Design.Core", "Design\Mstm.Design.Core\Mstm.Design.Core.csproj", "{4707F69E-D899-4414-83D1-936961FC32DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Design.UnitTests", "Design\Mstm.Design.UnitTests\Mstm.Design.UnitTests.csproj", "{F8F1C327-35E3-4C6A-AA83-282305F9FABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Design.UnitTests", "Design\Mstm.Design.UnitTests\Mstm.Design.UnitTests.csproj", "{F8F1C327-35E3-4C6A-AA83-282305F9FABF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.Sybase", "SQLAnalysis\Mstm.SQLAnalysis.Sybase\Mstm.SQLAnalysis.Sybase.csproj", "{C80082AF-9947-4D05-B85B-513392131669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.Sybase", "SQLAnalysis\Mstm.SQLAnalysis.Sybase\Mstm.SQLAnalysis.Sybase.csproj", "{C80082AF-9947-4D05-B85B-513392131669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.SQLAnalysis.Oracle", "SQLAnalysis\Mstm.SQLAnalysis.Oracle\Mstm.SQLAnalysis.Oracle.csproj", "{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.Oracle", "SQLAnalysis\Mstm.SQLAnalysis.Oracle\Mstm.SQLAnalysis.Oracle.csproj", "{19277F8A-7F02-40DB-A8C8-ECCFD36905BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UML", "UML", "{D11CF832-F4F4-41F5-AF75-DEDFB1099A79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeChat", "WeChat", "{06A91942-0903-483C-9A43-D5CB8B59DAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.WeChat.Open", "WeChat\Mstm.WeChat.Open\Mstm.WeChat.Open.csproj", "{3E5A2739-FEEF-471C-AE3D-F716A476373C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.WeChat.Open", "WeChat\Mstm.WeChat.Open\Mstm.WeChat.Open.csproj", "{3E5A2739-FEEF-471C-AE3D-F716A476373C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.WeChat.MP", "WeChat\Mstm.WeChat.MP\Mstm.WeChat.MP.csproj", "{26F8E1A0-290A-4163-8970-E3617319EE51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.WeChat.MP", "WeChat\Mstm.WeChat.MP\Mstm.WeChat.MP.csproj", "{26F8E1A0-290A-4163-8970-E3617319EE51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.OAuth.WeChat.Open", "OAuth2.0\Mstm.OAuth.WeChat.Open\Mstm.OAuth.WeChat.Open.csproj", "{BBCC4424-B2D7-4664-AF13-42B1AE430842}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.OAuth.WeChat.Open", "OAuth2.0\Mstm.OAuth.WeChat.Open\Mstm.OAuth.WeChat.Open.csproj", "{BBCC4424-B2D7-4664-AF13-42B1AE430842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.OAuth.WeChat.MP", "OAuth2.0\Mstm.OAuth.WeChat.MP\Mstm.OAuth.WeChat.MP.csproj", "{A7B5B3C9-97F2-446B-899E-88AC0603C6C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.OAuth.WeChat.MP", "OAuth2.0\Mstm.OAuth.WeChat.MP\Mstm.OAuth.WeChat.MP.csproj", "{A7B5B3C9-97F2-446B-899E-88AC0603C6C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NoSQL", "NoSQL", "{48D53F07-AE30-49B6-968D-CC63D43BD692}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.NoSQL.Redis.StackExchange", "NoSQL\Mstm.NoSQL.Redis.StackExchange\Mstm.NoSQL.Redis.StackExchange.csproj", "{DEFA3EDC-C041-4004-A917-BCE0999A5AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.NoSQL.Redis.StackExchange", "NoSQL\Mstm.NoSQL.Redis.StackExchange\Mstm.NoSQL.Redis.StackExchange.csproj", "{DEFA3EDC-C041-4004-A917-BCE0999A5AC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.NoSQL.Redis.ServiceStack", "NoSQL\Mstm.NoSQL.Redis.ServiceStack\Mstm.NoSQL.Redis.ServiceStack.csproj", "{1C4F06AE-9820-4EB4-BE93-1554E326EDDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.NoSQL.Redis.ServiceStack", "NoSQL\Mstm.NoSQL.Redis.ServiceStack\Mstm.NoSQL.Redis.ServiceStack.csproj", "{1C4F06AE-9820-4EB4-BE93-1554E326EDDD}"
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "UMLDemo", "UML\UMLDemo\UMLDemo.modelproj", "{93794FA3-A23A-442C-83BE-4B42C012FDB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.NoSQL.Redis.Core", "NoSQL\Mstm.NoSQL.Redis.Core\Mstm.NoSQL.Redis.Core.csproj", "{44295B06-1379-47CF-8A8A-7543E068802A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.NoSQL.Redis.Core", "NoSQL\Mstm.NoSQL.Redis.Core\Mstm.NoSQL.Redis.Core.csproj", "{44295B06-1379-47CF-8A8A-7543E068802A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.NoSQL.Redis.ServiceStack.Tests", "NoSQL\Mstm.NoSQL.Redis.ServiceStack.Tests\Mstm.NoSQL.Redis.ServiceStack.Tests.csproj", "{EC23FA2C-8D4B-4C13-A1A7-28B73E8B1337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.NoSQL.Redis.ServiceStack.Tests", "NoSQL\Mstm.NoSQL.Redis.ServiceStack.Tests\Mstm.NoSQL.Redis.ServiceStack.Tests.csproj", "{EC23FA2C-8D4B-4C13-A1A7-28B73E8B1337}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.NoSQL.Redis.StackExchange.Tests", "NoSQL\Mstm.NoSQL.Redis.StackExchange.Tests\Mstm.NoSQL.Redis.StackExchange.Tests.csproj", "{80CF7D52-0C8D-4933-976C-BC45AE550DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.NoSQL.Redis.StackExchange.Tests", "NoSQL\Mstm.NoSQL.Redis.StackExchange.Tests\Mstm.NoSQL.Redis.StackExchange.Tests.csproj", "{80CF7D52-0C8D-4933-976C-BC45AE550DD4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kafka", "Kafka", "{82ECE402-D957-4403-8583-29FA4DEB4683}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Kafka.Core", "Kafka\Mstm.Kafka.Core\Mstm.Kafka.Core.csproj", "{F85D77B6-DD6D-40CD-8D2D-12707A6DCCF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Kafka.Core", "Kafka\Mstm.Kafka.Core\Mstm.Kafka.Core.csproj", "{F85D77B6-DD6D-40CD-8D2D-12707A6DCCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Kafka.KafkaNet", "Kafka\Mstm.Kafka.KafkaNet\Mstm.Kafka.KafkaNet.csproj", "{14185AD5-AC1D-4A20-AD67-A30E6883D8E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Kafka.KafkaNet", "Kafka\Mstm.Kafka.KafkaNet\Mstm.Kafka.KafkaNet.csproj", "{14185AD5-AC1D-4A20-AD67-A30E6883D8E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Kafka.KafkaNet.Tests", "Kafka\Mstm.Kafka.KafkaNet.Tests\Mstm.Kafka.KafkaNet.Tests.csproj", "{08887589-6161-43F2-B4A8-D9354E414A9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Kafka.KafkaNet.Tests", "Kafka\Mstm.Kafka.KafkaNet.Tests\Mstm.Kafka.KafkaNet.Tests.csproj", "{08887589-6161-43F2-B4A8-D9354E414A9A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json", "Json", "{166A3283-3155-48A9-8CD4-F29B97D1B327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Json.Core", "Json\Mstm.Json.Core\Mstm.Json.Core.csproj", "{91DCA2C7-9B27-481B-A2D5-846DB4495D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Json.Core", "Json\Mstm.Json.Core\Mstm.Json.Core.csproj", "{91DCA2C7-9B27-481B-A2D5-846DB4495D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Json.Newtonsoft", "Json\Mstm.Json.Newtonsoft\Mstm.Json.Newtonsoft.csproj", "{97A41878-9428-4499-84EC-997CD3A996CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Json.Newtonsoft", "Json\Mstm.Json.Newtonsoft\Mstm.Json.Newtonsoft.csproj", "{97A41878-9428-4499-84EC-997CD3A996CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Json.Jil", "Json\Mstm.Json.Jil\Mstm.Json.Jil.csproj", "{670EC5AF-8591-413F-97CE-F98039317579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Json.Jil", "Json\Mstm.Json.Jil\Mstm.Json.Jil.csproj", "{670EC5AF-8591-413F-97CE-F98039317579}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{B12D9456-F453-4A71-A831-5A634442E5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Cache.ClusterSync", "Cache\Mstm.Cache.ClusterSync\Mstm.Cache.ClusterSync.csproj", "{8D870D0B-653B-4A3A-BB0F-5AD0D4BBC58D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Cache.ClusterSync", "Cache\Mstm.Cache.ClusterSync\Mstm.Cache.ClusterSync.csproj", "{8D870D0B-653B-4A3A-BB0F-5AD0D4BBC58D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Cache.ClusterSync.Tests", "Cache\Mstm.Cache.ClusterSync.Tests\Mstm.Cache.ClusterSync.Tests.csproj", "{3E76BEDF-CF60-48AC-B821-40E88FF1FBAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Cache.ClusterSync.Tests", "Cache\Mstm.Cache.ClusterSync.Tests\Mstm.Cache.ClusterSync.Tests.csproj", "{3E76BEDF-CF60-48AC-B821-40E88FF1FBAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Cache.ClusterSync.TestConsole", "Cache\Mstm.Cache.ClusterSync.TestConsole\Mstm.Cache.ClusterSync.TestConsole.csproj", "{0B95AB94-BA93-420D-9A66-943A80F1F67B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Cache.ClusterSync.TestConsole", "Cache\Mstm.Cache.ClusterSync.TestConsole\Mstm.Cache.ClusterSync.TestConsole.csproj", "{0B95AB94-BA93-420D-9A66-943A80F1F67B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A622D9B5-011B-4590-B309-26C0E013EA3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Common", "Common\Mstm.Common\Mstm.Common.csproj", "{C92C2E37-3562-4A35-AEC3-46C1593F19DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Common", "Common\Mstm.Common\Mstm.Common.csproj", "{C92C2E37-3562-4A35-AEC3-46C1593F19DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Log", "Log", "{0977AA60-D7E8-42B9-9788-23CC5A0F5360}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Log.Core", "Log\Mstm.Log.Core\Mstm.Log.Core.csproj", "{BF890958-DE0B-42CA-85CA-0F552D3FED35}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Log.Log4Net", "Log\Mstm.Log.Log4Net\Mstm.Log.Log4Net.csproj", "{DDF54325-81D5-464F-A20B-1542092C3EAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Log.Core.Test", "Log\Mstm.Log.Core.Test\Mstm.Log.Core.Test.csproj", "{590EF65E-3CB9-4D91-BFDC-0D0A3118FD14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -387,6 +395,18 @@ Global
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF890958-DE0B-42CA-85CA-0F552D3FED35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF890958-DE0B-42CA-85CA-0F552D3FED35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF890958-DE0B-42CA-85CA-0F552D3FED35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF890958-DE0B-42CA-85CA-0F552D3FED35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF54325-81D5-464F-A20B-1542092C3EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF54325-81D5-464F-A20B-1542092C3EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF54325-81D5-464F-A20B-1542092C3EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF54325-81D5-464F-A20B-1542092C3EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{590EF65E-3CB9-4D91-BFDC-0D0A3118FD14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{590EF65E-3CB9-4D91-BFDC-0D0A3118FD14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{590EF65E-3CB9-4D91-BFDC-0D0A3118FD14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{590EF65E-3CB9-4D91-BFDC-0D0A3118FD14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -451,6 +471,9 @@ Global
 		{3E76BEDF-CF60-48AC-B821-40E88FF1FBAD} = {B12D9456-F453-4A71-A831-5A634442E5DE}
 		{0B95AB94-BA93-420D-9A66-943A80F1F67B} = {B12D9456-F453-4A71-A831-5A634442E5DE}
 		{C92C2E37-3562-4A35-AEC3-46C1593F19DF} = {A622D9B5-011B-4590-B309-26C0E013EA3D}
+		{BF890958-DE0B-42CA-85CA-0F552D3FED35} = {0977AA60-D7E8-42B9-9788-23CC5A0F5360}
+		{DDF54325-81D5-464F-A20B-1542092C3EAE} = {0977AA60-D7E8-42B9-9788-23CC5A0F5360}
+		{590EF65E-3CB9-4D91-BFDC-0D0A3118FD14} = {0977AA60-D7E8-42B9-9788-23CC5A0F5360}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4254CE46-382D-41D1-8871-F8196BD4F85E}
