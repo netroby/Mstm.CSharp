@@ -13,18 +13,17 @@ namespace Mstm.NoSQL.Redis.Core
     public class RedisFactory
     {
         private static ConcurrentDictionary<string, IRedisProvider> _providerDict = new ConcurrentDictionary<string, IRedisProvider>();
-        private const string DefaultGroupName = "Default";
+
 
         public static IRedisProvider GetProvider(string groupName = null)
         {
-            if (string.IsNullOrWhiteSpace(groupName)) { groupName = DefaultGroupName; }
             IRedisProvider provider = null;
             if (_providerDict.ContainsKey(groupName))
             {
                 _providerDict.TryGetValue(groupName, out provider);
                 if (provider != null) { return provider; }
             }
-            RedisProviderConfig config = new RedisProviderConfig(groupName);
+            RedisProviderConfig config = RedisProviderConfig.New(groupName);
 
             if (string.IsNullOrEmpty(config.AssemblyName))
             {

@@ -12,12 +12,10 @@ namespace Mstm.Log.Core
     public class LogFactory
     {
         private static ConcurrentDictionary<string, ILogProvider> _loggerDict = new ConcurrentDictionary<string, ILogProvider>();
-        private const string DefaultGroupName = "Default";
 
         public static ILogProvider GetLogger(Type type, string groupName = null)
         {
             if (type == null) { type = typeof(LogFactory); }
-            if (string.IsNullOrWhiteSpace(groupName)) { groupName = DefaultGroupName; }
             ILogProvider logger = null;
             string key = groupName + "_" + type.FullName;
             if (_loggerDict.ContainsKey(key))
@@ -25,7 +23,7 @@ namespace Mstm.Log.Core
                 _loggerDict.TryGetValue(key, out logger);
                 if (logger != null) { return logger; }
             }
-            LogConfig config = new LogConfig(groupName);
+            LogConfig config = LogConfig.New(groupName);
 
             if (string.IsNullOrEmpty(config.AssemblyName))
             {

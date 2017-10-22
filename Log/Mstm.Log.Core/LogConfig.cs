@@ -10,12 +10,14 @@ namespace Mstm.Log.Core
     public class LogConfig
     {
         private string _groupName;
+        private const string DefaultGroupName = "Default";
         private static IConfigurationRoot _config;
         public const string ModuleName = "Logger";
         public const string ConfigFile = "appsettings.json";
 
-        public LogConfig(string groupName)
+        private LogConfig(string groupName)
         {
+            if (string.IsNullOrWhiteSpace(groupName)) { groupName = DefaultGroupName; }
             _groupName = groupName;
         }
 
@@ -24,6 +26,16 @@ namespace Mstm.Log.Core
             _config = new ConfigurationBuilder()
                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                .AddJsonFile("appsettings.json").Build();
+        }
+
+        /// <summary>
+        /// 创建一个新的配置
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns></returns>
+        public static LogConfig New(string groupName = null)
+        {
+            return new LogConfig(groupName);
         }
 
         public string AssemblyName

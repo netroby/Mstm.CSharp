@@ -10,12 +10,14 @@ namespace Mstm.NoSQL.Redis.Core
     public class RedisProviderConfig
     {
         private string _groupName;
+        private const string DefaultGroupName = "Default";
         static IConfigurationRoot _config;
         public const string ModuleName = "RedisProvider";
         public const string ConfigFile = "appsettings.json";
 
-        public RedisProviderConfig(string groupName)
+        private RedisProviderConfig(string groupName)
         {
+            if (string.IsNullOrWhiteSpace(groupName)) { groupName = DefaultGroupName; }
             _groupName = groupName;
         }
 
@@ -24,6 +26,16 @@ namespace Mstm.NoSQL.Redis.Core
             _config = new ConfigurationBuilder()
                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                .AddJsonFile("appsettings.json").Build();
+        }
+
+        /// <summary>
+        /// 创建一个新的配置
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns></returns>
+        public static RedisProviderConfig New(string groupName = null)
+        {
+            return new RedisProviderConfig(groupName);
         }
 
         public string AssemblyName
