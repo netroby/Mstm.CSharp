@@ -161,6 +161,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.RedPacket.Core.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.Core.Tests", "SQLAnalysis\Mstm.SQLAnalysis.Core.Tests\Mstm.SQLAnalysis.Core.Tests.csproj", "{235CBD78-F407-4DE7-94B5-4CF98DEE72EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Lock.Distributed.Zk.Console", "Lock\Mstm.Lock.Distributed.Zk.Console\Mstm.Lock.Distributed.Zk.Console.csproj", "{D0CAC267-85CD-4B51-926D-7B4AD92721AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -427,6 +429,10 @@ Global
 		{235CBD78-F407-4DE7-94B5-4CF98DEE72EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235CBD78-F407-4DE7-94B5-4CF98DEE72EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235CBD78-F407-4DE7-94B5-4CF98DEE72EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -497,6 +503,7 @@ Global
 		{E9D47D6E-3EE3-4C49-ABCB-95C9780211B7} = {68C24083-47D0-410C-A048-960C32EC798A}
 		{08996641-9B11-4B6B-BAF7-7BDC1869352A} = {0607AEBA-E6CE-4F69-8B1C-FBED8EC9F4E5}
 		{235CBD78-F407-4DE7-94B5-4CF98DEE72EA} = {5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}
+		{D0CAC267-85CD-4B51-926D-7B4AD92721AB} = {29F2DEAD-0BFB-4A48-8236-062CF72185B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4254CE46-382D-41D1-8871-F8196BD4F85E}
