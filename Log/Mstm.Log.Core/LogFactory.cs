@@ -15,6 +15,7 @@ namespace Mstm.Log.Core
 
         public static ILogProvider GetLogger(Type type, string groupName = null)
         {
+            if (string.IsNullOrWhiteSpace(groupName)) { groupName = LogConfig.DefaultGroupName; }
             if (type == null) { type = typeof(LogFactory); }
             ILogProvider logger = null;
             string key = groupName + "_" + type.FullName;

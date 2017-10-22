@@ -10,7 +10,7 @@ namespace Mstm.NoSQL.Redis.Core
     public class RedisProviderConfig
     {
         private string _groupName;
-        private const string DefaultGroupName = "Default";
+        public const string DefaultGroupName = "Default";
         static IConfigurationRoot _config;
         public const string ModuleName = "RedisProvider";
         public const string ConfigFile = "appsettings.json";
@@ -25,7 +25,7 @@ namespace Mstm.NoSQL.Redis.Core
         {
             _config = new ConfigurationBuilder()
                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-               .AddJsonFile("appsettings.json").Build();
+               .AddJsonFile(ConfigFile).Build();
         }
 
         /// <summary>

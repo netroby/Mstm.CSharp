@@ -17,6 +17,7 @@ namespace Mstm.NoSQL.Redis.Core
 
         public static IRedisProvider GetProvider(string groupName = null)
         {
+            if (string.IsNullOrWhiteSpace(groupName)) { groupName = RedisProviderConfig.DefaultGroupName; }
             IRedisProvider provider = null;
             if (_providerDict.ContainsKey(groupName))
             {

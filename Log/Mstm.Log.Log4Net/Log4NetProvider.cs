@@ -16,7 +16,22 @@ namespace Mstm.Log.Log4Net
         static Log4NetProvider()
         {
             repository = LogManager.CreateRepository("Log4NetProviderRepository");
-            var file = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + Log4NetConfigFile);
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string fileFullPath = basePath + Log4NetConfigFile;
+            if (basePath.EndsWith("/") == false && basePath.EndsWith(@"\") == false)
+            {
+                //Win32NT Unix
+                string platform = Environment.OSVersion.Platform.ToString();
+                if (platform == "Win32NT")
+                {
+                    fileFullPath = basePath + @"\" + Log4NetConfigFile;
+                }
+                else
+                {
+                    fileFullPath = basePath + "/" + Log4NetConfigFile;
+                }
+            }
+            var file = new FileInfo(fileFullPath);
             XmlConfigurator.Configure(repository, file);
         }
         public Log4NetProvider(Type type)

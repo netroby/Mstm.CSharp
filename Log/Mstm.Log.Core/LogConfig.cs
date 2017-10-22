@@ -10,7 +10,7 @@ namespace Mstm.Log.Core
     public class LogConfig
     {
         private string _groupName;
-        private const string DefaultGroupName = "Default";
+        public const string DefaultGroupName = "Default";
         private static IConfigurationRoot _config;
         public const string ModuleName = "Logger";
         public const string ConfigFile = "appsettings.json";
@@ -25,7 +25,7 @@ namespace Mstm.Log.Core
         {
             _config = new ConfigurationBuilder()
                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-               .AddJsonFile("appsettings.json").Build();
+               .AddJsonFile(ConfigFile).Build();
         }
 
         /// <summary>
