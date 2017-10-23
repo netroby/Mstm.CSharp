@@ -31,8 +31,7 @@ namespace Mstm.Log.Core
         {
             LogFactory factory = new LogFactory(groupName);
             factory.CurrentType = type ?? typeof(LogFactory);
-            var config = factory.Config as LogProviderConfig;
-            var provider = factory.GetProviderCore(new object[] { config.LogConfigFile, type });
+            var provider = factory.GetProviderCore(new object[] { factory.Config, type });
             return provider;
         }
 

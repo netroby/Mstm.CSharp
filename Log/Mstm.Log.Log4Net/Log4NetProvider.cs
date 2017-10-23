@@ -19,32 +19,32 @@ namespace Mstm.Log.Log4Net
         /// 构造函数
         /// </summary>
         /// <param name="type">当前日志操作所在的类型</param>
-        public Log4NetProvider(string logConfigFile, Type type)
-            : base(logConfigFile)
+        public Log4NetProvider(LogProviderConfig config, Type type)
+            : base(config)
         {
-            repository = LogManager.CreateRepository("Log4NetProviderRepository");
-            FileInfo file = new FileInfo(LogConfigFile);
+            repository = LogManager.CreateRepository(string.Format("{0}:{1}", LogConfig.ModuleName, LogConfig.GroupName));
+            FileInfo file = new FileInfo(LogConfig.LogConfigFile);
             if (file.Exists == false)
             {
                 string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                string fileFullPath = basePath + LogConfigFile;
+                string fileFullPath = basePath + LogConfig.LogConfigFile;
                 if (basePath.EndsWith("/") == false && basePath.EndsWith(@"\") == false)
                 {
                     //Win32NT Unix
                     string platform = Environment.OSVersion.Platform.ToString();
                     if (platform == "Win32NT")
                     {
-                        fileFullPath = basePath + @"\" + LogConfigFile;
+                        fileFullPath = basePath + @"\" + LogConfig.LogConfigFile;
                     }
                     else
                     {
-                        fileFullPath = basePath + "/" + LogConfigFile;
+                        fileFullPath = basePath + "/" + LogConfig.LogConfigFile;
                     }
                 }
                 file = new FileInfo(fileFullPath);
                 if (file.Exists == false)
                 {
-                    throw new ArgumentException(string.Format("未找到log4net的配置文件，配置文件为{0},当前搜索的路径为{1}", logConfigFile, fileFullPath));
+                    throw new ArgumentException(string.Format("未找到log4net的配置文件，配置文件为{0},当前搜索的路径为{1}", LogConfig.LogConfigFile, fileFullPath));
                 }
             }
             XmlConfigurator.Configure(repository, file);

@@ -10,13 +10,13 @@ namespace Mstm.Log.Core
     {
 
         /// <summary>
-        /// 日志组件需要的配置文件名称
+        /// 日志组件配置信息
         /// </summary>
-        public string LogConfigFile { get; private set; }
+        public LogProviderConfig LogConfig { get; private set; }
 
-        public AbstractLogProvider(string logConfigFile)
+        public AbstractLogProvider(LogProviderConfig config)
         {
-            LogConfigFile = logConfigFile;
+            LogConfig = config;
         }
 
         #region ILogProvider
