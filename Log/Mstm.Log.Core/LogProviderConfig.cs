@@ -36,5 +36,19 @@ namespace Mstm.Log.Core
         {
             return new LogProviderConfig(groupName);
         }
+
+        /// <summary>
+        /// 日志配置文件
+        /// </summary>
+        public string LogConfigFile
+        {
+            get
+            {
+                string key = string.Format("{0}:{1}:LogConfigFile", ModuleName, GroupName);
+                string value = this.Config[key];
+                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(LogConfigFile), string.Format("未找到日志配置文件，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
+                return value;
+            }
+        }
     }
 }

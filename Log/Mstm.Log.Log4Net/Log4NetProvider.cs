@@ -10,123 +10,120 @@ namespace Mstm.Log.Log4Net
     /// <summary>
     /// ILogProvider日志组件实现类，使用Log4Net实现
     /// </summary>
-    public class Log4NetProvider : ILogProvider
+    public class Log4NetProvider : AbstractLogProvider
     {
         private static ILoggerRepository repository;
         log4net.ILog innerLogger;
-        /// <summary>
-        /// log4net配置文件名称
-        /// </summary>
-        public const string Log4NetConfigFile = "log4net.config";
 
         /// <summary>
-        /// 静态构造函数
-        /// 加载log4net配置
-        /// </summary>
-        static Log4NetProvider()
-        {
-            repository = LogManager.CreateRepository("Log4NetProviderRepository");
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string fileFullPath = basePath + Log4NetConfigFile;
-            if (basePath.EndsWith("/") == false && basePath.EndsWith(@"\") == false)
-            {
-                //Win32NT Unix
-                string platform = Environment.OSVersion.Platform.ToString();
-                if (platform == "Win32NT")
-                {
-                    fileFullPath = basePath + @"\" + Log4NetConfigFile;
-                }
-                else
-                {
-                    fileFullPath = basePath + "/" + Log4NetConfigFile;
-                }
-            }
-            var file = new FileInfo(fileFullPath);
-            XmlConfigurator.Configure(repository, file);
-        }
-
-        /// <summary>
-        /// 构造寒素
+        /// 构造函数
         /// </summary>
         /// <param name="type">当前日志操作所在的类型</param>
-        public Log4NetProvider(Type type)
+        public Log4NetProvider(string logConfigFile, Type type)
+            : base(logConfigFile)
         {
+            repository = LogManager.CreateRepository("Log4NetProviderRepository");
+            FileInfo file = new FileInfo(LogConfigFile);
+            if (file.Exists == false)
+            {
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                string fileFullPath = basePath + LogConfigFile;
+                if (basePath.EndsWith("/") == false && basePath.EndsWith(@"\") == false)
+                {
+                    //Win32NT Unix
+                    string platform = Environment.OSVersion.Platform.ToString();
+                    if (platform == "Win32NT")
+                    {
+                        fileFullPath = basePath + @"\" + LogConfigFile;
+                    }
+                    else
+                    {
+                        fileFullPath = basePath + "/" + LogConfigFile;
+                    }
+                }
+                file = new FileInfo(fileFullPath);
+                if (file.Exists == false)
+                {
+                    throw new ArgumentException(string.Format("未找到log4net的配置文件，配置文件为{0},当前搜索的路径为{1}", logConfigFile, fileFullPath));
+                }
+            }
+            XmlConfigurator.Configure(repository, file);
             innerLogger = LogManager.GetLogger(repository.Name, type);
         }
 
         #region 具体日志操作
 
-        public void Debug(object msg)
+        public override void Debug(object msg)
         {
             innerLogger.Debug(msg);
         }
 
-        public void Debug(object msg, Exception ex)
+        public override void Debug(object msg, Exception ex)
         {
             innerLogger.Debug(msg, ex);
         }
 
-        public void DebugFormat(string log, params object[] args)
+        public override void DebugFormat(string log, params object[] args)
         {
             innerLogger.DebugFormat(log, args);
         }
 
-        public void Error(object msg)
+        public override void Error(object msg)
         {
             innerLogger.Error(msg);
         }
 
-        public void Error(object msg, Exception ex)
+        public override void Error(object msg, Exception ex)
         {
             innerLogger.Error(msg, ex);
         }
 
-        public void ErrorFormat(string msg, params object[] args)
+        public override void ErrorFormat(string msg, params object[] args)
         {
             innerLogger.ErrorFormat(msg, args);
         }
 
-        public void Fatal(object msg)
+        public override void Fatal(object msg)
         {
             innerLogger.Fatal(msg);
         }
 
-        public void Fatal(object msg, Exception ex)
+        public override void Fatal(object msg, Exception ex)
         {
             innerLogger.Fatal(msg, ex);
         }
 
-        public void FatalFormat(string msg, params object[] args)
+        public override void FatalFormat(string msg, params object[] args)
         {
             innerLogger.FatalFormat(msg, args);
         }
 
-        public void Info(object msg)
+        public override void Info(object msg)
         {
             innerLogger.Info(msg);
         }
 
-        public void Info(object msg, Exception ex)
+        public override void Info(object msg, Exception ex)
         {
             innerLogger.Info(msg, ex);
         }
 
-        public void InfoFormat(string msg, params object[] args)
+        public override void InfoFormat(string msg, params object[] args)
         {
             innerLogger.InfoFormat(msg, args);
         }
 
-        public void Warn(object msg)
+        public override void Warn(object msg)
         {
             innerLogger.Warn(msg);
         }
 
-        public void Warn(object msg, Exception ex)
+        public override void Warn(object msg, Exception ex)
         {
             innerLogger.Warn(msg, ex);
         }
 
-        public void WarnFormat(string msg, params object[] args)
+        public override void WarnFormat(string msg, params object[] args)
         {
             innerLogger.WarnFormat(msg, args);
         }

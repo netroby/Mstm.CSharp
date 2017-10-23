@@ -6,7 +6,7 @@
     <PackageProjectUrl>https://github.com/mstmdev/Mstm.CSharp/tree/master/Log/Mstm.Log.Log4Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mstmdev/Mstm.CSharp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>0.1.4</Version>
+    <Version>0.1.5</Version>
     <Authors>mstmdev</Authors>
     <Company>mstmdev</Company>
     <Product>mstmdev</Product>
