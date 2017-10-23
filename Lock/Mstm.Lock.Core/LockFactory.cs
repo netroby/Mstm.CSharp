@@ -25,6 +25,11 @@ namespace Mstm.Lock.Core
         }
 
         /// <summary>
+        /// 锁的唯一标识
+        /// </summary>
+        public string Identity { get; private set; }
+
+        /// <summary>
         /// 获取锁组件的实例
         /// </summary>
         /// <param name="identity">当前锁的唯一标识</param>
@@ -33,6 +38,7 @@ namespace Mstm.Lock.Core
         public static ILockProvider GetProvider(string identity, string groupName = null)
         {
             LockFactory factory = new LockFactory(groupName);
+            factory.Identity = identity;
             var provider = factory.GetProviderCore(new object[] { identity });
             return provider;
         }
@@ -47,6 +53,16 @@ namespace Mstm.Lock.Core
         {
             var provider = assembly.CreateInstance(Config.ClassFullName, true, BindingFlags.CreateInstance, null, args, CultureInfo.CurrentCulture, null) as ILockProvider;
             return provider;
+        }
+
+        /// <summary>
+        /// 获取当前缓存键的值
+        /// </summary>
+        /// <returns></returns>
+        protected override string GetCacheKeyCore()
+        {
+            string cacheKey = string.Format("{0}:{1}:{2}", Config.ModuleName, Config.GroupName, Identity);
+            return cacheKey;
         }
     }
 }

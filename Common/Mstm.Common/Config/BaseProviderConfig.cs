@@ -64,5 +64,25 @@ namespace Mstm.Common.Config
                 return value;
             }
         }
+
+        /// <summary>
+        /// 是否缓存组件
+        /// </summary>
+        public bool IsCacheProvider
+        {
+            get
+            {
+                string key = string.Format("{0}:{1}:IsCacheProvider", ModuleName, GroupName);
+                string value = this.Config[key];
+                if (value != null && value.ToLower() == "true")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

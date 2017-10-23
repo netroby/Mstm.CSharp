@@ -22,6 +22,11 @@ namespace Mstm.Common.Factory
         private static ConcurrentDictionary<string, T> _providerDict = new ConcurrentDictionary<string, T>();
 
         /// <summary>
+        /// 缓存Assembly
+        /// </summary>
+        private static ConcurrentDictionary<string, Assembly> _assemblyDict = new ConcurrentDictionary<string, Assembly>();
+
+        /// <summary>
         /// 私有构造函数，不予许外部直接构造实例
         /// </summary>
         protected Factory(string groupName)
@@ -79,7 +84,7 @@ namespace Mstm.Common.Factory
             }
             T provider = default(T);
             string cacheKey = GetCacheKey();
-            if (_providerDict.ContainsKey(cacheKey))
+            if (Config.IsCacheProvider && _providerDict.ContainsKey(cacheKey))
             {
                 _providerDict.TryGetValue(cacheKey, out provider);
                 if (provider != null) { return provider; }
@@ -93,11 +98,26 @@ namespace Mstm.Common.Factory
             {
                 throw new ArgumentNullException(nameof(Config.ClassFullName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的类名，请检查配置文件{4}", Config.ModuleName, Config.GroupName, nameof(Config.ClassFullName), typeof(T).FullName, Config.ConfigFile));
             }
-            var assembly = Assembly.Load(Config.AssemblyName);
+            Assembly assembly = null;
+            if (Config.IsCacheProvider == false)
+            {
+                _assemblyDict.TryGetValue(Config.AssemblyName, out assembly);
+            }
+            if (assembly == null)
+            {
+                assembly = Assembly.Load(Config.AssemblyName);
+            }
             if (assembly == null) { throw new ArgumentNullException(nameof(assembly), string.Format("未找到{0}程序集", Config.AssemblyName)); }
             provider = CreateInstance(assembly, args);
             if (provider == null) { throw new ArgumentNullException(nameof(provider), string.Format("实例化类型{0}失败", Config.ClassFullName)); }
-            _providerDict.TryAdd(cacheKey, provider);
+            if (Config.IsCacheProvider)
+            {
+                _providerDict.TryAdd(cacheKey, provider);
+            }
+            else
+            {
+                _assemblyDict.TryAdd(Config.AssemblyName, assembly);
+            }
             return provider;
         }
     }
