@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace Mstm.OAuth.Core
 {
+
 #if net47
+
     /// <summary>
     /// 默认Http客户端
     /// 使用微软的HttpClient和Microsoft.AspNet.WebApi.Client相关扩展实现
@@ -20,12 +22,21 @@ namespace Mstm.OAuth.Core
         HttpClient client;
         ISerializeProvider jsonProvider;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public DefaultHttpClient()
         {
             jsonProvider = JsonSerializeProvider.GetProvider();
             client = new HttpClient();
         }
 
+        /// <summary>
+        ///发起Get请求，获取JSON数据，结果序列化为对象
+        /// </summary>
+        /// <typeparam name="TResult">请求的结果类型</typeparam>
+        /// <param name="requestUrl">请求地址</param>
+        /// <returns>响应结果</returns>
         public TResult GetAsJson<TResult>(string requestUrl)
         {
             HttpResponseMessage response = null;
@@ -42,6 +53,14 @@ namespace Mstm.OAuth.Core
             }
         }
 
+        /// <summary>
+        /// 发起Post请求，获取JSON数据，结果序列化为对象
+        /// </summary>
+        /// <typeparam name="TResult">请求的结果类型</typeparam>
+        /// <typeparam name="TRequestBody">Post提交的数据类型</typeparam>
+        /// <param name="requestUrl">请求地址</param>
+        /// <param name="data">Pos提交的数据</param>
+        /// <returns>响应结果</returns>
         public TResult PostAsJson<TResult, TRequestBody>(string requestUrl, TRequestBody data)
         {
             HttpResponseMessage response = null;
@@ -58,6 +77,11 @@ namespace Mstm.OAuth.Core
             }
         }
 
+        /// <summary>
+        /// 发起Get请求，获取字符串结果
+        /// </summary>
+        /// <param name="requestUrl">请求地址</param>
+        /// <returns>响应结果</returns>
         public string GetString(string requestUrl)
         {
             HttpResponseMessage response = null;
@@ -74,7 +98,13 @@ namespace Mstm.OAuth.Core
             }
         }
 
-
+        /// <summary>
+        /// 发起Post请求
+        /// </summary>
+        /// <typeparam name="TResult">响应结果类型</typeparam>
+        /// <param name="requestUrl">请求地址</param>
+        /// <param name="data">发送的字典数据</param>
+        /// <returns>响应结果</returns>
         public TResult Post<TResult>(string requestUrl, Dictionary<string, string> data)
         {
             HttpContent content = null;

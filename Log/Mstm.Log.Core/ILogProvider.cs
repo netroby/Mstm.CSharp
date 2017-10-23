@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Mstm.Log.Core
 {
+    /// <summary>
+    /// 日志提供器组件
+    /// </summary>
     public interface ILogProvider
     {
-
         void Info(object msg);
 
         void Debug(object msg);

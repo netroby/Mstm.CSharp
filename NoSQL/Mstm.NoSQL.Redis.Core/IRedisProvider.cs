@@ -12,7 +12,5 @@ namespace Mstm.NoSQL.Redis.Core
     /// </summary>
     public interface IRedisProvider : IRedisString, IRedisKey
     {
-
-
     }
 }

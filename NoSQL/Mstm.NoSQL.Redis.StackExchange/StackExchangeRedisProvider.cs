@@ -20,6 +20,11 @@ namespace Mstm.NoSQL.Redis.StackExchange
         IDatabase _redisDB;
         ISerializeProvider _serializeProvider;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="connStr">Redis连接字符串</param>
+        /// <param name="db">DB信息</param>
         public StackExchangeRedisProvider(string connStr, int db = 0)
         {
             _serializeProvider = JsonFactory.GetProvider();

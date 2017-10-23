@@ -7,10 +7,20 @@ using System.Threading.Tasks;
 
 namespace Mstm.Lock.Core
 {
+    /// <summary>
+    /// 锁组件的配置信息
+    /// </summary>
     public class LockProviderConfig : BaseProviderConfig
     {
+        /// <summary>
+        /// 当前模块名称
+        /// </summary>
         public override string ModuleName => "LockProvider";
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="groupName">组名称</param>
         private LockProviderConfig(string groupName)
             : base(groupName)
         {

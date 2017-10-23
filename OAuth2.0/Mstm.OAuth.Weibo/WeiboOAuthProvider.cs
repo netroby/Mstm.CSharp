@@ -73,7 +73,11 @@ namespace Mstm.OAuth.Weibo
             _httpClient = new DefaultHttpClientFactory().GetHttpClient();
         }
 
-
+        /// <summary>
+        /// 生成登录地址
+        /// </summary>
+        /// <param name="state">用于校验的state参数 由用户随机生成</param>
+        /// <returns>登录地址</returns>
         public string GenerateLoginUrl(string state)
         {
             if (string.IsNullOrEmpty(state))
@@ -87,8 +91,11 @@ namespace Mstm.OAuth.Weibo
             return url;
         }
 
-
-
+        /// <summary>
+        /// 根据code获取必要的授权信息
+        /// </summary>
+        /// <param name="code">授权code</param>
+        /// <returns>授权信息</returns>
         public OAuthResponse GetOAuthResponse(string code)
         {
             var response = GetWeiboTokenResponse(code);
@@ -106,6 +113,13 @@ namespace Mstm.OAuth.Weibo
             return oauthResp;
         }
 
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <typeparam name="T">用户信息Model</typeparam>
+        /// <param name="token">认证成功后获取的Token</param>
+        /// <param name="openId">该用户在第三方用户系统的唯一标识</param>
+        /// <returns>用户信息</returns>
         public T GetUserInfo<T>(string token, string openId)
         {
             try

@@ -12,7 +12,10 @@ namespace Mstm.OAuth.Core
     /// </summary>
     public class DefaultHttpClientFactory : IHttpClientFactory
     {
-
+        /// <summary>
+        /// 获取IHttpClient实例
+        /// </summary>
+        /// <returns></returns>
         public IHttpClient GetHttpClient()
         {
 #if net47

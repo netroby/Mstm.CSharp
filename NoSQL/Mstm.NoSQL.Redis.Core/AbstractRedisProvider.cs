@@ -7,13 +7,32 @@ using System.Threading.Tasks;
 
 namespace Mstm.NoSQL.Redis.Core
 {
+    /// <summary>
+    /// Redis操作组件抽象类，所有Redis实现都要继承该类
+    /// </summary>
     public abstract partial class AbstractRedisProvider : IRedisProvider
     {
+        /// <summary>
+        /// 日志组件
+        /// </summary>
         public ILogProvider Logger;
+        public const string RedisLogGroupName = "RedisLogger";
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public AbstractRedisProvider()
         {
             Type type = this.GetType();
-            Logger = LogFactory.GetLogger(type);
+            try
+            {
+                Logger = LogFactory.GetLogger(type, RedisLogGroupName);
+            }
+            catch (Exception)
+            {
+                //为了不影响Redis逻辑，或者用户不需要启用日志，如果出错，则不使用空实现来忽略日志操作
+                Logger = EmptyLogProvider.New();
+            }
         }
 
         public string AppendString(string key, string appendStr)

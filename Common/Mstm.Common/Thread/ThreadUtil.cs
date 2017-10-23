@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mstm.Common.Thread
 {
-    class ThreadUtil
+
+    /// <summary>
+    /// 线程相关工具类
+    /// </summary>
+    public class ThreadUtil
     {
     }
 }

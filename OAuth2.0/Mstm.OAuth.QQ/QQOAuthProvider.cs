@@ -77,6 +77,11 @@ namespace Mstm.OAuth.QQ
             _analysisFactory = new DefaultQQResponseAnalysisFactory();
         }
 
+        /// <summary>
+        /// 生成登录地址
+        /// </summary>
+        /// <param name="state">用于校验的state参数 由用户随机生成</param>
+        /// <returns>登录地址</returns>
         public string GenerateLoginUrl(string state)
         {
             string response_type = "code";
@@ -88,9 +93,33 @@ namespace Mstm.OAuth.QQ
             return string.Format(_loginUrl, response_type, client_id, redirect_uri, state, scope, display);
         }
 
+        /// <summary>
+        /// 根据code获取必要的授权信息
+        /// </summary>
+        /// <param name="code">授权code</param>
+        /// <returns>授权信息</returns>
+        public OAuthResponse GetOAuthResponse(string code)
+        {
+            OAuthResponse tokenResp = this.GetTokenResponse(code);
+            string successCode = "0";
+            if (tokenResp == null || tokenResp.ErrorCode != successCode) { return tokenResp; }
+            OAuthResponse openIdResp = this.GetOpenIdResponse(tokenResp.AccessToken);
+            if (openIdResp != null && !string.IsNullOrEmpty(openIdResp.OpenId))
+            {
+                openIdResp.AccessToken = tokenResp.AccessToken;
+                openIdResp.ExpiresIn = tokenResp.ExpiresIn;
+                openIdResp.RefreshToken = tokenResp.RefreshToken;
+            }
+            return openIdResp;
+        }
 
-
-
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <typeparam name="T">用户信息Model</typeparam>
+        /// <param name="token">认证成功后获取的Token</param>
+        /// <param name="openId">该用户在第三方用户系统的唯一标识</param>
+        /// <returns>用户信息</returns>
         public T GetUserInfo<T>(string token, string openId)
         {
             try
@@ -106,21 +135,6 @@ namespace Mstm.OAuth.QQ
             }
         }
 
-
-        public OAuthResponse GetOAuthResponse(string code)
-        {
-            OAuthResponse tokenResp = this.GetTokenResponse(code);
-            string successCode = "0";
-            if (tokenResp == null || tokenResp.ErrorCode != successCode) { return tokenResp; }
-            OAuthResponse openIdResp = this.GetOpenIdResponse(tokenResp.AccessToken);
-            if (openIdResp != null && !string.IsNullOrEmpty(openIdResp.OpenId))
-            {
-                openIdResp.AccessToken = tokenResp.AccessToken;
-                openIdResp.ExpiresIn = tokenResp.ExpiresIn;
-                openIdResp.RefreshToken = tokenResp.RefreshToken;
-            }
-            return openIdResp;
-        }
 
         /// <summary>
         /// 获取Token信息
@@ -165,6 +179,12 @@ namespace Mstm.OAuth.QQ
             }
         }
 
+        /// <summary>
+        /// 获取用户信息字符串
+        /// </summary>
+        /// <param name="token">token信息</param>
+        /// <param name="openId">用户的OpenId</param>
+        /// <returns></returns>
         private string GetUserInfoString(string token, string openId)
         {
             if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(openId)) { return null; }

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Mstm.Common.Thread
 {
+    /// <summary>
+    /// 单例构造器
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SingletonWrap<T>
        where T : class, new()
     {
@@ -16,6 +20,10 @@ namespace Mstm.Common.Thread
 
         private SingletonWrap() { }
 
+        /// <summary>
+        /// 获取单例实例
+        /// </summary>
+        /// <returns></returns>
         public T GetSingleton()
         {
             if (_instance != null) { return _instance; }

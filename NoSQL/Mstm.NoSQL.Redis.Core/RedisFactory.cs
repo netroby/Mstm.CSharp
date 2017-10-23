@@ -10,11 +10,21 @@ using System.Threading.Tasks;
 
 namespace Mstm.NoSQL.Redis.Core
 {
+    /// <summary>
+    /// Redis组件工厂
+    /// </summary>
     public class RedisFactory
     {
+        /// <summary>
+        /// 内部数据存储并发字典
+        /// </summary>
         private static ConcurrentDictionary<string, IRedisProvider> _providerDict = new ConcurrentDictionary<string, IRedisProvider>();
 
-
+        /// <summary>
+        /// 获取Redis操作组件实例
+        /// </summary>
+        /// <param name="groupName">组名称</param>
+        /// <returns></returns>
         public static IRedisProvider GetProvider(string groupName = null)
         {
             if (string.IsNullOrWhiteSpace(groupName)) { groupName = RedisProviderConfig.DefaultGroupName; }

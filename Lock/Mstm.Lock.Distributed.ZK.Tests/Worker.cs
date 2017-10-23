@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Mstm.Lock.Distributed.ZK.Tests
 {
+    /// <summary>
+    /// 工作模拟类
+    /// </summary>
     public class Worker
     {
+        /// <summary>
+        /// 开始工作
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="locker"></param>
         public void DoWork(string tag, ILockProvider locker)
         {
             List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

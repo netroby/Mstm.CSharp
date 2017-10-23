@@ -13,6 +13,10 @@ namespace Mstm.OAuth.QQ
     class DefaultQQResponseAnalysisFactory : IQQResponseAnalysisFactory
     {
 
+        /// <summary>
+        /// 获取QQ消息解析器IQQResponseAnalysis的实例
+        /// </summary>
+        /// <returns></returns>
         public IQQResponseAnalysis GetQQResponseAnalysisProvider()
         {
             return new DefaultQQResponseAnalysis();

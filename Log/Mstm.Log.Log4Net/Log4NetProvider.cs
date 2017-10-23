@@ -7,12 +7,22 @@ using System.IO;
 
 namespace Mstm.Log.Log4Net
 {
+    /// <summary>
+    /// ILogProvider日志组件实现类，使用Log4Net实现
+    /// </summary>
     public class Log4NetProvider : ILogProvider
     {
         private static ILoggerRepository repository;
         log4net.ILog innerLogger;
+        /// <summary>
+        /// log4net配置文件名称
+        /// </summary>
         public const string Log4NetConfigFile = "log4net.config";
 
+        /// <summary>
+        /// 静态构造函数
+        /// 加载log4net配置
+        /// </summary>
         static Log4NetProvider()
         {
             repository = LogManager.CreateRepository("Log4NetProviderRepository");
@@ -34,10 +44,17 @@ namespace Mstm.Log.Log4Net
             var file = new FileInfo(fileFullPath);
             XmlConfigurator.Configure(repository, file);
         }
+
+        /// <summary>
+        /// 构造寒素
+        /// </summary>
+        /// <param name="type">当前日志操作所在的类型</param>
         public Log4NetProvider(Type type)
         {
             innerLogger = LogManager.GetLogger(repository.Name, type);
         }
+
+        #region 具体日志操作
 
         public void Debug(object msg)
         {
@@ -113,5 +130,7 @@ namespace Mstm.Log.Log4Net
         {
             innerLogger.WarnFormat(msg, args);
         }
+
+        #endregion
     }
 }

@@ -12,7 +12,10 @@ namespace Mstm.OAuth.QQ
     /// </summary>
     public class QQOAuthProviderFactory : IOAuthProviderFactory
     {
-
+        /// <summary>
+        /// 获取OAuth服务接口IOAuthProvider的实例
+        /// </summary>
+        /// <returns></returns>
         public IOAuthProvider GetThirdPartyProvider()
         {
             return new QQOAuthProvider();

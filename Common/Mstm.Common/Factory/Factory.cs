@@ -10,14 +10,36 @@ using System.Threading.Tasks;
 
 namespace Mstm.Common.Factory
 {
+    /// <summary>
+    /// 工厂类
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class Factory<T>
     {
+        /// <summary>
+        /// 内部并发字典，记录内部数据
+        /// </summary>
         private static ConcurrentDictionary<string, T> _providerDict = new ConcurrentDictionary<string, T>();
 
+        /// <summary>
+        /// 反射创建指定类型的实例
+        /// </summary>
+        /// <param name="assembly">类型所在的程序集实例</param>
+        /// <param name="args">类型实例化构造函数需要的参数</param>
+        /// <returns>指定类型的实例</returns>
         protected abstract T CreateInstance(Assembly assembly, object[] args);
 
+        /// <summary>
+        /// 动态加载程序集相关的配置信息
+        /// </summary>
         protected abstract BaseProviderConfig Config { get; set; }
 
+        /// <summary>
+        /// 获取指定类型的具体实现类的实例
+        /// </summary>
+        /// <param name="args">实例化需要的构造函数参数</param>
+        /// <param name="groupName">组名称</param>
+        /// <returns></returns>
         public T GetProviderCore(object[] args, string groupName = null)
         {
             if (string.IsNullOrWhiteSpace(groupName)) { groupName = Config.DefaultGroupName; }

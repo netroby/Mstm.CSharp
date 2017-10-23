@@ -12,8 +12,19 @@ namespace Mstm.Kafka.Core
     /// </summary>
     public class KafkaTopic
     {
+        /// <summary>
+        /// 错误码
+        /// </summary>
         public short ErrorCode { get; set; }
+
+        /// <summary>
+        /// 主题名称
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 分区集合
+        /// </summary>
         public List<KafkaPartition> Partitions { get; set; }
 
     }

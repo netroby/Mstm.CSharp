@@ -16,11 +16,12 @@ namespace Mstm.OAuth.QQ
     {
 
         /// <summary>
+        /// 解析腾讯响应的AccessToken信息
         /// access_token=2BC2F59**********BEF95591&expires_in=7776000&refresh_token=7FED6***********F88660FB7C7
         /// callback( {"error":100020,"error_description":"code is reused error"} );
         /// </summary>
-        /// <param name="msg"></param>
-        /// <returns></returns>
+        /// <param name="msg">token信息</param>
+        /// <returns>解析的结果</returns>
         public OAuthResponse AnalysisAccessToken(string msg)
         {
             if (string.IsNullOrEmpty(msg)) { return null; }
@@ -52,11 +53,12 @@ namespace Mstm.OAuth.QQ
 
 
         /// <summary>
+        /// 从响应中解析出OpenId
         /// callback( {"client_id":"101111163","openid":"B60E8C*************3AF8F90971"} );
         /// callback( {"error":100016,"error_description":"access token check failed"} );
         /// </summary>
-        /// <param name="msg"></param>
-        /// <returns></returns>
+        /// <param name="msg">收到的响应消息</param>
+        /// <returns>解析后的消息对象</returns>
         public OAuthResponse AnalysisOpenId(string msg)
         {
             if (string.IsNullOrEmpty(msg)) { return null; }

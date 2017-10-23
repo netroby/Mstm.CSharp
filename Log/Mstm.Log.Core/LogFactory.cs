@@ -9,10 +9,22 @@ using System.Text;
 
 namespace Mstm.Log.Core
 {
+    /// <summary>
+    /// 日志组件工厂
+    /// </summary>
     public class LogFactory
     {
+        /// <summary>
+        /// 内部数据的并发字典
+        /// </summary>
         private static ConcurrentDictionary<string, ILogProvider> _loggerDict = new ConcurrentDictionary<string, ILogProvider>();
 
+        /// <summary>
+        /// 获取日志组件的实例
+        /// </summary>
+        /// <param name="type">当前日志操作所在的类型</param>
+        /// <param name="groupName">组名称</param>
+        /// <returns>日志组件ILogProvider实例</returns>
         public static ILogProvider GetLogger(Type type, string groupName = null)
         {
             if (string.IsNullOrWhiteSpace(groupName)) { groupName = LogConfig.DefaultGroupName; }
@@ -42,6 +54,12 @@ namespace Mstm.Log.Core
             return logger;
         }
 
+        /// <summary>
+        /// 获取日志组件的实例
+        /// </summary>
+        /// <typeparam name="T">当前日志操作所在的类型</typeparam>
+        /// <param name="groupName">组名称</param>
+        /// <returns>日志组件ILogProvider实例</returns>
         public static ILogProvider GetLogger<T>(string groupName = null)
         {
             Type type = typeof(T);

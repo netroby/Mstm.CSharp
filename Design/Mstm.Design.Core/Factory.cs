@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Mstm.Design.Core
 {
+
+    /// <summary>
+    /// 工厂构造器
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TProvider"></typeparam>
     public abstract class Factory<TKey, TProvider> : IFactory<TKey, TProvider>
     {
-
-
         private static Dictionary<TKey, TProvider> _innerDict;
-
 
         protected abstract Dictionary<TKey, TProvider> Init();
 

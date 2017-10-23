@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Mstm.Json.Core
 {
+    /// <summary>
+    /// Json序列化操作组件工厂
+    /// </summary>
     public class JsonFactory
     {
         private static Assembly _assembly;
@@ -16,6 +19,10 @@ namespace Mstm.Json.Core
         private static readonly string _classFullName;
         private static ISerializeProvider _provider;
 
+        /// <summary>
+        /// 静态构造函数
+        /// 加载配置文件
+        /// </summary>
         static JsonFactory()
         {
             var config = new ConfigurationBuilder()
@@ -33,6 +40,10 @@ namespace Mstm.Json.Core
             }
         }
 
+        /// <summary>
+        /// 获取Json序列化组件实例
+        /// </summary>
+        /// <returns></returns>
         public static ISerializeProvider GetProvider()
         {
             if (_provider != null) { return _provider; }

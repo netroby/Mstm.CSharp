@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Mstm.Kafka.KafkaNet
 {
+    /// <summary>
+    /// Kafka操作组件
+    /// </summary>
     public class KafkaNetProvider : IKafkaProvider
     {
 
@@ -22,6 +25,11 @@ namespace Mstm.Kafka.KafkaNet
         private string _topicName;
         private ISerializeProvider _serializeProvider;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="topic">主题名称</param>
+        /// <param name="urls">Kakfa主机集合</param>
         public KafkaNetProvider(string topic, params string[] urls)
         {
             if (urls == null || urls.Length <= 0)
@@ -45,6 +53,11 @@ namespace Mstm.Kafka.KafkaNet
 
         #region IConsumer
 
+        /// <summary>
+        /// 接受消息
+        /// </summary>
+        /// <param name="action">接受到消息后回调处理</param>
+
         public void ReceiveMessage(Action<string> action)
         {
             foreach (var message in _consumer.Consume())
@@ -57,9 +70,12 @@ namespace Mstm.Kafka.KafkaNet
         #endregion
 
 
-
-
         #region IProducer
+
+        /// <summary>
+        /// 异步发送消息
+        /// </summary>
+        /// <param name="msgs">待发送的消息集合</param>
 
         public void SendMessageAsync(params string[] msgs)
         {
@@ -67,6 +83,11 @@ namespace Mstm.Kafka.KafkaNet
             _producer.SendMessageAsync(_topicName, ConvertToMessage(msgs));
         }
 
+        /// <summary>
+        /// 同步发送消息
+        /// </summary>
+        /// <param name="msgs">待发送的消息集合</param>
+        /// <returns>发送的响应集合</returns>
         public List<KafkaProduceResponse> SendMessageSync(params string[] msgs)
         {
             ValidateMessageIsNotNull(msgs);
@@ -90,7 +111,11 @@ namespace Mstm.Kafka.KafkaNet
             return list;
         }
 
-
+        /// <summary>
+        /// 异步发送指定的对象消息
+        /// </summary>
+        /// <typeparam name="T">发送的对象类型</typeparam>
+        /// <param name="datas">发送的对象实例</param>
         public void SendObjectAsync<T>(params T[] datas)
         {
             ValidateMessageIsNotNull(datas);
@@ -98,6 +123,12 @@ namespace Mstm.Kafka.KafkaNet
             SendMessageAsync(jsons.ToArray());
         }
 
+        /// <summary>
+        /// 同步发送指定的对象消息
+        /// </summary>
+        /// <typeparam name="T">发送的对象类型</typeparam>
+        /// <param name="datas">发送的对象实例</param>
+        /// <returns>发送的响应集合</returns>
         public List<KafkaProduceResponse> SendObjectSync<T>(params T[] datas)
         {
             ValidateMessageIsNotNull(datas);
@@ -106,7 +137,11 @@ namespace Mstm.Kafka.KafkaNet
             return responses;
         }
 
-
+        /// <summary>
+        /// 获取主题信息
+        /// </summary>
+        /// <param name="topic">主题名称</param>
+        /// <returns>主题信息</returns>
         public KafkaTopic GetTopic(string topic)
         {
             if (string.IsNullOrWhiteSpace(topic))
@@ -121,13 +156,15 @@ namespace Mstm.Kafka.KafkaNet
                 Partitions = ConvertToKafkaPartition(topicTemp.Partitions).ToList()
             };
         }
-
         #endregion
-
-
 
         #region 私有方法
 
+        /// <summary>
+        /// 将URL字符串集合转化为Uri集合
+        /// </summary>
+        /// <param name="urls"></param>
+        /// <returns></returns>
         private IEnumerable<Uri> ConvertToUrl(IEnumerable<string> urls)
         {
             if (urls == null || urls.Count() == 0) { yield break; }
@@ -137,7 +174,11 @@ namespace Mstm.Kafka.KafkaNet
             }
         }
 
-
+        /// <summary>
+        /// 将字符串消息集合转化为Message集合
+        /// </summary>
+        /// <param name="msgs"></param>
+        /// <returns></returns>
         private IEnumerable<Message> ConvertToMessage(IEnumerable<string> msgs)
         {
             if (msgs == null || msgs.Count() == 0) { yield break; }
@@ -147,6 +188,11 @@ namespace Mstm.Kafka.KafkaNet
             }
         }
 
+        /// <summary>
+        /// 将第三方的kafka分区信息转化为本地的分区信息
+        /// </summary>
+        /// <param name="partitions"></param>
+        /// <returns></returns>
         private IEnumerable<KafkaPartition> ConvertToKafkaPartition(IEnumerable<Partition> partitions)
         {
             if (partitions == null || partitions.Count() == 0) { yield break; }
@@ -163,6 +209,12 @@ namespace Mstm.Kafka.KafkaNet
             }
         }
 
+        /// <summary>
+        /// 将指定的消息对象集合序列化为Json字符串集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="datas"></param>
+        /// <returns></returns>
         private string[] SendObject<T>(T[] datas)
         {
             if (datas == null)
@@ -179,6 +231,10 @@ namespace Mstm.Kafka.KafkaNet
             return jsons.ToArray();
         }
 
+        /// <summary>
+        /// 校验消息是否为空
+        /// </summary>
+        /// <param name="msg"></param>
         private void ValidateMessageIsNotNull(Object msg)
         {
             if (msg == null)

@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.Lock.Core
+namespace Mstm.Common.Text
 {
     /// <summary>
-    /// 锁句柄接口
+    /// 程序中使用的默认编码格式
     /// </summary>
-    public interface ILockerHandle
+    public class DefaultEncoding
     {
+
         /// <summary>
-        /// 释放锁
+        /// 默认编码格式，默认为utf8
         /// </summary>
-        void UnLock();
+        public static Encoding Enconding = Encoding.UTF8;
     }
 }
