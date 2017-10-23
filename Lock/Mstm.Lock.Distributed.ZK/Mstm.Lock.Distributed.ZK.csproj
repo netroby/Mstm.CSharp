@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>mstmdev</Authors>
     <Company>mstmdev</Company>
     <Description>基于Zookeeper实现的分布式锁</Description>
