@@ -4,6 +4,7 @@ using log4net.Repository;
 using Mstm.Log.Core;
 using System;
 using System.IO;
+using System.Collections.Concurrent;
 
 namespace Mstm.Log.Log4Net
 {
@@ -12,7 +13,7 @@ namespace Mstm.Log.Log4Net
     /// </summary>
     public class Log4NetProvider : AbstractLogProvider
     {
-        private static ILoggerRepository repository;
+        private static ConcurrentDictionary<string, ILoggerRepository> _repoDict = new ConcurrentDictionary<string, ILoggerRepository>();
         log4net.ILog innerLogger;
 
         /// <summary>
@@ -22,7 +23,14 @@ namespace Mstm.Log.Log4Net
         public Log4NetProvider(LogProviderConfig config, Type type)
             : base(config)
         {
-            repository = LogManager.CreateRepository(string.Format("{0}:{1}", LogConfig.ModuleName, LogConfig.GroupName));
+            ILoggerRepository repository = null;
+            string repoName = string.Format("{0}:{1}", LogConfig.ModuleName, LogConfig.GroupName);
+            _repoDict.TryGetValue(repoName, out repository);
+            if (repository == null)
+            {
+                repository = LogManager.CreateRepository(repoName);
+                _repoDict.TryAdd(repoName, repository);
+            }
             FileInfo file = new FileInfo(LogConfig.LogConfigFile);
             if (file.Exists == false)
             {
