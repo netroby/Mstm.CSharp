@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Description>包含常用的一些通用抽象库和帮助类</Description>
     <Authors>mstmdev</Authors>
     <Company>mstmdev</Company>
