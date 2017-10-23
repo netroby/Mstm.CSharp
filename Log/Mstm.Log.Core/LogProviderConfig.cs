@@ -11,18 +11,18 @@ namespace Mstm.Log.Core
     /// <summary>
     /// 日志配置信息
     /// </summary>
-    public class LogConfig : BaseProviderConfig
+    public class LogProviderConfig : BaseProviderConfig
     {
         /// <summary>
         /// 当前模块名称
         /// </summary>
-        public override string ModuleName => "Logger";
+        public override string ModuleName => "LogProvider";
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="groupName">组名称</param>
-        private LogConfig(string groupName)
+        private LogProviderConfig(string groupName)
             : base(groupName)
         {
         }
@@ -32,9 +32,9 @@ namespace Mstm.Log.Core
         /// </summary>
         /// <param name="groupName">组名称</param>
         /// <returns></returns>
-        public static LogConfig New(string groupName = null)
+        public static LogProviderConfig New(string groupName = null)
         {
-            return new LogConfig(groupName);
+            return new LogProviderConfig(groupName);
         }
     }
 }

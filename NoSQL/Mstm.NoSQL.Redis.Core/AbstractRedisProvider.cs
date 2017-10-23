@@ -26,7 +26,7 @@ namespace Mstm.NoSQL.Redis.Core
             Type type = this.GetType();
             try
             {
-                Logger = LogFactory.GetLogger(type, RedisLogGroupName);
+                Logger = LogFactory.GetProvider(type, RedisLogGroupName);
             }
             catch (Exception)
             {

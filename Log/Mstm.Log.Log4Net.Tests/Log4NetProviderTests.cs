@@ -9,7 +9,7 @@ namespace Mstm.Log.Core.Test
         [Fact]
         public void GetLoggerTest()
         {
-            var logger = LogFactory.GetLogger<Log4NetProviderTests>();
+            var logger = LogFactory.GetProvider<Log4NetProviderTests>();
             logger.Info("hello Info");
             logger.Debug("hello Debug");
             logger.Warn("hello Warn");

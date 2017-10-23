@@ -1,13 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Mstm.Common.Config;
-using Mstm.Common.Factory;
+﻿using Mstm.Common.Factory;
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace Mstm.Log.Core
 {
@@ -22,7 +16,7 @@ namespace Mstm.Log.Core
         private LogFactory(string groupName)
             : base(groupName)
         {
-            Config = LogConfig.New(groupName);
+            Config = LogProviderConfig.New(groupName);
         }
 
         private Type CurrentType { get; set; }
@@ -33,7 +27,7 @@ namespace Mstm.Log.Core
         /// <param name="type">当前日志操作所在的类型</param>
         /// <param name="groupName">组名称</param>
         /// <returns>日志组件ILogProvider实例</returns>
-        public static ILogProvider GetLogger(Type type, string groupName = null)
+        public static ILogProvider GetProvider(Type type, string groupName = null)
         {
             LogFactory factory = new LogFactory(groupName);
             factory.CurrentType = type ?? typeof(LogFactory);
@@ -47,10 +41,10 @@ namespace Mstm.Log.Core
         /// <typeparam name="T">当前日志操作所在的类型</typeparam>
         /// <param name="groupName">组名称</param>
         /// <returns>日志组件ILogProvider实例</returns>
-        public static ILogProvider GetLogger<T>(string groupName = null)
+        public static ILogProvider GetProvider<T>(string groupName = null)
         {
             Type type = typeof(T);
-            return GetLogger(type, groupName);
+            return GetProvider(type, groupName);
         }
 
         /// <summary>
