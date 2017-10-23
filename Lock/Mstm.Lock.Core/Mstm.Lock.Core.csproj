@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+    <Authors>mstmdev</Authors>
+    <Company>mstmdev</Company>
+    <Description>锁相关操作的抽象库</Description>
+    <PackageProjectUrl>https://github.com/mstmdev/Mstm.CSharp/tree/master/Lock/Mstm.Lock.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mstmdev/Mstm.CSharp.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
