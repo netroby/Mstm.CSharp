@@ -48,11 +48,11 @@ namespace Mstm.Log.Core
         }
 
         /// <summary>
-        /// 反射创建指定类型的实例
+        /// 反射创建ILogProvider的实例
         /// </summary>
-        /// <param name="assembly">类型所在的程序集实例</param>
-        /// <param name="args">类型实例化构造函数需要的参数</param>
-        /// <returns>指定类型的实例</returns>
+        /// <param name="assembly">ILogProvider实现类型所在的程序集实例</param>
+        /// <param name="args">ILogProvider实现类型实例化构造函数需要的参数</param>
+        /// <returns>Log组件ILogProvider的实例</returns>
         protected override ILogProvider CreateInstance(Assembly assembly, object[] args)
         {
             var provider = assembly.CreateInstance(Config.ClassFullName, true, BindingFlags.CreateInstance, null, args, CultureInfo.CurrentCulture, null) as ILogProvider;

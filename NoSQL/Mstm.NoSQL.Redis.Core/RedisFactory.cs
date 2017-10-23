@@ -39,11 +39,11 @@ namespace Mstm.NoSQL.Redis.Core
         }
 
         /// <summary>
-        /// 反射创建ILockProvider的实例
+        /// 反射创建IRedisProvider的实例
         /// </summary>
-        /// <param name="assembly">ILockProvider实现类型所在的程序集实例</param>
-        /// <param name="args">ILockProvider实现类型实例化构造函数需要的参数</param>
-        /// <returns>锁组件ILockProvider的实例</returns>
+        /// <param name="assembly">IRedisProvider实现类型所在的程序集实例</param>
+        /// <param name="args">IRedisProvider实现类型实例化构造函数需要的参数</param>
+        /// <returns>Redis组件IRedisProvider的实例</returns>
         protected override IRedisProvider CreateInstance(Assembly assembly, object[] args)
         {
             var config = Config as RedisProviderConfig;

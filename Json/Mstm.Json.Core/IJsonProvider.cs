@@ -10,7 +10,7 @@ namespace Mstm.Json.Core
     /// <summary>
     /// 序列化提供器接口
     /// </summary>
-    public interface ISerializeProvider
+    public interface IJsonProvider
     {
         /// <summary>
         /// 对象序列化为字符串

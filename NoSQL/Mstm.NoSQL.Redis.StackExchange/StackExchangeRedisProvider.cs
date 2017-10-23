@@ -18,7 +18,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
 
         ConnectionMultiplexer _redisConn;
         IDatabase _redisDB;
-        ISerializeProvider _serializeProvider;
+        IJsonProvider _jsonProvider;
 
         /// <summary>
         /// 构造函数
@@ -27,7 +27,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
         /// <param name="db">DB信息</param>
         public StackExchangeRedisProvider(string connStr, int db = 0)
         {
-            _serializeProvider = JsonFactory.GetProvider();
+            _jsonProvider = JsonFactory.GetProvider();
 
             if (string.IsNullOrWhiteSpace(connStr))
             {
@@ -61,7 +61,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
 
         public override void SetDataCore<T>(string key, T value)
         {
-            var jsonStr = _serializeProvider.SerializeObject(value);
+            var jsonStr = _jsonProvider.SerializeObject(value);
             SetString(key, jsonStr);
         }
 
@@ -70,7 +70,7 @@ namespace Mstm.NoSQL.Redis.StackExchange
             try
             {
                 string jsonStr = GetString(key);
-                return string.IsNullOrWhiteSpace(jsonStr) ? default(T) : _serializeProvider.DeserializeObject<T>(jsonStr);
+                return string.IsNullOrWhiteSpace(jsonStr) ? default(T) : _jsonProvider.DeserializeObject<T>(jsonStr);
             }
             catch (Exception)
             {

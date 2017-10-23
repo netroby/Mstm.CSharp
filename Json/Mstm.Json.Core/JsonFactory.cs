@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Mstm.Common.Factory;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,49 +13,38 @@ namespace Mstm.Json.Core
     /// <summary>
     /// Json序列化操作组件工厂
     /// </summary>
-    public class JsonFactory
+    public class JsonFactory : Factory<IJsonProvider>
     {
-        private static Assembly _assembly;
-        private static readonly string _assemblyName;
-        private static readonly string _classFullName;
-        private static ISerializeProvider _provider;
-
         /// <summary>
-        /// 静态构造函数
-        /// 加载配置文件
+        /// 私有构造函数，不予许外部直接构造实例
         /// </summary>
-        static JsonFactory()
+        private JsonFactory(string groupName)
+            : base(groupName)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json").Build();
-            _assemblyName = config["JsonProvider:AssemblyName"];
-            _classFullName = config["JsonProvider:ClassFullName"];
-            if (string.IsNullOrEmpty(_assemblyName))
-            {
-                throw new ArgumentNullException("JsonProvider:AssemblyName", "未获取到ISerializeProvider具体实现的程序集名称，请检查配置文件appsettings.json");
-            }
-            if (string.IsNullOrEmpty(_classFullName))
-            {
-                throw new ArgumentNullException("JsonProvider:ClassFullName", "未获取到ISerializeProvider具体实现的类名，请检查配置文件appsettings.json");
-            }
+            Config = JsonProviderConfig.New(groupName);
         }
 
         /// <summary>
         /// 获取Json序列化组件实例
         /// </summary>
         /// <returns></returns>
-        public static ISerializeProvider GetProvider()
+        public static IJsonProvider GetProvider(string groupName = null)
         {
-            if (_provider != null) { return _provider; }
-            if (_assembly == null)
-            {
-                _assembly = Assembly.Load(_assemblyName);
-            }
-            if (_assembly == null) { throw new ArgumentNullException(string.Format("未找到{0}程序集"), _assemblyName); }
-            _provider = _assembly.CreateInstance(_classFullName, true, BindingFlags.CreateInstance, null, null, CultureInfo.CurrentCulture, null) as ISerializeProvider;
-            if (_provider == null) { throw new ArgumentNullException(string.Format("实例化类型{0}失败"), _classFullName); }
-            return _provider;
+            JsonFactory factory = new JsonFactory(groupName);
+            var provider = factory.GetProviderCore(null);
+            return provider;
+        }
+
+        /// <summary>
+        /// 反射创建IJsonProvider的实例
+        /// </summary>
+        /// <param name="assembly">IJsonProvider实现类型所在的程序集实例</param>
+        /// <param name="args">IJsonProvider实现类型实例化构造函数需要的参数</param>
+        /// <returns>Json组件IJsonProvider的实例</returns>
+        protected override IJsonProvider CreateInstance(Assembly assembly, object[] args)
+        {
+            var provider = assembly.CreateInstance(Config.ClassFullName, true, BindingFlags.CreateInstance, null, args, CultureInfo.CurrentCulture, null) as IJsonProvider;
+            return provider;
         }
     }
 }

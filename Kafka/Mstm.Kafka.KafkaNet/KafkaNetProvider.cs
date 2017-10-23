@@ -23,7 +23,7 @@ namespace Mstm.Kafka.KafkaNet
         private Producer _producer;
         private Consumer _consumer;
         private string _topicName;
-        private ISerializeProvider _serializeProvider;
+        private IJsonProvider _jsonProvider;
 
         /// <summary>
         /// 构造函数
@@ -47,7 +47,7 @@ namespace Mstm.Kafka.KafkaNet
             _router = new BrokerRouter(_options);
             _producer = new Producer(_router);
             _consumer = new Consumer(new ConsumerOptions(_topicName, _router));
-            _serializeProvider = JsonFactory.GetProvider();
+            _jsonProvider = JsonFactory.GetProvider();
         }
 
 
@@ -224,7 +224,7 @@ namespace Mstm.Kafka.KafkaNet
             List<string> jsons = new List<string>();
             datas.ToList().ForEach(data =>
             {
-                string json = _serializeProvider.SerializeObject<T>(data);
+                string json = _jsonProvider.SerializeObject<T>(data);
                 if (json == null) { throw new Exception("序列化发送数据失败！"); }
                 jsons.Add(json);
             });

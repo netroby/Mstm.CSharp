@@ -1,10 +1,6 @@
 ﻿using Mstm.Json.Core;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mstm.Json.Newtonsoft
 {
@@ -12,7 +8,7 @@ namespace Mstm.Json.Newtonsoft
     /// <summary>
     /// Json.Net序列化器实现
     /// </summary>
-    public class JsonSerializeProvider : ISerializeProvider
+    public class JsonNetProvider : IJsonProvider
     {
         /// <summary>
         /// 将指定的对象序列化为Json字符串
