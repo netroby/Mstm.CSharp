@@ -42,7 +42,13 @@ namespace Mstm.Common.Config
         /// </summary>
         public string AssemblyName
         {
-            get { return Config[string.Format("{0}:{1}:AssemblyName", ModuleName, GroupName)]; }
+            get
+            {
+                string key = string.Format("{0}:{1}:AssemblyName", ModuleName, GroupName);
+                string value = this.Config[key];
+                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(AssemblyName), string.Format("未找到需要反射的程序集的名称，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
+                return value;
+            }
         }
 
         /// <summary>
@@ -50,7 +56,13 @@ namespace Mstm.Common.Config
         /// </summary>
         public string ClassFullName
         {
-            get { return Config[string.Format("{0}:{1}:ClassFullName", ModuleName, GroupName)]; }
+            get
+            {
+                string key = string.Format("{0}:{1}:ClassFullName", ModuleName, GroupName);
+                string value = this.Config[key];
+                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(ClassFullName), string.Format("未找到需要反射的类的全称，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
+                return value;
+            }
         }
     }
 }

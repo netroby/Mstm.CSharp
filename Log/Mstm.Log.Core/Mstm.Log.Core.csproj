@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Mstm.Common\Mstm.Common.csproj" />
+  </ItemGroup>
+
 </Project>

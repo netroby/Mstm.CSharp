@@ -57,7 +57,7 @@ namespace Mstm.Lock.Distributed.ZK
             {
                 string key = string.Format("{0}:{1}:ConnStr", ModuleName, GroupName);
                 string value = this.Config[key];
-                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(ConnStr), "未找到Zookeeper的连接字符串，对应的Key为" + key); }
+                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(ConnStr), string.Format("未找到Zookeeper的连接字符串，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
                 return value;
             }
         }
@@ -71,7 +71,7 @@ namespace Mstm.Lock.Distributed.ZK
             {
                 string key = string.Format("{0}:{1}:LockZKRoot", ModuleName, GroupName);
                 string value = this.Config[key];
-                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(LockZKRoot), "未找到锁在Zookeeper中父节点的路径信息，对应的Key为" + key); }
+                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(LockZKRoot), string.Format("未找到锁在Zookeeper中父节点的路径信息，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
                 return value;
             }
         }
@@ -86,7 +86,7 @@ namespace Mstm.Lock.Distributed.ZK
             {
                 string key = string.Format("{0}:{1}:LockZKValue", ModuleName, GroupName);
                 string value = this.Config[key];
-                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(LockZKValue), "未找到每个锁在zookeeper中的值的配置信息，对应的Key为" + key); }
+                if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException(nameof(LockZKValue), string.Format("未找到每个锁在zookeeper中的值的配置信息，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
                 return value;
             }
         }

@@ -22,6 +22,13 @@ namespace Mstm.Common.Factory
         private static ConcurrentDictionary<string, T> _providerDict = new ConcurrentDictionary<string, T>();
 
         /// <summary>
+        /// 私有构造函数，不予许外部直接构造实例
+        /// </summary>
+        protected Factory(string groupName)
+        {
+        }
+
+        /// <summary>
         /// 反射创建指定类型的实例
         /// </summary>
         /// <param name="assembly">类型所在的程序集实例</param>
@@ -35,34 +42,58 @@ namespace Mstm.Common.Factory
         protected abstract BaseProviderConfig Config { get; set; }
 
         /// <summary>
+        /// 获取当前缓存键的值
+        /// </summary>
+        /// <returns></returns>
+        private string GetCacheKey()
+        {
+            string cacheKey = GetCacheKeyCore();
+            if (string.IsNullOrWhiteSpace(cacheKey))
+            {
+                new ArgumentNullException(nameof(cacheKey), string.Format("当前字典缓存key不能为空，当前模块为{0},当前组名称为{1}", Config.ModuleName, Config.GroupName));
+            }
+            return cacheKey;
+        }
+
+        /// <summary>
+        /// 获取当前缓存键的值
+        /// </summary>
+        /// <returns></returns>
+        protected abstract string GetCacheKeyCore();
+
+        /// <summary>
         /// 获取指定类型的具体实现类的实例
         /// </summary>
         /// <param name="args">实例化需要的构造函数参数</param>
         /// <param name="groupName">组名称</param>
         /// <returns></returns>
-        public T GetProviderCore(object[] args, string groupName = null)
+        public T GetProviderCore(object[] args)
         {
-            if (string.IsNullOrWhiteSpace(groupName)) { groupName = Config.DefaultGroupName; }
-            T provider = default(T);
-            if (_providerDict.ContainsKey(groupName))
+            if (Config == null)
             {
-                _providerDict.TryGetValue(groupName, out provider);
+                throw new ArgumentNullException(nameof(Config), "Config配置信息为空，基类型为BaseProviderConfig，请在Factory的子类构造函数中实例化Config信息，当前Factory为" + this.GetType().FullName);
+            }
+            T provider = default(T);
+            string cacheKey = GetCacheKey();
+            if (_providerDict.ContainsKey(cacheKey))
+            {
+                _providerDict.TryGetValue(cacheKey, out provider);
                 if (provider != null) { return provider; }
             }
 
             if (string.IsNullOrEmpty(Config.AssemblyName))
             {
-                throw new ArgumentNullException(nameof(Config.AssemblyName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的程序集名称，请检查配置文件{4}", Config.ModuleName, groupName, nameof(Config.AssemblyName), typeof(T).FullName, Config.ConfigFile));
+                throw new ArgumentNullException(nameof(Config.AssemblyName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的程序集名称，请检查配置文件{4}", Config.ModuleName, Config.GroupName, nameof(Config.AssemblyName), typeof(T).FullName, Config.ConfigFile));
             }
             if (string.IsNullOrEmpty(Config.ClassFullName))
             {
-                throw new ArgumentNullException(nameof(Config.ClassFullName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的类名，请检查配置文件{4}", Config.ModuleName, groupName, nameof(Config.ClassFullName), typeof(T).FullName, Config.ConfigFile));
+                throw new ArgumentNullException(nameof(Config.ClassFullName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的类名，请检查配置文件{4}", Config.ModuleName, Config.GroupName, nameof(Config.ClassFullName), typeof(T).FullName, Config.ConfigFile));
             }
             var assembly = Assembly.Load(Config.AssemblyName);
             if (assembly == null) { throw new ArgumentNullException(nameof(assembly), string.Format("未找到{0}程序集", Config.AssemblyName)); }
             provider = CreateInstance(assembly, args);
             if (provider == null) { throw new ArgumentNullException(nameof(provider), string.Format("实例化类型{0}失败", Config.ClassFullName)); }
-            _providerDict.TryAdd(groupName, provider);
+            _providerDict.TryAdd(cacheKey, provider);
             return provider;
         }
     }

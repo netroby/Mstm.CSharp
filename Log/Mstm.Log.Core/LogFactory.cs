@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Mstm.Common.Config;
+using Mstm.Common.Factory;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -12,12 +14,28 @@ namespace Mstm.Log.Core
     /// <summary>
     /// 日志组件工厂
     /// </summary>
-    public class LogFactory
+    public class LogFactory : Factory<ILogProvider>
     {
         /// <summary>
         /// 内部数据的并发字典
         /// </summary>
         private static ConcurrentDictionary<string, ILogProvider> _loggerDict = new ConcurrentDictionary<string, ILogProvider>();
+
+        /// <summary>
+        /// 私有构造函数，不予许外部直接构造实例
+        /// </summary>
+        private LogFactory(string groupName)
+            : base(groupName)
+        {
+            Config = LogConfig.New(groupName);
+        }
+
+        /// <summary>
+        /// 当前日志组件接口实现的配置
+        /// </summary>
+        protected override BaseProviderConfig Config { get; set; }
+
+        private Type CurrentType { get; set; }
 
         /// <summary>
         /// 获取日志组件的实例
@@ -27,31 +45,10 @@ namespace Mstm.Log.Core
         /// <returns>日志组件ILogProvider实例</returns>
         public static ILogProvider GetLogger(Type type, string groupName = null)
         {
-            if (string.IsNullOrWhiteSpace(groupName)) { groupName = LogConfig.DefaultGroupName; }
-            if (type == null) { type = typeof(LogFactory); }
-            ILogProvider logger = null;
-            string key = groupName + "_" + type.FullName;
-            if (_loggerDict.ContainsKey(key))
-            {
-                _loggerDict.TryGetValue(key, out logger);
-                if (logger != null) { return logger; }
-            }
-            LogConfig config = LogConfig.New(groupName);
-
-            if (string.IsNullOrEmpty(config.AssemblyName))
-            {
-                throw new ArgumentNullException(nameof(config.AssemblyName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的程序集名称，请检查配置文件{4}", LogConfig.ModuleName, groupName, nameof(LogConfig.AssemblyName), typeof(ILogProvider).FullName, LogConfig.ConfigFile));
-            }
-            if (string.IsNullOrEmpty(config.ClassFullName))
-            {
-                throw new ArgumentNullException(nameof(config.ClassFullName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的类名，请检查配置文件{4}", LogConfig.ModuleName, groupName, nameof(LogConfig.ClassFullName), typeof(ILogProvider).FullName, LogConfig.ConfigFile));
-            }
-            var assembly = Assembly.Load(config.AssemblyName);
-            if (assembly == null) { throw new ArgumentNullException(nameof(assembly), string.Format("未找到{0}程序集", config.AssemblyName)); }
-            logger = assembly.CreateInstance(config.ClassFullName, true, BindingFlags.CreateInstance, null, new object[] { type }, CultureInfo.CurrentCulture, null) as ILogProvider;
-            if (logger == null) { throw new ArgumentNullException(nameof(logger), string.Format("实例化类型{0}失败", config.ClassFullName)); }
-            _loggerDict.TryAdd(key, logger);
-            return logger;
+            LogFactory factory = new LogFactory(groupName);
+            factory.CurrentType = type ?? typeof(LogFactory);
+            var provider = factory.GetProviderCore(new object[] { type });
+            return provider;
         }
 
         /// <summary>
@@ -64,6 +61,28 @@ namespace Mstm.Log.Core
         {
             Type type = typeof(T);
             return GetLogger(type, groupName);
+        }
+
+        /// <summary>
+        /// 反射创建指定类型的实例
+        /// </summary>
+        /// <param name="assembly">类型所在的程序集实例</param>
+        /// <param name="args">类型实例化构造函数需要的参数</param>
+        /// <returns>指定类型的实例</returns>
+        protected override ILogProvider CreateInstance(Assembly assembly, object[] args)
+        {
+            var provider = assembly.CreateInstance(Config.ClassFullName, true, BindingFlags.CreateInstance, null, args, CultureInfo.CurrentCulture, null) as ILogProvider;
+            return provider;
+        }
+
+        /// <summary>
+        /// 获取当前缓存键的值
+        /// </summary>
+        /// <returns></returns>
+        protected override string GetCacheKeyCore()
+        {
+            string cacheKey = string.Format("{0}:{1}:{2}", Config.ModuleName, Config.GroupName, CurrentType.FullName);
+            return cacheKey;
         }
     }
 }
