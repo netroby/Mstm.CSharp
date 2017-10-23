@@ -17,11 +17,6 @@ namespace Mstm.Log.Core
     public class LogFactory : Factory<ILogProvider>
     {
         /// <summary>
-        /// 内部数据的并发字典
-        /// </summary>
-        private static ConcurrentDictionary<string, ILogProvider> _loggerDict = new ConcurrentDictionary<string, ILogProvider>();
-
-        /// <summary>
         /// 私有构造函数，不予许外部直接构造实例
         /// </summary>
         private LogFactory(string groupName)
@@ -29,11 +24,6 @@ namespace Mstm.Log.Core
         {
             Config = LogConfig.New(groupName);
         }
-
-        /// <summary>
-        /// 当前日志组件接口实现的配置
-        /// </summary>
-        protected override BaseProviderConfig Config { get; set; }
 
         private Type CurrentType { get; set; }
 

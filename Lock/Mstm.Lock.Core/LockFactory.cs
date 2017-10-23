@@ -25,11 +25,6 @@ namespace Mstm.Lock.Core
         }
 
         /// <summary>
-        /// 当前锁接口实现的配置
-        /// </summary>
-        protected override BaseProviderConfig Config { get; set; }
-
-        /// <summary>
         /// 获取锁组件的实例
         /// </summary>
         /// <param name="identity">当前锁的唯一标识</param>
@@ -52,16 +47,6 @@ namespace Mstm.Lock.Core
         {
             var provider = assembly.CreateInstance(Config.ClassFullName, true, BindingFlags.CreateInstance, null, args, CultureInfo.CurrentCulture, null) as ILockProvider;
             return provider;
-        }
-
-        /// <summary>
-        /// 获取当前缓存键的值
-        /// </summary>
-        /// <returns></returns>
-        protected override string GetCacheKeyCore()
-        {
-            string cacheKey = string.Format("{0}:{1}", Config.ModuleName, Config.GroupName);
-            return cacheKey;
         }
     }
 }

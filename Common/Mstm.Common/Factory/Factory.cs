@@ -39,7 +39,7 @@ namespace Mstm.Common.Factory
         /// <summary>
         /// 动态加载程序集相关的配置信息
         /// </summary>
-        protected abstract BaseProviderConfig Config { get; set; }
+        protected virtual BaseProviderConfig Config { get; set; }
 
         /// <summary>
         /// 获取当前缓存键的值
@@ -59,7 +59,11 @@ namespace Mstm.Common.Factory
         /// 获取当前缓存键的值
         /// </summary>
         /// <returns></returns>
-        protected abstract string GetCacheKeyCore();
+        protected virtual string GetCacheKeyCore()
+        {
+            string cacheKey = string.Format("{0}:{1}", Config.ModuleName, Config.GroupName);
+            return cacheKey;
+        }
 
         /// <summary>
         /// 获取指定类型的具体实现类的实例

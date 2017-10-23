@@ -18,7 +18,7 @@ namespace Mstm.Lock.Core
         public override string ModuleName => "LockProvider";
 
         /// <summary>
-        /// 构造函数
+        /// 私有构造函数，禁止外部构造
         /// </summary>
         /// <param name="groupName">组名称</param>
         private LockProviderConfig(string groupName)

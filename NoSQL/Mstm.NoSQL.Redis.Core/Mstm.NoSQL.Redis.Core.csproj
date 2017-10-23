@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Mstm.Common\Mstm.Common.csproj" />
     <ProjectReference Include="..\..\Log\Mstm.Log.Core\Mstm.Log.Core.csproj" />
   </ItemGroup>
 

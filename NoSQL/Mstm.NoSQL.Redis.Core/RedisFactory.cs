@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Mstm.Common.Factory;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -13,12 +14,16 @@ namespace Mstm.NoSQL.Redis.Core
     /// <summary>
     /// Redis组件工厂
     /// </summary>
-    public class RedisFactory
+    public class RedisFactory : Factory<IRedisProvider>
     {
         /// <summary>
-        /// 内部数据存储并发字典
+        /// 私有构造函数，不予许外部直接构造实例
         /// </summary>
-        private static ConcurrentDictionary<string, IRedisProvider> _providerDict = new ConcurrentDictionary<string, IRedisProvider>();
+        private RedisFactory(string groupName)
+            : base(groupName)
+        {
+            Config = RedisProviderConfig.New(groupName);
+        }
 
         /// <summary>
         /// 获取Redis操作组件实例
@@ -27,28 +32,22 @@ namespace Mstm.NoSQL.Redis.Core
         /// <returns></returns>
         public static IRedisProvider GetProvider(string groupName = null)
         {
-            if (string.IsNullOrWhiteSpace(groupName)) { groupName = RedisProviderConfig.DefaultGroupName; }
-            IRedisProvider provider = null;
-            if (_providerDict.ContainsKey(groupName))
-            {
-                _providerDict.TryGetValue(groupName, out provider);
-                if (provider != null) { return provider; }
-            }
-            RedisProviderConfig config = RedisProviderConfig.New(groupName);
+            RedisFactory factory = new RedisFactory(groupName);
+            var config = factory.Config as RedisProviderConfig;
+            var provider = factory.GetProviderCore(new object[] { config.RedisClientConnStr, config.DB });
+            return provider;
+        }
 
-            if (string.IsNullOrEmpty(config.AssemblyName))
-            {
-                throw new ArgumentNullException(nameof(config.AssemblyName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的程序集名称，请检查配置文件{4}", RedisProviderConfig.ModuleName, groupName, nameof(RedisProviderConfig.AssemblyName), typeof(IRedisProvider).FullName, RedisProviderConfig.ConfigFile));
-            }
-            if (string.IsNullOrEmpty(config.ClassFullName))
-            {
-                throw new ArgumentNullException(nameof(config.ClassFullName), string.Format("{0}:{1}:{2} 未获取到{3}具体实现的类名，请检查配置文件{4}", RedisProviderConfig.ModuleName, groupName, nameof(RedisProviderConfig.ClassFullName), typeof(IRedisProvider).FullName, RedisProviderConfig.ConfigFile));
-            }
-            var assembly = Assembly.Load(config.AssemblyName);
-            if (assembly == null) { throw new ArgumentNullException(nameof(assembly), string.Format("未找到{0}程序集", config.AssemblyName)); }
-            provider = assembly.CreateInstance(config.ClassFullName, true, BindingFlags.CreateInstance, null, new object[] { config.RedisClientConnStr, config.DB }, CultureInfo.CurrentCulture, null) as IRedisProvider;
-            if (provider == null) { throw new ArgumentNullException(nameof(provider), string.Format("实例化类型{0}失败", config.ClassFullName)); }
-            _providerDict.TryAdd(groupName, provider);
+        /// <summary>
+        /// 反射创建ILockProvider的实例
+        /// </summary>
+        /// <param name="assembly">ILockProvider实现类型所在的程序集实例</param>
+        /// <param name="args">ILockProvider实现类型实例化构造函数需要的参数</param>
+        /// <returns>锁组件ILockProvider的实例</returns>
+        protected override IRedisProvider CreateInstance(Assembly assembly, object[] args)
+        {
+            var config = Config as RedisProviderConfig;
+            var provider = assembly.CreateInstance(config.ClassFullName, true, BindingFlags.CreateInstance, null, args, CultureInfo.CurrentCulture, null) as IRedisProvider;
             return provider;
         }
     }
