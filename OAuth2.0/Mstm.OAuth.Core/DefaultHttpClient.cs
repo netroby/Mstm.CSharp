@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Mstm.OAuth.Core
 {
 
-#if net47
+#if NET47
 
     /// <summary>
     /// 默认Http客户端
@@ -20,14 +20,14 @@ namespace Mstm.OAuth.Core
     {
 
         HttpClient client;
-        ISerializeProvider jsonProvider;
+        IJsonProvider jsonProvider;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public DefaultHttpClient()
         {
-            jsonProvider = JsonSerializeProvider.GetProvider();
+            jsonProvider = JsonFactory.GetProvider();
             client = new HttpClient();
         }
 
