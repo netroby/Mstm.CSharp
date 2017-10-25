@@ -161,7 +161,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.RedPacket.Core.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.SQLAnalysis.Core.Tests", "SQLAnalysis\Mstm.SQLAnalysis.Core.Tests\Mstm.SQLAnalysis.Core.Tests.csproj", "{235CBD78-F407-4DE7-94B5-4CF98DEE72EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Lock.Distributed.Zk.Console", "Lock\Mstm.Lock.Distributed.Zk.Console\Mstm.Lock.Distributed.Zk.Console.csproj", "{D0CAC267-85CD-4B51-926D-7B4AD92721AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Lock.Distributed.Zk.Console", "Lock\Mstm.Lock.Distributed.Zk.Console\Mstm.Lock.Distributed.Zk.Console.csproj", "{D0CAC267-85CD-4B51-926D-7B4AD92721AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DynamicScript", "DynamicScript", "{881037B7-D84F-419F-B0EB-02E66186A1F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Core", "DynamicScript\Mstm.DynamicScript.Core\Mstm.DynamicScript.Core.csproj", "{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Lua", "DynamicScript\Mstm.DynamicScript.Lua\Mstm.DynamicScript.Lua.csproj", "{22E55710-7541-4115-B1C8-3E144F3C7064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Lua.Tests", "DynamicScript\Mstm.DynamicScript.Lua.Tests\Mstm.DynamicScript.Lua.Tests.csproj", "{59106A89-A983-4CBE-8359-B02767A3FFF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -433,6 +441,18 @@ Global
 		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0CAC267-85CD-4B51-926D-7B4AD92721AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E55710-7541-4115-B1C8-3E144F3C7064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E55710-7541-4115-B1C8-3E144F3C7064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E55710-7541-4115-B1C8-3E144F3C7064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E55710-7541-4115-B1C8-3E144F3C7064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -504,6 +524,9 @@ Global
 		{08996641-9B11-4B6B-BAF7-7BDC1869352A} = {0607AEBA-E6CE-4F69-8B1C-FBED8EC9F4E5}
 		{235CBD78-F407-4DE7-94B5-4CF98DEE72EA} = {5C52FE73-0C06-4769-9EB3-089F8AAA7A8F}
 		{D0CAC267-85CD-4B51-926D-7B4AD92721AB} = {29F2DEAD-0BFB-4A48-8236-062CF72185B8}
+		{18FCA90A-86B8-49FB-BBBD-37F2267A0A83} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{22E55710-7541-4115-B1C8-3E144F3C7064} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{59106A89-A983-4CBE-8359-B02767A3FFF0} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4254CE46-382D-41D1-8871-F8196BD4F85E}
