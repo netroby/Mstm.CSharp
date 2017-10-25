@@ -165,11 +165,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.Lock.Distributed.Zk.Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DynamicScript", "DynamicScript", "{881037B7-D84F-419F-B0EB-02E66186A1F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Core", "DynamicScript\Mstm.DynamicScript.Core\Mstm.DynamicScript.Core.csproj", "{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Core", "DynamicScript\Mstm.DynamicScript.Core\Mstm.DynamicScript.Core.csproj", "{18FCA90A-86B8-49FB-BBBD-37F2267A0A83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Lua", "DynamicScript\Mstm.DynamicScript.Lua\Mstm.DynamicScript.Lua.csproj", "{22E55710-7541-4115-B1C8-3E144F3C7064}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Lua", "DynamicScript\Mstm.DynamicScript.Lua\Mstm.DynamicScript.Lua.csproj", "{22E55710-7541-4115-B1C8-3E144F3C7064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Lua.Tests", "DynamicScript\Mstm.DynamicScript.Lua.Tests\Mstm.DynamicScript.Lua.Tests.csproj", "{59106A89-A983-4CBE-8359-B02767A3FFF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Python", "DynamicScript\Mstm.DynamicScript.Python\Mstm.DynamicScript.Python.csproj", "{2AE16E22-82EA-4F4B-A4F8-8CF48B5FADF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Ruby", "DynamicScript\Mstm.DynamicScript.Ruby\Mstm.DynamicScript.Ruby.csproj", "{96AC4641-D839-492D-A381-F2619D88E675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Ruby.Tests", "DynamicScript\Mstm.DynamicScript.Ruby.Tests\Mstm.DynamicScript.Ruby.Tests.csproj", "{D43696B8-C3CC-4621-A3A4-89A8D4571937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Python.Tests", "DynamicScript\Mstm.DynamicScript.Python.Tests\Mstm.DynamicScript.Python.Tests.csproj", "{346E8010-CD15-4F7E-AF72-0D2CBA879044}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Lua.Tests", "DynamicScript\Mstm.DynamicScript.Lua.Tests\Mstm.DynamicScript.Lua.Tests.csproj", "{59450CDA-D930-41BF-829B-C656330A2935}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -449,10 +457,26 @@ Global
 		{22E55710-7541-4115-B1C8-3E144F3C7064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E55710-7541-4115-B1C8-3E144F3C7064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E55710-7541-4115-B1C8-3E144F3C7064}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59106A89-A983-4CBE-8359-B02767A3FFF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AE16E22-82EA-4F4B-A4F8-8CF48B5FADF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE16E22-82EA-4F4B-A4F8-8CF48B5FADF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE16E22-82EA-4F4B-A4F8-8CF48B5FADF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE16E22-82EA-4F4B-A4F8-8CF48B5FADF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96AC4641-D839-492D-A381-F2619D88E675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96AC4641-D839-492D-A381-F2619D88E675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96AC4641-D839-492D-A381-F2619D88E675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96AC4641-D839-492D-A381-F2619D88E675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D43696B8-C3CC-4621-A3A4-89A8D4571937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D43696B8-C3CC-4621-A3A4-89A8D4571937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D43696B8-C3CC-4621-A3A4-89A8D4571937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D43696B8-C3CC-4621-A3A4-89A8D4571937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346E8010-CD15-4F7E-AF72-0D2CBA879044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346E8010-CD15-4F7E-AF72-0D2CBA879044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346E8010-CD15-4F7E-AF72-0D2CBA879044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346E8010-CD15-4F7E-AF72-0D2CBA879044}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59450CDA-D930-41BF-829B-C656330A2935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59450CDA-D930-41BF-829B-C656330A2935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59450CDA-D930-41BF-829B-C656330A2935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59450CDA-D930-41BF-829B-C656330A2935}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -526,7 +550,11 @@ Global
 		{D0CAC267-85CD-4B51-926D-7B4AD92721AB} = {29F2DEAD-0BFB-4A48-8236-062CF72185B8}
 		{18FCA90A-86B8-49FB-BBBD-37F2267A0A83} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
 		{22E55710-7541-4115-B1C8-3E144F3C7064} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
-		{59106A89-A983-4CBE-8359-B02767A3FFF0} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{2AE16E22-82EA-4F4B-A4F8-8CF48B5FADF7} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{96AC4641-D839-492D-A381-F2619D88E675} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{D43696B8-C3CC-4621-A3A4-89A8D4571937} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{346E8010-CD15-4F7E-AF72-0D2CBA879044} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{59450CDA-D930-41BF-829B-C656330A2935} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4254CE46-382D-41D1-8871-F8196BD4F85E}

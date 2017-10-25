@@ -33,6 +33,8 @@ namespace Mstm.DynamicScript.Core
             return new DynamicScriptRuntimeProviderConfig();
         }
 
+        List<string> _assemblyNameList = null;
+
         /// <summary>
         /// 动态脚本引擎程序集名称集合
         /// </summary>
@@ -40,7 +42,8 @@ namespace Mstm.DynamicScript.Core
         {
             get
             {
-                List<string> list = new List<string>();
+                if (_assemblyNameList != null) { return _assemblyNameList; }
+                _assemblyNameList = new List<string>();
                 string key = string.Format("{0}:AssemblyNameList", ModuleName);
                 var sections = this.Config.GetSection(key);
                 if (sections == null) { throw new ArgumentNullException(nameof(AssemblyNameList), string.Format("未找到动态脚本引擎程序集名称集合，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
@@ -48,9 +51,9 @@ namespace Mstm.DynamicScript.Core
                 if (assemblyNameList == null || assemblyNameList.Count() == 0) { throw new ArgumentNullException(nameof(AssemblyNameList), string.Format("未找到动态脚本引擎程序集名称集合，对应的Key为{0},配置文件为{1}", key, ConfigFile)); }
                 foreach (var item in assemblyNameList)
                 {
-                    list.Add(item.Value);
+                    _assemblyNameList.Add(item.Value);
                 }
-                return list;
+                return _assemblyNameList;
             }
         }
     }

@@ -29,7 +29,8 @@ namespace Mstm.DynamicScript.Core
             {
                 throw new ArgumentException("未配置任何动态脚本引擎，请检查你的配置文件！");
             }
-            foreach (var assemblyName in config.AssemblyNameList)
+            var assemblyNameList = config.AssemblyNameList;
+            foreach (var assemblyName in assemblyNameList)
             {
                 try
                 {

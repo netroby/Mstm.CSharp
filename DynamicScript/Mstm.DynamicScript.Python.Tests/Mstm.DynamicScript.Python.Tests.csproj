@@ -15,14 +15,20 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mstm.DynamicScript.Core\Mstm.DynamicScript.Core.csproj" />
-    <ProjectReference Include="..\Mstm.DynamicScript.Lua\Mstm.DynamicScript.Lua.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <ProjectReference Include="..\Mstm.DynamicScript.Python\Mstm.DynamicScript.Python.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Lua\demo.lua">
+    <None Update="Python\demo.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

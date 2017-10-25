@@ -20,7 +20,7 @@ namespace Mstm.DynamicScript.Lua.Tests
         [Fact]
         public void LuaExecuteFileTest()
         {
-            var result = DynamicScriptRuntime.Execute("lua/demo.lua");
+            var result = DynamicScriptRuntime.Execute("Lua/demo.lua");
             result.ShouldBe("120");
         }
 
