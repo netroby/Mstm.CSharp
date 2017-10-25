@@ -24,15 +24,16 @@ namespace Mstm.DynamicScript.Core
         /// </summary>
         static DynameScriptRuntimeFactory()
         {
-            string assemblyPath = AppDomain.CurrentDomain.BaseDirectory;
-            DirectoryInfo dir = new DirectoryInfo(assemblyPath);
-            var assemblyFiles = dir.GetFiles("*.dll");
-
-            foreach (var file in assemblyFiles)
+            var config = DynamicScriptRuntimeProviderConfig.New();
+            if (config == null || config.AssemblyNameList == null)
+            {
+                throw new ArgumentException("未配置任何动态脚本引擎，请检查你的配置文件！");
+            }
+            foreach (var assemblyName in config.AssemblyNameList)
             {
                 try
                 {
-                    var assembly = Assembly.LoadFile(file.FullName);
+                    var assembly = Assembly.Load(assemblyName);
                     var typeList = assembly.GetTypes().Where(a => a.GetInterface(nameof(IDynamicScriptRuntimeProvider)) != null);
                     foreach (var type in typeList)
                     {

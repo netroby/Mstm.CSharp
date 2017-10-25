@@ -29,7 +29,7 @@ namespace Mstm.Lock.Distributed.ZK
         public string GroupName { get; private set; }
 
         /// <summary>
-        /// 构造函数
+        /// 私有构造函数，禁止外部构造
         /// </summary>
         /// <param name="groupName">组名称</param>
         private ZKConfig(string groupName)

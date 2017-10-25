@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>mstmdev</Authors>
     <Company>mstmdev</Company>
-    <Version>0.1.0</Version>
+    <Version>0.1.2</Version>
     <PackageProjectUrl>https://github.com/mstmdev/Mstm.CSharp/tree/master/DynamicScript/Mstm.DynamicScript.Lua</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mstmdev/Mstm.CSharp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
