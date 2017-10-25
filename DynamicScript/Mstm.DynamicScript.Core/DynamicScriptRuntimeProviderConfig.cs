@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Mstm.DynamicScript.Core
 {
+    /// <summary>
+    /// 动态脚本提供器配置信息
+    /// </summary>
     public class DynamicScriptRuntimeProviderConfig : BaseConfig
     {
         /// <summary>
@@ -24,7 +27,7 @@ namespace Mstm.DynamicScript.Core
         /// <summary>
         /// 构造新的配置信息
         /// </summary>
-        /// <returns>Zookeeper的配置信息实例</returns>
+        /// <returns>动态脚本提供器配置信息</returns>
         public static DynamicScriptRuntimeProviderConfig New()
         {
             return new DynamicScriptRuntimeProviderConfig();

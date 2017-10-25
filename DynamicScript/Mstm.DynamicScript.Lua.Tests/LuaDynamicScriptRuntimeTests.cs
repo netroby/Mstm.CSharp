@@ -9,9 +9,14 @@ using Mstm.DynamicScript.Core;
 
 namespace Mstm.DynamicScript.Lua.Tests
 {
+    /// <summary>
+    /// Lua脚本引擎测试
+    /// </summary>
     public class LuaDynamicScriptRuntimeTests
     {
-
+        /// <summary>
+        /// 动态执行Lua脚本文件
+        /// </summary>
         [Fact]
         public void LuaExecuteFileTest()
         {
@@ -19,6 +24,9 @@ namespace Mstm.DynamicScript.Lua.Tests
             result.ShouldBe("120");
         }
 
+        /// <summary>
+        /// 执行指定的Lua脚本内容,类型不包含.
+        /// </summary>
         [Fact]
         public void LuaExecuteScriptTest()
         {
@@ -35,6 +43,9 @@ namespace Mstm.DynamicScript.Lua.Tests
             result.ShouldBe("120");
         }
 
+        /// <summary>
+        ///  执行指定的Lua脚本内容,类型包含.
+        /// </summary>
         [Fact]
         public void LuaExecuteScriptWithDotTest()
         {

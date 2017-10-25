@@ -27,7 +27,7 @@ namespace Mstm.DynamicScript.Core
         /// </summary>
         /// <param name="script">脚本代码</param>
         /// <param name="scriptType">脚本类型</param>
-        /// <returns></returns>
+        /// <returns>执行结果</returns>
         public static string Execute(string script, string scriptType)
         {
             var runtime = DynameScriptRuntimeFactory.GetProvider(scriptType);

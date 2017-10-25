@@ -54,8 +54,8 @@ namespace Mstm.DynamicScript.Core
         /// <summary>
         /// 获取脚本引擎
         /// </summary>
-        /// <param name="scriptTypeOrName"></param>
-        /// <returns></returns>
+        /// <param name="scriptTypeOrName">脚本类型或者要执行的脚本名称</param>
+        /// <returns>当前对应脚本语言对应的脚本引擎</returns>
         public static IDynamicScriptRuntimeProvider GetProvider(string scriptTypeOrName)
         {
             string scriptType;
