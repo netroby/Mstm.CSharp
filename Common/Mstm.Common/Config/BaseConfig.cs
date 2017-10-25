@@ -29,9 +29,16 @@ namespace Mstm.Common.Config
         /// </summary>
         public BaseConfig()
         {
-            Config = new ConfigurationBuilder()
-             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-             .AddJsonFile(ConfigFile).Build();
+            try
+            {
+                Config = new ConfigurationBuilder()
+                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                 .AddJsonFile(ConfigFile).Build();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("加载配置文件{0}失败，请检查你的配置文件！", ConfigFile), ex);
+            }
         }
     }
 }
