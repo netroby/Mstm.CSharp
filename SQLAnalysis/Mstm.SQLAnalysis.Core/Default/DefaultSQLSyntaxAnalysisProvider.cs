@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mstm.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,7 +83,7 @@ namespace Mstm.SQLAnalysis.Core
             // username like '%明%'
             if (where == null || filter == null) { return; }
             string relation = WhereRelationDictData[filter.NormalWhereRelation].Replace(Constants.ReplaceValue, filter.WhereValue);
-            where.AppendFormat("{0}{1}{0}({2}{0}{3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation);
+            where.AppendFormat("{0}{1}{0}({2}{0}{3})", Constants.WhiteSpace, EnumUtil.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation);
         }
 
 
@@ -97,7 +98,7 @@ namespace Mstm.SQLAnalysis.Core
             // username is not null
             if (where == null || filter == null) { return; }
             string relation = WhereRelationDictData[filter.NormalWhereRelation];
-            where.AppendFormat("{0}{1}{0}({2}{0}{3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation);
+            where.AppendFormat("{0}{1}{0}({2}{0}{3})", Constants.WhiteSpace, EnumUtil.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation);
         }
 
 
@@ -114,7 +115,7 @@ namespace Mstm.SQLAnalysis.Core
             string relation = WhereRelationDictData[filter.NormalWhereRelation];
             //处理数据类型之间的区别
             string value = filter.FieldType != FieldTypeEnum.Number ? string.Format("'{0}'", filter.WhereValue) : filter.WhereValue;
-            where.AppendFormat("{0}{1}{0}({2}{0}{3}{4})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation, value);
+            where.AppendFormat("{0}{1}{0}({2}{0}{3}{4})", Constants.WhiteSpace, EnumUtil.GetEnumOperation(filter.ConnectRelation), filter.FieldName, relation, value);
         }
 
 
@@ -146,7 +147,7 @@ namespace Mstm.SQLAnalysis.Core
         {
             if (where == null || filter == null) { return; }
             string funcName = CycleRelationDictData[filter.CycleRelation];
-            where.AppendFormat("{0}{1}({0}{4}>={2}{0}AND{0}{4}<={3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.MinValue, filter.MaxValue, funcName.Replace(Constants.ReplaceFieldName, filter.FieldName));
+            where.AppendFormat("{0}{1}({0}{4}>={2}{0}AND{0}{4}<={3})", Constants.WhiteSpace, EnumUtil.GetEnumOperation(filter.ConnectRelation), filter.MinValue, filter.MaxValue, funcName.Replace(Constants.ReplaceFieldName, filter.FieldName));
         }
 
 
@@ -210,7 +211,7 @@ namespace Mstm.SQLAnalysis.Core
             //CreateTime >=DATE_ADD(now(),INTERVAL -4 Hour);
             if (where == null || filter == null) { return; }
             string expression = PointInTimeRelationDictData[filter.PointInTimeWhereRelation].Replace(Constants.ReplaceValue, filter.WhereValue.ToString());
-            where.AppendFormat("{0}{1}({2}{0}{3})", Constants.WhiteSpace, EnumUtility.GetEnumOperation(filter.ConnectRelation), filter.FieldName, expression);
+            where.AppendFormat("{0}{1}({2}{0}{3})", Constants.WhiteSpace, EnumUtil.GetEnumOperation(filter.ConnectRelation), filter.FieldName, expression);
         }
 
 
@@ -250,7 +251,7 @@ namespace Mstm.SQLAnalysis.Core
                     {
                         throw new ArgumentException("无效的排序参数！", "FieldName");
                     }
-                    orderBuilder.AppendFormat("{0}{1}{0}{2},", Constants.WhiteSpace, GetSafeParam(order.FieldName), EnumUtility.GetEnumOperation(order.OrderMode));
+                    orderBuilder.AppendFormat("{0}{1}{0}{2},", Constants.WhiteSpace, GetSafeParam(order.FieldName), EnumUtil.GetEnumOperation(order.OrderMode));
                 });
                 //去除最后一个逗号
                 orderBuilder.Remove(orderBuilder.Length - 1, 1);

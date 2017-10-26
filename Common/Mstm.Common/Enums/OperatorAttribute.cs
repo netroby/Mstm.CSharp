@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mstm.SQLAnalysis.Core
+namespace Mstm.Common.Enums
 {
-
     /// <summary>
     /// 定义操作符
     /// </summary>

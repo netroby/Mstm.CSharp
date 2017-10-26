@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Text;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Reflection;
 
-namespace Mstm.SQLAnalysis.Core
+namespace Mstm.Common.Enums
 {
 
     /// <summary>
     /// 枚举工具类
     /// </summary>
-    public class EnumUtility
+    public class EnumUtil
     {
         /// <summary>
         /// 获取枚举项对应的文本描述
