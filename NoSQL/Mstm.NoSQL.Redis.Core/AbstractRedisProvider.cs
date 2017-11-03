@@ -257,26 +257,26 @@ namespace Mstm.NoSQL.Redis.Core
             return result;
         }
 
-        public void SetBytes(string key, byte[] value)
+        public void SetBytes(string key, byte[] value, double cacheMinutes = -1)
         {
             #region 缓存操作前
             #endregion
 
             #region 缓存操作
-            SetBytesCore(key, value);
+            SetBytesCore(key, value, cacheMinutes);
             #endregion
 
             #region 缓存操作后
             #endregion
         }
 
-        public void SetData<T>(string key, T value)
+        public void SetData<T>(string key, T value, double cacheMinutes = -1)
         {
             #region 缓存操作前
             #endregion
 
             #region 缓存操作
-            SetDataCore<T>(key, value);
+            SetDataCore<T>(key, value, cacheMinutes);
             #endregion
 
             #region 缓存操作后
@@ -313,13 +313,13 @@ namespace Mstm.NoSQL.Redis.Core
             return result;
         }
 
-        public void SetString(string key, string value)
+        public void SetString(string key, string value, double cacheMinutes = -1)
         {
             #region 缓存操作前
             #endregion
 
             #region 缓存操作
-            SetStringCore(key, value);
+            SetStringCore(key, value, cacheMinutes);
             #endregion
 
             #region 缓存操作后

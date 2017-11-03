@@ -19,13 +19,13 @@ namespace Mstm.NoSQL.Redis.Core
         /// <returns>Redis中存储的字符数据</returns>
         string GetString(string key);
 
-
         /// <summary>
-        /// 设置字符数据
+        /// 写入字符串到Redis缓存
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="value">要存储的字符数据</param>
-        void SetString(string key, string value);
+        /// <param name="cacheMinutes">缓存的时间，单位分钟，如果不传递或小于等于0，则默认不过期</param>
+        void SetString(string key, string value, double cacheMinutes = -1);
 
 
         /// <summary>
@@ -34,7 +34,8 @@ namespace Mstm.NoSQL.Redis.Core
         /// <typeparam name="T">存储对象的类型</typeparam>
         /// <param name="key">键</param>
         /// <param name="value">存储的对象</param>
-        void SetData<T>(string key, T value);
+        /// <param name="cacheMinutes">缓存的时间，单位分钟，如果不传递或小于等于0，则默认不过期</param>
+        void SetData<T>(string key, T value, double cacheMinutes = -1);
 
 
         /// <summary>
@@ -83,7 +84,8 @@ namespace Mstm.NoSQL.Redis.Core
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="value">要存储的byte数组</param>
-        void SetBytes(string key, byte[] value);
+        /// <param name="cacheMinutes">缓存的时间，单位分钟，如果不传递或小于等于0，则默认不过期</param>
+        void SetBytes(string key, byte[] value, double cacheMinutes = -1);
 
 
     }

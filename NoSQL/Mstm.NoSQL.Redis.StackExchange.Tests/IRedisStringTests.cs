@@ -47,7 +47,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         public void SetStringTest_Success()
         {
             string key = "SetStringTest_Success";
-            _provider.SetString(key, "IRedisStringTests.SetStringTest_Success");
+            _provider.SetString(key, "IRedisStringTests.SetStringTest_Success", 1);
             var value = _provider.GetString(key);
             value.ShouldBe("IRedisStringTests.SetStringTest_Success");
         }
@@ -61,7 +61,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
             {
                 Name = "张三",
                 Age = 19
-            });
+            }, 1);
         }
 
 
@@ -69,7 +69,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         public void SetDataTest_DataIsNull_SetNullStr()
         {
             string key = "SetDataTest_DataIsNull_SetNullStr";
-            _provider.SetData<Person>(key, null);
+            _provider.SetData<Person>(key, null, 1);
         }
 
 
@@ -81,7 +81,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
             {
                 Name = "李四",
                 Age = 23
-            });
+            }, 1);
             Person p = _provider.GetData<Person>(key);
             p.ShouldNotBeNull();
             p.Name.ShouldBe("李四");
@@ -91,7 +91,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         public void GetDataTest_DataIsNull_ReturnNull()
         {
             string key = "GetDataTest_DataIsNull_ReturnNull";
-            _provider.SetData<Person>(key, null);
+            _provider.SetData<Person>(key, null, 1);
             Person p = _provider.GetData<Person>(key);
             p.ShouldBeNull();
         }
@@ -101,7 +101,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         public void IsExistStringTest_KeyIsExist_ReturnTrue()
         {
             string key = "IsExistString_KeyIsExist_ReturnTrue";
-            _provider.SetString(key, key);
+            _provider.SetString(key, key, 1);
             bool isExist = _provider.IsExistString(key);
             isExist.ShouldBeTrue();
         }
@@ -127,7 +127,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         public void DeleteStringTest_KeyIsExist_ReturnTrue()
         {
             string key = "DeleteStringTest_KeyIsExist_ReturnTrue";
-            _provider.SetString(key, key);
+            _provider.SetString(key, key, 1);
             bool isSuccess = _provider.DeleteString(key);
             isSuccess.ShouldBeTrue();
         }
@@ -136,7 +136,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         public void AppendStringTest_KeyIsExist_Success()
         {
             string key = "AppendStringTest_KeyIsExist_Success";
-            _provider.SetString(key, key);
+            _provider.SetString(key, key, 1);
             string result = _provider.AppendString(key, "hello");
             result.ShouldBe(key + "hello");
         }
@@ -166,7 +166,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         {
             string key = "GetBytesTest_KeyIsExist_Success";
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(key);
-            _provider.SetBytes(key, bytes);
+            _provider.SetBytes(key, bytes, 1);
             var value = _provider.GetBytes(key);
             value.ShouldBe(bytes);
         }
@@ -177,7 +177,7 @@ namespace Mstm.NoSQL.Redis.StackExchange.Tests
         {
             string key = "SetBytesTest_Success";
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(key);
-            _provider.SetBytes(key, bytes);
+            _provider.SetBytes(key, bytes, 1);
         }
 
 

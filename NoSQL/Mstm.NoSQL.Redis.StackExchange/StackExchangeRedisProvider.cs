@@ -54,15 +54,15 @@ namespace Mstm.NoSQL.Redis.StackExchange
             return _redisDB.StringGet(key);
         }
 
-        public override void SetStringCore(string key, string value)
+        public override void SetStringCore(string key, string value, double cacheMinutes = -1)
         {
-            _redisDB.StringSet(key, value);
+            _redisDB.StringSet(key, value, GetExpireTime(cacheMinutes));
         }
 
-        public override void SetDataCore<T>(string key, T value)
+        public override void SetDataCore<T>(string key, T value, double cacheMinutes = -1)
         {
             var jsonStr = _jsonProvider.SerializeObject(value);
-            SetString(key, jsonStr);
+            SetString(key, jsonStr, cacheMinutes);
         }
 
         public override T GetDataCore<T>(string key)
@@ -107,9 +107,9 @@ namespace Mstm.NoSQL.Redis.StackExchange
         }
 
 
-        public override void SetBytesCore(string key, byte[] value)
+        public override void SetBytesCore(string key, byte[] value, double cacheMinutes = -1)
         {
-            _redisDB.StringSet(key, value);
+            _redisDB.StringSet(key, value, GetExpireTime(cacheMinutes));
         }
 
 
@@ -180,6 +180,21 @@ namespace Mstm.NoSQL.Redis.StackExchange
             return _redisDB.KeyExpire(key, time);
         }
 
+        #endregion
+
+
+        #region 私有方法
+        /// <summary>
+        /// 构建过期时间
+        /// </summary>
+        /// <param name="cacheMinutes">过期的分钟数</param>
+        /// <returns></returns>
+        private TimeSpan? GetExpireTime(double cacheMinutes)
+        {
+            TimeSpan? expire = null;
+            if (cacheMinutes > 0) { expire = TimeSpan.FromMinutes(cacheMinutes); }
+            return expire;
+        }
         #endregion
     }
 }

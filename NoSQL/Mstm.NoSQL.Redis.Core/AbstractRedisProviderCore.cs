@@ -36,14 +36,14 @@ namespace Mstm.NoSQL.Redis.Core
 
         public abstract bool ReNameKeyWithOutCoverCore(string oldKey, string newKey);
 
-        public abstract void SetBytesCore(string key, byte[] value);
+        public abstract void SetBytesCore(string key, byte[] value, double cacheMinutes = -1);
 
-        public abstract void SetDataCore<T>(string key, T value);
+        public abstract void SetDataCore<T>(string key, T value, double cacheMinutes = -1);
 
         public abstract bool SetExpireatKeyCore(string key, long timestamp);
 
         public abstract bool SetExpireKeyCore(string key, int seconds);
 
-        public abstract void SetStringCore(string key, string value);
+        public abstract void SetStringCore(string key, string value, double cacheMinutes = -1);
     }
 }
