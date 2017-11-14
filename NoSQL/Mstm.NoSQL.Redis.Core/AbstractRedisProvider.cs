@@ -24,15 +24,7 @@ namespace Mstm.NoSQL.Redis.Core
         public AbstractRedisProvider()
         {
             Type type = this.GetType();
-            try
-            {
-                Logger = LogFactory.GetProvider(type, RedisLogGroupName);
-            }
-            catch (Exception)
-            {
-                //为了不影响Redis逻辑，或者用户不需要启用日志，如果出错，则不使用空实现来忽略日志操作
-                Logger = EmptyLogProvider.New();
-            }
+            Logger = LogFactory.GetProviderOrDefault(type, RedisLogGroupName);
         }
 
         public string AppendString(string key, string appendStr)
