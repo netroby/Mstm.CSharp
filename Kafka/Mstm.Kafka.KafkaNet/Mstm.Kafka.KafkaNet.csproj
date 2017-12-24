@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
+    <Version>0.0.1</Version>
+    <Authors>mstmdev</Authors>
+    <Company>mstmdev</Company>
+    <RepositoryUrl>https://github.com/mstmdev/Mstm.CSharp.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mstmdev/Mstm.CSharp/tree/master/Mstm.Kafka.KafkaNet</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>提供Kafka组件的基本操作,使用Kafka Net作为基本实现</Description>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

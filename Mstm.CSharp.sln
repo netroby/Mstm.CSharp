@@ -173,11 +173,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Python",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Ruby", "DynamicScript\Mstm.DynamicScript.Ruby\Mstm.DynamicScript.Ruby.csproj", "{96AC4641-D839-492D-A381-F2619D88E675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Ruby.Tests", "DynamicScript\Mstm.DynamicScript.Ruby.Tests\Mstm.DynamicScript.Ruby.Tests.csproj", "{D43696B8-C3CC-4621-A3A4-89A8D4571937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Ruby.Tests", "DynamicScript\Mstm.DynamicScript.Ruby.Tests\Mstm.DynamicScript.Ruby.Tests.csproj", "{D43696B8-C3CC-4621-A3A4-89A8D4571937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Python.Tests", "DynamicScript\Mstm.DynamicScript.Python.Tests\Mstm.DynamicScript.Python.Tests.csproj", "{346E8010-CD15-4F7E-AF72-0D2CBA879044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Python.Tests", "DynamicScript\Mstm.DynamicScript.Python.Tests\Mstm.DynamicScript.Python.Tests.csproj", "{346E8010-CD15-4F7E-AF72-0D2CBA879044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.DynamicScript.Lua.Tests", "DynamicScript\Mstm.DynamicScript.Lua.Tests\Mstm.DynamicScript.Lua.Tests.csproj", "{59450CDA-D930-41BF-829B-C656330A2935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mstm.DynamicScript.Lua.Tests", "DynamicScript\Mstm.DynamicScript.Lua.Tests\Mstm.DynamicScript.Lua.Tests.csproj", "{59450CDA-D930-41BF-829B-C656330A2935}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6E8D4F72-7219-4754-8F4F-B80D7C4A0519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstm.Web.AspNetCore", "Web\Mstm.Web.AspNetCore\Mstm.Web.AspNetCore.csproj", "{7314BBEB-DBFF-4252-A1F3-939BBA64A2AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -477,6 +481,10 @@ Global
 		{59450CDA-D930-41BF-829B-C656330A2935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59450CDA-D930-41BF-829B-C656330A2935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59450CDA-D930-41BF-829B-C656330A2935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7314BBEB-DBFF-4252-A1F3-939BBA64A2AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7314BBEB-DBFF-4252-A1F3-939BBA64A2AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7314BBEB-DBFF-4252-A1F3-939BBA64A2AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7314BBEB-DBFF-4252-A1F3-939BBA64A2AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -555,6 +563,7 @@ Global
 		{D43696B8-C3CC-4621-A3A4-89A8D4571937} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
 		{346E8010-CD15-4F7E-AF72-0D2CBA879044} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
 		{59450CDA-D930-41BF-829B-C656330A2935} = {881037B7-D84F-419F-B0EB-02E66186A1F3}
+		{7314BBEB-DBFF-4252-A1F3-939BBA64A2AC} = {6E8D4F72-7219-4754-8F4F-B80D7C4A0519}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4254CE46-382D-41D1-8871-F8196BD4F85E}
