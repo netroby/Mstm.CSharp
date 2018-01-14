@@ -1,0 +1,103 @@
+﻿using Mstm.ORM.Core.Common;
+using Mstm.ORM.Core.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Mstm.ORM.Core
+{
+    public abstract partial class Repository<T> : IRepository<T>
+         where T : class, IEntity, new()
+    {
+        #region Abstract
+
+        /// <summary>
+        /// 查询行数
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public abstract Task<long> OnCountAsync(string where);
+
+        /// <summary>
+        /// 获取指定的单行，如果未找到则返回null，如果存在多行则抛出异常
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public abstract Task<T> OnGetSingleAsync(string where);
+
+        /// <summary>
+        /// 获取指定的数据集中的第一行
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="orderBy"></param>
+        /// <returns></returns>
+        public abstract Task<T> OnGetFirstAsync(string where, string orderBy);
+
+        /// <summary>
+        /// 获取所有数据行
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public abstract Task<IList<T>> OnGetListAsync(string where);
+
+        /// <summary>
+        /// 插入行
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public abstract Task<int> OnInsertAsync(params T[] entities);
+
+        /// <summary>
+        /// 逻辑删除指定的行
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public abstract Task<int> OnLogicalRemoveAsync(string where);
+
+        /// <summary>
+        /// 强制物理删除制定的行
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public abstract Task<int> OnForceRemoveAsync(string where);
+
+        /// <summary>
+        /// 更新指定的行
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="where"></param>
+        /// <param name="fields"></param>
+        /// <returns></returns>
+        public abstract Task<int> OnUpdateAsync(T entity, string where, params Expression<Func<T, object>>[] fields);
+
+        /// <summary>
+        /// 执行SQL语句
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public abstract Task<int> OnExecuteNonQueryAsync(string sql);
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public abstract Task<Page<T>> OnGetPageListAsync(int pageNum, int pageSize, string where);
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="where"></param>
+        /// <param name="orderby"></param>
+        /// <returns></returns>
+        public abstract Task<Page<T>> OnGetPageListAsync(int pageNum, int pageSize, string where, string orderby);
+        #endregion
+
+    }
+}
