@@ -21,4 +21,10 @@
     <ProjectReference Include="..\Mstm.ORM.Dapper\Mstm.ORM.Dapper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
