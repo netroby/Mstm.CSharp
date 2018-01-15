@@ -90,6 +90,15 @@ namespace Mstm.ORM.Core
         /// <returns>返回IDataReader对象</returns>
         public abstract Task<IDataReader> OnExecuteReaderAsync(string sql, object parms = null);
 
+
+        /// <summary>
+        /// 执行SQL语句返回第一行第一列
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parms">SQL参数</param>
+        /// <returns>返回第一行第一列</returns>
+        public abstract Task<object> OnExecuteScalarAsync(string sql, object parms = null);
+
         /// <summary>
         /// 分页查询
         /// </summary>

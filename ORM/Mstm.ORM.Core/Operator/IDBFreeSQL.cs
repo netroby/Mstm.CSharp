@@ -28,6 +28,12 @@ namespace Mstm.ORM.Core.Operator
         /// <returns>返回IDataReader对象</returns>
         Task<IDataReader> ExecuteReaderAsync(string sql, object parms = null);
 
+        /// <summary>
+        /// 执行SQL语句返回第一行第一列
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parms">SQL参数</param>
+        /// <returns>返回第一行第一列</returns>
         Task<object> ExecuteScalarAsync(string sql, object parms = null);
 
         Task<TEntity> ExecuteAsync<TEntity>(string sql, params DbParameter[] parms);

@@ -214,19 +214,21 @@ namespace Mstm.ORM.Core
 
         public async Task<object> ExecuteScalarAsync(string sql, object parms = null)
         {
+            object obj = null;
             #region PreExecute
-
+            var watch = StartMonitor();
+            if (string.IsNullOrWhiteSpace(sql)) { return obj; }
             #endregion
 
             #region Executing
-
+            obj = await OnExecuteScalarAsync(sql, parms);
             #endregion
 
             #region Executed
-
+            Monitoring("ExecuteScalarAsync", "执行指定的SQL语句，返回第一行第一列数据", sql, watch);
             #endregion
 
-            throw new NotImplementedException();
+            return obj;
         }
 
         public async Task<int> ForceRemoveAsync(string where)

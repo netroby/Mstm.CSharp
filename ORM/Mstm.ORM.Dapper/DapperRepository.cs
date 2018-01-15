@@ -123,6 +123,11 @@ namespace Mstm.ORM.Dapper
             return await conn.ExecuteReaderAsync(sql, parms);
         }
 
+        public override async Task<object> OnExecuteScalarAsync(string sql, object parms = null)
+        {
+            return await conn.ExecuteScalarAsync(sql, parms);
+        }
+
         public override async Task<Page<T>> OnGetPageListAsync(int pageNum, int pageSize, string where)
         {
             if (tableInfo.PKList == null || tableInfo.PKList.Count == 0)

@@ -97,6 +97,20 @@ namespace Mstm.ORM.Dapper.Tests
         }
 
         [Fact]
+        public void ExecuteScalarAsyncTest()
+        {
+            string sql = "SELECT UserName FROM UserInfo WHERE UserId>1";
+            var userName = repo.ExecuteScalarAsync(sql).Result;
+        }
+
+        [Fact]
+        public void ExecuteScalarAsyncWithParamsTest()
+        {
+            string sql = "SELECT UserName FROM UserInfo WHERE UserId=@UserId";
+            var userName = repo.ExecuteScalarAsync(sql, new { UserId = 1 }).Result;
+        }
+
+        [Fact]
         public void UpdateRecordHashTest()
         {
             var list = repo.GetListAsync().Result;
