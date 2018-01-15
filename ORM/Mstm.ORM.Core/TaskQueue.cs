@@ -14,6 +14,8 @@ namespace Mstm.ORM.Core
     public static class TaskQueue
     {
         private static ConcurrentQueue<Task> _queue = new ConcurrentQueue<Task>();
+        private static bool _start = false;
+
         public static void UpdateRecordHash<T>(T entity, IRepository<T> repository)
             where T : class, IEntity
         {
@@ -53,11 +55,12 @@ namespace Mstm.ORM.Core
         /// <returns></returns>
         public static Task Run()
         {
+            _start = true;
             var task = Task.Run(() =>
             {
-                while (true)
+                while (_start)
                 {
-                    while (_queue.Count > 0)
+                    while (_queue.Count > 0 && _start)
                     {
                         Task work;
                         bool isSuccess = _queue.TryDequeue(out work);
@@ -71,6 +74,15 @@ namespace Mstm.ORM.Core
 
             });
             return task;
+        }
+
+        /// <summary>
+        /// 暂停任务队列
+        /// </summary>
+        /// <returns></returns>
+        public static void Stop()
+        {
+            _start = false;
         }
     }
 }
