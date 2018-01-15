@@ -38,11 +38,19 @@ namespace Mstm.ORM.Core
         public abstract Task<T> OnGetFirstAsync(string where, string orderBy);
 
         /// <summary>
-        /// 获取所有数据行
+        /// 筛选指定的数据行
         /// </summary>
-        /// <param name="where"></param>
-        /// <returns></returns>
+        /// <param name="where">过滤条件</param>
+        /// <returns>查询结果集</returns>
         public abstract Task<IList<T>> OnGetListAsync(string where);
+
+        /// <summary>
+        /// 筛选指定的数据行
+        /// </summary>
+        /// <param name="where">过滤条件</param>
+        /// <param name="orderBy">排序条件</param>
+        /// <returns>查询结果集</returns>
+        public abstract Task<IList<T>> OnGetListAsync(string where, string orderBy);
 
         /// <summary>
         /// 插入行

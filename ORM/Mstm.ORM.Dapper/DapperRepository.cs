@@ -58,6 +58,12 @@ namespace Mstm.ORM.Dapper
             return (await conn.QueryAsync<T>(sql)).ToList();
         }
 
+        public override async Task<IList<T>> OnGetListAsync(string where, string orderBy)
+        {
+            string sql = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} ", tableInfo.GetColumnsStr(), tableInfo.TableName, where, orderBy);
+            return (await conn.QueryAsync<T>(sql)).ToList();
+        }
+
         public override async Task<int> OnInsertAsync(params T[] entities)
         {
             int addCount = 0;

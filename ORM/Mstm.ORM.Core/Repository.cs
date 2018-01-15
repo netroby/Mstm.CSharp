@@ -241,6 +241,11 @@ namespace Mstm.ORM.Core
 
         public async Task<IList<T>> GetListAsync(string where)
         {
+            return await this.GetListAsync(where, null);
+        }
+
+        public async Task<IList<T>> GetListAsync(string where, string orderby)
+        {
             IList<T> list = null;
 
             #region PreExecute
@@ -249,32 +254,22 @@ namespace Mstm.ORM.Core
             #endregion
 
             #region Executing
-            list = await this.OnGetListAsync(where);
+            if (string.IsNullOrWhiteSpace(orderby))
+            {
+                list = await this.OnGetListAsync(where);
+            }
+            else
+            {
+                list = await this.OnGetListAsync(where, orderby);
+            }
             #endregion
 
             #region Executed
             ProcessRecordHash(list.ToArray());
-            Monitoring("GetList", "查询数据返回列表", where, watch);
+            Monitoring("GetListAsync", "筛选指定的数据行", where, watch);
             #endregion
 
             return list;
-        }
-
-        public async Task<IList<T>> GetListAsync(string where, string orderby)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
         }
 
         public async Task<IList<T>> GetListAsync(Expression<Func<T, bool>> where)

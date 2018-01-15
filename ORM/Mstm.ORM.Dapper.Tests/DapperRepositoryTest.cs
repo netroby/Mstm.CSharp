@@ -68,6 +68,7 @@ namespace Mstm.ORM.Dapper.Tests
             var count = repo.UpdateAsync(userInfo, "UserName='BiuBiu3'", a => a.Password).Result;
         }
 
+        #region ExecuteNonQueryAsync
         [Fact]
         public void ExecuteNonQueryAsyncTest()
         {
@@ -81,7 +82,9 @@ namespace Mstm.ORM.Dapper.Tests
             string sql = "UPDATE UserInfo SET State=9 WHERE UserName=@UserName";
             var count = repo.ExecuteNonQueryAsync(sql, new { UserName = "BiuBiu4" }).Result;
         }
+        #endregion
 
+        #region ExecuteReaderAsync
         [Fact]
         public void ExecuteReaderAsyncTest()
         {
@@ -95,7 +98,9 @@ namespace Mstm.ORM.Dapper.Tests
             string sql = "SELECT * FROM UserInfo WHERE UserId=@UserId";
             var reader = repo.ExecuteReaderAsync(sql, new { UserId = 1 }).Result;
         }
+        #endregion
 
+        #region ExecuteScalarAsync
         [Fact]
         public void ExecuteScalarAsyncTest()
         {
@@ -109,6 +114,27 @@ namespace Mstm.ORM.Dapper.Tests
             string sql = "SELECT UserName FROM UserInfo WHERE UserId=@UserId";
             var userName = repo.ExecuteScalarAsync(sql, new { UserId = 1 }).Result;
         }
+        #endregion
+
+        #region GetListAsync
+        [Fact]
+        public void GetListAsyncTest()
+        {
+            var list = repo.GetListAsync().Result;
+        }
+
+        [Fact]
+        public void GetListAsyncWithWhereTest()
+        {
+            var list = repo.GetListAsync("UserId=1").Result;
+        }
+
+        [Fact]
+        public void GetListAsyncWithOrderByTest()
+        {
+            var list = repo.GetListAsync("UserId>1", "UserId DESC").Result;
+        }
+        #endregion
 
         [Fact]
         public void UpdateRecordHashTest()
