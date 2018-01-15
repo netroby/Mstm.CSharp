@@ -105,23 +105,6 @@ namespace Mstm.ORM.Core
             throw new NotImplementedException();
         }
 
-        public async Task<TEntity> ExecuteAsync<TEntity>(string sql)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
         public async Task<TEntity> ExecuteAsync<TEntity>(string sql, params DbParameter[] parms)
         {
             #region PreExecute
@@ -140,23 +123,6 @@ namespace Mstm.ORM.Core
         }
 
         public async Task<TEntity> ExecuteAsync<TEntity>(DbCommand cmd)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql)
         {
             #region PreExecute
 
@@ -207,74 +173,23 @@ namespace Mstm.ORM.Core
             throw new NotImplementedException();
         }
 
-        public async Task<int> ExecuteNonQueryAsync(string sql)
+        public async Task<int> ExecuteNonQueryAsync(string sql, object parms = null)
         {
-            int count = 0;
+            int count = -1;
             #region PreExecute
             var watch = StartMonitor();
-            if (string.IsNullOrWhiteSpace(sql)) { return 0; }
+            if (string.IsNullOrWhiteSpace(sql)) { return count; }
             #endregion
 
             #region Executing
-            count = await OnExecuteNonQueryAsync(sql);
+            count = await OnExecuteNonQueryAsync(sql, parms);
             #endregion
 
             #region Executed
-            Monitoring("ExecuteNonQuery", "执行指定的SQL语句，返回受影响的行数", sql, watch);
+            Monitoring("ExecuteNonQueryAsync", "执行指定的SQL语句，返回受影响的行数", sql, watch);
             #endregion
 
             return count;
-        }
-
-        public async Task<int> ExecuteNonQueryAsync(string sql, params DbParameter[] parms)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<int> ExecuteNonQueryAsync(DbCommand cmd)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<DbDataReader> ExecuteReaderAsync(string sql)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
         }
 
         public async Task<DbDataReader> ExecuteReaderAsync(string sql, params DbParameter[] parms)
@@ -295,23 +210,6 @@ namespace Mstm.ORM.Core
         }
 
         public async Task<DbDataReader> ExecuteReaderAsync(DbCommand cmd)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<object> ExecuteScalarAsync(string sql)
         {
             #region PreExecute
 

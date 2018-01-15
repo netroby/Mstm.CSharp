@@ -1,6 +1,8 @@
 ﻿using Mstm.ORM.Core;
 using Mstm.ORM.Core.Tests.Common;
 using System;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Threading;
 using Xunit;
 
@@ -67,10 +69,17 @@ namespace Mstm.ORM.Dapper.Tests
         }
 
         [Fact]
-        public void ExecuteNonQueryTest()
+        public void ExecuteNonQueryAsyncTest()
         {
-            string sql = "UPDATE UserInfo SET State=9 WHERE UserName='BiuBiu4'";
+            string sql = "UPDATE UserInfo SET State=0 WHERE UserName='BiuBiu4'";
             var count = repo.ExecuteNonQueryAsync(sql).Result;
+        }
+
+        [Fact]
+        public void ExecuteNonQueryAsyncWithParamsTest()
+        {
+            string sql = "UPDATE UserInfo SET State=9 WHERE UserName=@UserName";
+            var count = repo.ExecuteNonQueryAsync(sql, new { UserName = "BiuBiu4" }).Result;
         }
 
         [Fact]

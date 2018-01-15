@@ -2,6 +2,7 @@
 using Mstm.ORM.Core.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,9 +76,10 @@ namespace Mstm.ORM.Core
         /// <summary>
         /// 执行SQL语句
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parms">SQL参数</param>
         /// <returns></returns>
-        public abstract Task<int> OnExecuteNonQueryAsync(string sql);
+        public abstract Task<int> OnExecuteNonQueryAsync(string sql, object parms = null);
 
         /// <summary>
         /// 分页查询

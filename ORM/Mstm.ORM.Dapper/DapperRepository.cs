@@ -112,9 +112,9 @@ namespace Mstm.ORM.Dapper
             return updateCount;
         }
 
-        public override async Task<int> OnExecuteNonQueryAsync(string sql)
+        public override async Task<int> OnExecuteNonQueryAsync(string sql, object parms)
         {
-            return await conn.ExecuteAsync(sql);
+            return await conn.ExecuteAsync(sql, parms);
         }
 
         public override async Task<Page<T>> OnGetPageListAsync(int pageNum, int pageSize, string where)

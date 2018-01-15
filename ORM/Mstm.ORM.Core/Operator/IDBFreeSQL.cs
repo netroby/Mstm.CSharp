@@ -11,31 +11,25 @@ namespace Mstm.ORM.Core.Operator
     /// </summary>
     public interface IDBFreeSQL
     {
-        Task<int> ExecuteNonQueryAsync(string sql);
-
-        Task<int> ExecuteNonQueryAsync(string sql, params DbParameter[] parms);
-
-        Task<int> ExecuteNonQueryAsync(DbCommand cmd);
-
-        Task<DbDataReader> ExecuteReaderAsync(string sql);
+        /// <summary>
+        /// 执行SQL语句返回受影响的行数
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parms">参数</param>
+        /// <returns>受影响的行数</returns>
+        Task<int> ExecuteNonQueryAsync(string sql, object parms = null);
 
         Task<DbDataReader> ExecuteReaderAsync(string sql, params DbParameter[] parms);
 
         Task<DbDataReader> ExecuteReaderAsync(DbCommand cmd);
 
-        Task<object> ExecuteScalarAsync(string sql);
-
         Task<object> ExecuteScalarAsync(string sql, params DbParameter[] parms);
 
         Task<object> ExecuteScalarAsync(DbCommand cmd);
 
-        Task<TEntity> ExecuteAsync<TEntity>(string sql);
-
         Task<TEntity> ExecuteAsync<TEntity>(string sql, params DbParameter[] parms);
 
         Task<TEntity> ExecuteAsync<TEntity>(DbCommand cmd);
-
-        Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql);
 
         Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql, params DbParameter[] parms);
 
