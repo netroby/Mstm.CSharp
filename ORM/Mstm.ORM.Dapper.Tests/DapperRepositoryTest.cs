@@ -83,6 +83,20 @@ namespace Mstm.ORM.Dapper.Tests
         }
 
         [Fact]
+        public void ExecuteReaderAsyncTest()
+        {
+            string sql = "SELECT * FROM UserInfo WHERE UserId=1";
+            var reader = repo.ExecuteReaderAsync(sql).Result;
+        }
+
+        [Fact]
+        public void ExecuteReaderAsyncWithParamsTest()
+        {
+            string sql = "SELECT * FROM UserInfo WHERE UserId=@UserId";
+            var reader = repo.ExecuteReaderAsync(sql, new { UserId = 1 }).Result;
+        }
+
+        [Fact]
         public void UpdateRecordHashTest()
         {
             var list = repo.GetListAsync().Result;

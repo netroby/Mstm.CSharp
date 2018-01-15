@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Mstm.ORM.Core.Entity;
 using Mstm.ORM.Core.Metadata;
 using Mstm.ORM.Core.Common;
+using System.Data;
 
 namespace Mstm.ORM.Core
 {
@@ -192,58 +193,26 @@ namespace Mstm.ORM.Core
             return count;
         }
 
-        public async Task<DbDataReader> ExecuteReaderAsync(string sql, params DbParameter[] parms)
+        public async Task<IDataReader> ExecuteReaderAsync(string sql, object parms = null)
         {
+            IDataReader dataReader = null;
             #region PreExecute
-
+            var watch = StartMonitor();
+            if (string.IsNullOrWhiteSpace(sql)) { return dataReader; }
             #endregion
 
             #region Executing
-
+            dataReader = await OnExecuteReaderAsync(sql, parms);
             #endregion
 
             #region Executed
-
+            Monitoring("ExecuteReaderAsync", "执行指定的SQL语句，返回IDataReader实例", sql, watch);
             #endregion
 
-            throw new NotImplementedException();
+            return dataReader;
         }
 
-        public async Task<DbDataReader> ExecuteReaderAsync(DbCommand cmd)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<object> ExecuteScalarAsync(string sql, params DbParameter[] parms)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<object> ExecuteScalarAsync(DbCommand cmd)
+        public async Task<object> ExecuteScalarAsync(string sql, object parms = null)
         {
             #region PreExecute
 

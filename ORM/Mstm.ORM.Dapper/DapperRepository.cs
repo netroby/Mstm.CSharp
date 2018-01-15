@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Mstm.ORM.Core.Operator;
 using Mstm.ORM.Core.Entity;
 using Mstm.ORM.Core.Common;
+using System.Data;
 
 namespace Mstm.ORM.Dapper
 {
@@ -115,6 +116,11 @@ namespace Mstm.ORM.Dapper
         public override async Task<int> OnExecuteNonQueryAsync(string sql, object parms)
         {
             return await conn.ExecuteAsync(sql, parms);
+        }
+
+        public override async Task<IDataReader> OnExecuteReaderAsync(string sql, object parms = null)
+        {
+            return await conn.ExecuteReaderAsync(sql, parms);
         }
 
         public override async Task<Page<T>> OnGetPageListAsync(int pageNum, int pageSize, string where)
