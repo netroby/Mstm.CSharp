@@ -106,7 +106,7 @@ namespace Mstm.ORM.Core
             throw new NotImplementedException();
         }
 
-        public async Task<TEntity> ExecuteAsync<TEntity>(string sql, params DbParameter[] parms)
+        public async Task<TEntity> ExecuteAsync<TEntity>(string sql, object parms = null)
         {
             #region PreExecute
 
@@ -123,41 +123,7 @@ namespace Mstm.ORM.Core
             throw new NotImplementedException();
         }
 
-        public async Task<TEntity> ExecuteAsync<TEntity>(DbCommand cmd)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql, params DbParameter[] parms)
-        {
-            #region PreExecute
-
-            #endregion
-
-            #region Executing
-
-            #endregion
-
-            #region Executed
-
-            #endregion
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<IList<TEntity>> ExecuteListAsync<TEntity>(DbCommand cmd)
+        public async Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql, object parms = null)
         {
             #region PreExecute
 

@@ -36,12 +36,8 @@ namespace Mstm.ORM.Core.Operator
         /// <returns>返回第一行第一列</returns>
         Task<object> ExecuteScalarAsync(string sql, object parms = null);
 
-        Task<TEntity> ExecuteAsync<TEntity>(string sql, params DbParameter[] parms);
+        Task<TEntity> ExecuteAsync<TEntity>(string sql, object parms = null);
 
-        Task<TEntity> ExecuteAsync<TEntity>(DbCommand cmd);
-
-        Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql, params DbParameter[] parms);
-
-        Task<IList<TEntity>> ExecuteListAsync<TEntity>(DbCommand cmd);
+        Task<IList<TEntity>> ExecuteListAsync<TEntity>(string sql, object parms = null);
     }
 }
