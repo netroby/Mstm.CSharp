@@ -25,8 +25,8 @@ namespace Mstm.Json.Core
         /// 将字符串反序列化为对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="str">待反序列化的字符串</param>
+        /// <param name="jsonStr">待反序列化的字符串</param>
         /// <returns>序列化后的对象</returns>
-        T DeserializeObject<T>(string str);
+        T DeserializeObject<T>(string jsonStr);
     }
 }
