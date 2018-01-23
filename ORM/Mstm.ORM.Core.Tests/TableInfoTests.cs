@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Mstm.ORM.Core.Tests
 {
-    public class TableInfoTest
+    public class TableInfoTests
     {
         [Fact]
         public void GetTableInfoTest()
